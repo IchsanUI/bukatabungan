@@ -1,0 +1,33 @@
+* {
+ font-family: 'Rubik', sans-serif;
+}
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0px 0;
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+ background: rgb(0,65,255);
+background: linear-gradient(90deg, rgba(0,65,255,1) 0%, rgba(9,9,121,1) 60%, rgba(9,9,121,1) 100%);
+}
+
+.flex-items:nth-child(1) {
+
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+}
+
