@@ -19,7 +19,7 @@
     </nav>
 
     <div class="container mt-5">
-        <h5 class="card-title "><strong>Buka Rekening Baru</strong></h5>
+        <h5 class="card-title "><strong>Buka Rekening Bar</strong></h5>
         <p class="card-text p-2">Nikmati 3 Langkah mudah Buka Rekening Bank Gresik dimanapun, dan kapanpun .</p>
         <div class="card text-left mt-4" style="background-color:rgb(248, 248, 248)">
             <div class="card-body">
