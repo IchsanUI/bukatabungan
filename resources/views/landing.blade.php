@@ -30,7 +30,7 @@ justify-content: center;
                 <div style="display: flex; align-items: center;">
                     <i class="bi bi-file-earmark-check" style="font-size: 3rem; color: cornflowerblue; margin-right: 1rem;"></i>
                     <div>
-                        <h6 class="card-title">1. Siapkan Dokumen</h6>
+                        <h6 class="card-title">1. Siakan Dokumen</h6>
                         <p class="card-text"><small>Siapkan KTP, NPWP (opsional), Data Diri</small></p>
                     </div>
                 </div>
