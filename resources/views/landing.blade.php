@@ -18,7 +18,7 @@
         <div class="flex-items" style="display: flex;
 justify-content: center;
   align-items: center;">
-            <img class="data-img " src="{{ asset('img/Logo.png') }}" style="width: 80%;" />
+            <img class="data-img " src="{{ asset('img/LogoB.png') }}" style="width: 18vh; padding: 5px 0px;" />
         </div>
     </nav>
 
@@ -62,9 +62,8 @@ justify-content: center;
     </div>
     <footer class="bg-light text-center text-lg-start">
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
-            <small>Copyright © 2023
-                <a class="text-dark" href="https://bankgresik.co.id/">PERUMDA BPR Bank Gresik</a>
+        <div class="text-center " style="background-color: rgba(0, 0, 0, 0.1);">
+            <small style="font-size: 8pt;">©<a class="text-dark" style="text-decoration: none;" href="https://bankgresik.co.id/">PERUMDA BPR Bank Gresik.</a> | All Rights Reserved.
             </small>
         </div>
         <!-- Copyright -->
