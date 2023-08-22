@@ -1,4 +1,6 @@
-<style>
+@extends('template')
+@push('styles')
+    <style>
     .card-items {
         display: flex;
         flex-direction: column;
@@ -50,8 +52,10 @@
         }
     }
 </style>
-@yield('template')
+@endpush
+
 @section('content')
+
 <div class="container mt-5">
     <div class="card-items mb-5">
         <h5 class="card-title "><strong>Pilih Jenis tabungan</strong></h5>
