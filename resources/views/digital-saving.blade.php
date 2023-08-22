@@ -15,9 +15,7 @@
 
 <body class="blue-body">
     <nav class="flex-container">
-        <div class="flex-items" style="display: flex;
-justify-content: center;
-  align-items: center;">
+        <div class="flex-items" style="display: flex;justify-content: center;align-items: center;">
             <img class="data-img " src="{{ asset('img/LogoB.png') }}" style="width: 18vh; padding: 5px 0px;" />
         </div>
     </nav>
@@ -57,7 +55,7 @@ justify-content: center;
             </div>
         </div>
         <div class="d-flex justify-content-center mt-5" style="margin-bottom: 100px;">
-            <a href="#"> <button type="button" class="btn btn-rounded text-white " style="padding: 10px 90px;background-color: rgb(14, 14, 114);">Buka Rekening</button></a>
+            <a href="/info"> <button type="button" class="btn btn-rounded text-white " style="padding: 10px 90px;background-color: rgb(14, 14, 114);">Buka Rekening</button></a>
 
         </div>
     </div>
@@ -69,7 +67,7 @@ justify-content: center;
         </div>
         <!-- Copyright -->
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+YmEKz3EBqcWOkrM1aiPo6Upb8g1r0Z1j5l2HDI27JGMcJC" crossorigin="anonymous"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+YmEKz3EBqcWOkrM1aiPo6Upb8g1r0Z1j5l2HDI27JGMcJC" crossorigin="anonymous"></script>
 
 </html>

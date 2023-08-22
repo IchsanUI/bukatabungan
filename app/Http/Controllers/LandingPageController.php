@@ -8,6 +8,10 @@ class LandingPageController extends Controller
 {
     public function index()
     {
-        return view('landing');
+        return view('digital-saving');
+    }
+    public function info()
+    {
+        return view('info');
     }
 }

@@ -17,4 +17,5 @@ use App\Http\Controllers\LandingPageController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/digital-saving', [LandingPageController::class, 'index']);
+Route::get('/info', [LandingPageController::class, 'info']);
