@@ -41,7 +41,6 @@
              display: none;
         }
          .jumbotron{
-
             background-color: rgb(250,234,3);
             width: 100%;
               /* align-items: center; */
@@ -51,6 +50,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+        .card-text{
+            line-height: 1.3;
+            font-size: 10pt;
         }
         .nav-item{
             width: 150px;
@@ -88,12 +91,12 @@
  <div class="tab-content mt-3" id="myTabContent" >
         <div class="tab-pane fade show active p-4" id="home" role="tabpanel" aria-labelledby="home-tab">
             <p class="fs-5"> <strong>Syarat & Ketentuan</strong></p>
-            <p class="lh-1">Untuk Membuka Rekening Tabungan Umum di Bank Gresik, Berikut Adalah Persyaratan Umum yang Harus Disiapkan, Seperti:</p>
+            <p class="card-text">Untuk Membuka Rekening Tabungan Umum di Bank Gresik, Berikut Adalah Persyaratan Umum yang Harus Disiapkan, Seperti:</p>
             <ol>
   <li><strong>Fotokopi KTP Suami & Istri yang berlaku (4 Lembar):</strong>
-<p>Diperlukan fotokopi KTP suami dan istri yang masih berlaku. Hal ini bertujuan untuk mengidentifikasi peminjam dan memastikan keabsahan data pribadi.</p></li>
+<p class="card-text">Diperlukan fotokopi KTP suami dan istri yang masih berlaku. Hal ini bertujuan untuk mengidentifikasi peminjam dan memastikan keabsahan data pribadi.</p></li>
 <li><strong>Fotokopi Kartu Keluarga (2 Lembar):</strong>
-<p>Dibutuhkan fotokopi Kartu Keluarga (KK) dalam jumlah yang ditentukan. KK digunakan untuk memverifikasi hubungan keluarga dan memberikan bukti bahwa peminjam adalah bagian dari sebuah keluarga.</p></li>
+<p class="card-text">Dibutuhkan fotokopi Kartu Keluarga (KK) dalam jumlah yang ditentukan. KK digunakan untuk memverifikasi hubungan keluarga dan memberikan bukti bahwa peminjam adalah bagian dari sebuah keluarga.</p></li>
 <li><strong>Setoran awal Rp. 100.000,-</strong></li>
 <li><strong>Biaya Administrasi Rp. 500,- / Bulan</strong></li>
 <li><strong>Bunga Tabungan sebesar 3%.</strong></li>
