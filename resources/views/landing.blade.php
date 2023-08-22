@@ -57,7 +57,8 @@ justify-content: center;
             </div>
         </div>
         <div class="d-flex justify-content-center mt-5" style="margin-bottom: 100px;">
-            <button type="button" class="btn btn-rounded text-white " style="padding: 10px 90px;background-color: rgb(14, 14, 114);">Buka Rekening</button>
+            <a href="#"> <button type="button" class="btn btn-rounded text-white " style="padding: 10px 90px;background-color: rgb(14, 14, 114);">Buka Rekening</button></a>
+
         </div>
     </div>
     <footer class="bg-light text-center text-lg-start">
