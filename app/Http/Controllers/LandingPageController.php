@@ -26,4 +26,8 @@ class LandingPageController extends Controller
     {
         return view('details-saving.detail-saving-3');
     }
+    public function uker_choose()
+    {
+        return view('uker-choose');
+    }
 }

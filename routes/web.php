@@ -14,12 +14,13 @@ use App\Http\Controllers\LandingPageController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/test', function () {
+    return view('welcome');
+});
 Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/info', [LandingPageController::class, 'info']);
 Route::get('/detail-saving-1', [LandingPageController::class, 'detail_1']);
 Route::get('/detail-saving-2', [LandingPageController::class, 'detail_2']);
 Route::get('/detail-saving-3', [LandingPageController::class, 'detail_3']);
 Route::get('/detail-saving-4', [LandingPageController::class, 'detail_4']);
+Route::get('/uker-choose', [LandingPageController::class, 'uker_choose']);
