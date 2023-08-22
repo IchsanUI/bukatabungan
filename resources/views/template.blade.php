@@ -35,6 +35,5 @@
         <!-- Copyright -->
     </footer>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+YmEKz3EBqcWOkrM1aiPo6Upb8g1r0Z1j5l2HDI27JGMcJC" crossorigin="anonymous"></script>
 
 </html>

@@ -19,3 +19,4 @@ use App\Http\Controllers\LandingPageController;
 // });
 Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/info', [LandingPageController::class, 'info']);
+Route::get('/detail-saving-1', [LandingPageController::class, 'detail_1']);
