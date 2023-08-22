@@ -18,4 +18,12 @@ class LandingPageController extends Controller
     {
         return view('details-saving.detail-saving-1');
     }
+    public function detail_2()
+    {
+        return view('details-saving.detail-saving-2');
+    }
+    public function detail_3()
+    {
+        return view('details-saving.detail-saving-3');
+    }
 }

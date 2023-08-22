@@ -82,19 +82,19 @@
                 <div class="card-info">
                     <h5 class="card-title">Tabungan Kotak</h5>
                     <p class="card-text">Produk tabungan yang memberikan beragam kemudahan dalam melakukan transaksi perbankan dengan didukung fasilitas e-banking dan sistem real time online yang akan memungkinkan nasabah untuk bertransaksi kapanpun dan dimanapun.</p>
-                    <a href="#" class="btn btn-primary">Detail Tabungan<i class="bi bi-arrow-right-short" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
+                    <a href="{{ url('detail-saving-2') }}" class="btn btn-primary">Detail Tabungan<i class="bi bi-arrow-right-short" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="card-body">
                 <div class="card-img">
-                    <img class="img-responsive " src="https://bukarekening.bri.co.id/digital-saving/assets/images/britamabisnis_image_url.png">
+                    <img class="img-responsive " src="https://bukarekening.bri.co.id/digital-saving/assets/images/logo-simpedesbisa.png">
                 </div>
                 <div class="card-info">
                     <h5 class="card-title">Tabungan Simpel</h5>
                     <p class="card-text">Produk tabungan yang memberikan beragam kemudahan dalam melakukan transaksi perbankan dengan didukung fasilitas e-banking dan sistem real time online yang akan memungkinkan nasabah untuk bertransaksi kapanpun dan dimanapun.</p>
-                    <a href="#" class="btn btn-primary">Detail Tabungan<i class="bi bi-arrow-right-short" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
+                    <a href="{{ url('detail-saving-3') }}" class="btn btn-primary">Detail Tabungan<i class="bi bi-arrow-right-short" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                 </div>
             </div>
         </div>
@@ -106,7 +106,7 @@
                 <div class="card-info">
                     <h5 class="card-title">Tabungan Qurban</h5>
                     <p class="card-text">Produk tabungan yang memberikan beragam kemudahan dalam melakukan transaksi perbankan dengan didukung fasilitas e-banking dan sistem real time online yang akan memungkinkan nasabah untuk bertransaksi kapanpun dan dimanapun.</p>
-                    <a href="#" class="btn btn-primary">Detail Tabungan<i class="bi bi-arrow-right-short" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
+                    <a href="{{ url('detail-saving-4') }}" class="btn btn-primary">Detail Tabungan<i class="bi bi-arrow-right-short" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                 </div>
             </div>
         </div>

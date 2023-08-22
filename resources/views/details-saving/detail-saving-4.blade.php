@@ -41,7 +41,6 @@
              display: none;
         }
          .jumbotron{
-
             background-color: rgb(250,234,3);
             width: 100%;
               /* align-items: center; */
@@ -68,7 +67,7 @@
             <img class="img-responsive" src="https://bukarekening.bri.co.id/digital-saving/assets/images/simpedes-umum2.png">
         </div>
         <div class="detail-h-info">
-            <h3> <strong> Tabungan Umum</strong></h3>
+            <h3 >Tabungan Umum</h3>
             <p align="justify" class="card-text">Produk tabungan yang memberikan beragam kemudahan dalam melakukan transaksi perbankan dengan didukung fasilitas e-banking dan sistem real time online yang akan memungkinkan nasabah untuk bertransaksi kapanpun dan dimanapun.</p>
             <a href="{{ url('#') }}" class="btn btn-success">Pilih Rekening<i class="bi bi-arrow-right-short" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
         </div>
