@@ -50,18 +50,37 @@
         .uker-section {
             display: flex;
             justify-content: center;
+            position: relative;
 
         }
 
+
+
+        /* Styles for overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black background */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Ensure it's on top of other elements */
+        }
+
+        /* Styles for loader */
         .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             animation: spin 2s linear infinite;
-            margin: auto;
-            margin-top: 20px;
+            position: relative;
         }
 
         @keyframes spin {
@@ -73,10 +92,6 @@
                 transform: rotate(360deg);
             }
         }
-
-
-
-
 
         @media (max-width: 1000px) {
             body {
@@ -104,6 +119,7 @@
                 flex-direction: column;
                 gap: 10px;
                 margin-bottom: 10px;
+                position: relative;
             }
 
             .card {
@@ -164,12 +180,15 @@
 
 
     <div class="select-section">
-        <select class="form-select" id="kantorSelect">
-            <option>-- Pilih Kantor --</option>
+        <select class="form-select" id="kantorSelect" required>
+            <option value="">-- Pilih Kantor --</option>
         </select>
     </div>
+
     <div class="uker-section">
-        <div class="loader" style="display: none;"></div>
+        <div class="overlay" id="loaderOverlay">
+            <div class="loader"></div>
+        </div>
         <div class="card" style="display: none;">
             <img class="card-img-top" src="" alt="Card image cap">
             <div class="card-body">
@@ -214,10 +233,10 @@
         });
 
         $(document).ready(function() {
+            var loaderOverlay = $('#loaderOverlay');
             var kantorSelect = $('#kantorSelect');
             var ukerSection = $('.uker-section');
             var cardSection = ukerSection.find('.card');
-            var loader = ukerSection.find('.loader');
 
             kantorSelect.on('change', function() {
                 var selectedKantorId = $(this).val();
@@ -227,16 +246,16 @@
                     return;
                 }
 
-                // Menampilkan loader saat permintaan sedang berlangsung
-                loader.show();
+                // Menampilkan loader dan overlay saat permintaan sedang berlangsung
+                loaderOverlay.show();
 
                 $.ajax({
                     url: "/get-uker-data/" + selectedKantorId,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
-                        // Sembunyikan loader dan tampilkan card-section
-                        loader.hide();
+                        // Sembunyikan loader dan overlay serta tampilkan card-section
+                        loaderOverlay.hide();
                         cardSection.show();
                         updateCardData(data);
                     }
