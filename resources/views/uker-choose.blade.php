@@ -74,13 +74,18 @@
 
         /* Styles for loader */
         .loader {
+            margin: 100px;
             border: 5px solid #f3f3f3;
             border-top: 5px solid #3498db;
             border-radius: 50%;
             width: 30px;
             height: 30px;
             animation: spin 2s linear infinite;
-            position: relative;
+            /* Pusatkan secara vertikal dan horizontal */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -25px 0 0 -25px;
         }
 
         @keyframes spin {
@@ -92,6 +97,8 @@
                 transform: rotate(360deg);
             }
         }
+
+
 
         @media (max-width: 1000px) {
             body {
