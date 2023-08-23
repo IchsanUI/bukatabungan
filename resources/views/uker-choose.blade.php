@@ -148,7 +148,7 @@
     </div>
 
 
-    <div class="  ">
+    <div class="uker-section">
         <div class="card ">
             <img class="card-img-top" src="{{ asset('img/img_kas_bunga.png') }}" alt="Card image cap">
             <div class="card-body">
@@ -189,7 +189,7 @@
                 <div class="button">
                     <a href="{{ url('detail-saving-1') }}" class="btn btn-primary">Lokasi<i class="bi bi-geo-alt-fill"
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
-                    <a href="{{ url('detail-saving-1') }}" class="btn btn-primary choose-uker-btn">Pilih Kantor<i
+                    <a href="{{ url('detail-saving-1') }}" class="btn btn-primary ">Pilih Kantor<i
                             class="bi bi-arrow-right-short"
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                 </div>
