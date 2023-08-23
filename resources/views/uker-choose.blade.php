@@ -171,7 +171,7 @@
     <div class="uker-section">
         <div class="loader" style="display: none;"></div>
         <div class="card" style="display: none;">
-            <img class="card-img-top" src="{{ asset('img/img_kas_bunga.png') }}" alt="Card image cap">
+            <img class="card-img-top" src="" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"></h5>
             </div>
@@ -182,8 +182,8 @@
             </ul>
             <div class="card-body">
                 <div class="button">
-                    <a href="{{ url('detail-saving-1') }}" class="btn btn-primary">Lokasi<i class="bi bi-geo-alt-fill"
-                            style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
+                    <a href="{{ url('detail-saving-1') }}" class="btn btn-primary lokasi">Lokasi<i
+                            class="bi bi-geo-alt-fill" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                     <a href="{{ url('detail-saving-1') }}" class="btn  btn-primary choose-uker-btn">Pilih Kantor<i
                             class="bi bi-bank" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                 </div>
@@ -206,7 +206,7 @@
                         kantorSelect.append($('<option>', {
                             value: kantor.id,
                             text: kantor
-                                .nama // Ganti dengan nama field yang sesuai di model Kantor
+                                .office_name // Ganti dengan nama field yang sesuai di model Kantor
                         }));
                     });
                 }
@@ -244,9 +244,14 @@
             });
 
             function updateCardData(data) {
-                cardSection.find('.card-title').text(data.nama);
-                cardSection.find('.alamat').text(data.alamat);
-                // Update data lainnya sesuai kebutuhan
+                cardSection.find('.card-title').text(data.office_name);
+                cardSection.find('.alamat').text(data.address);
+
+                var img = cardSection.find('.card-img-top');
+                img.attr('src', "{{ asset('img/') }}" + data.office_pic);
+                // Update data lokasi kantor pada tautan Lokasi
+                var lokasiLink = cardSection.find('.btn.btn-primary.lokasi');
+                lokasiLink.attr('href', data.maps_link);
             }
         });
     </script>

@@ -14,11 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kantors', function (Blueprint $table) {
-             $table->id();
-            $table->string('nama');
-            $table->string('alamat');
-            $table->timestamps();
-        });
+    $table->id();
+    $table->string('office_name');
+    $table->string('address');
+    $table->string('office_pic'); // Kolom untuk nama file gambar kantor
+    $table->string('decs'); // Kolom untuk nama file gambar kantor
+    $table->string('maps_link'); // Kolom untuk garis lintang
+    $table->timestamps();
+});
+
     }
 
     /**
