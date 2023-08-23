@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Kantor;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
+    
     public function index()
     {
         return view('digital-saving');
@@ -30,4 +31,10 @@ class LandingPageController extends Controller
     {
         return view('uker-choose');
     }
+    public function getKantorOptions()
+    {
+    $kantors = Kantor::all();
+    return response()->json($kantors);
+    }
+
 }

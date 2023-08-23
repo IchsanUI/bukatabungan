@@ -24,3 +24,9 @@ Route::get('/detail-saving-2', [LandingPageController::class, 'detail_2']);
 Route::get('/detail-saving-3', [LandingPageController::class, 'detail_3']);
 Route::get('/detail-saving-4', [LandingPageController::class, 'detail_4']);
 Route::get('/uker-choose', [LandingPageController::class, 'uker_choose']);
+Route::get('/get-kantor-options', [LandingPageController::class, 'getKantorOptions'])->name('get.kantor.options');;
+
+
+// Route::controller(\App\Http\Controllers\UserController::class)-> group(function(){
+//     Route::get('/login','login')->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class]);
+// });
