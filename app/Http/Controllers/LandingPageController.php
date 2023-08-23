@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
-    
     public function index()
     {
         return view('digital-saving');
@@ -35,6 +34,11 @@ class LandingPageController extends Controller
     {
     $kantors = Kantor::all();
     return response()->json($kantors);
+    }
+    public function getUkerData($id)
+    {
+    $ukerData = Kantor::find($id); // Ganti 'Kantor' dengan model yang sesuai
+    return response()->json($ukerData);
     }
 
 }

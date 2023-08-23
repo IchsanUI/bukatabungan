@@ -53,6 +53,27 @@
 
         }
 
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
 
 
 
@@ -121,6 +142,7 @@
                 font-size: 10pt;
             }
 
+
         }
     </style>
 @endpush
@@ -146,23 +168,16 @@
             <option>-- Pilih Kantor --</option>
         </select>
     </div>
-
-
     <div class="uker-section">
-        <div class="card ">
+        <div class="loader" style="display: none;"></div>
+        <div class="card" style="display: none;">
             <img class="card-img-top" src="{{ asset('img/img_kas_bunga.png') }}" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">Kas Bunga</h5>
-                {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                    content.</p> --}}
+                <h5 class="card-title"></h5>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Lokasi :
-                    <small><small>Jl. Raya Bungah No.51, Bungah, Gresik
-                            61152, Jawa Timur</small></small>
-                </li>
-                <li class="list-group-item">Jam Operasional :<small><small> Senin–Sabtu: 8:00 pagi–6:00 sore Minggu:
-                            TUTUP</small></small>
+                    <small><small class="alamat"></small></small>
                 </li>
             </ul>
             <div class="card-body">
@@ -170,26 +185,6 @@
                     <a href="{{ url('detail-saving-1') }}" class="btn btn-primary">Lokasi<i class="bi bi-geo-alt-fill"
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                     <a href="{{ url('detail-saving-1') }}" class="btn  btn-primary choose-uker-btn">Pilih Kantor<i
-                            class="bi bi-bank" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="card ">
-            <img class="card-img-top" src="{{ asset('img/img_kas_bunga.png') }}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Kas Bunga</h5>
-                {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                    content.</p> --}}
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Lokasi : </li>
-                <li class="list-group-item">Jam Operasional :</li>
-            </ul>
-            <div class="card-body">
-                <div class="button">
-                    <a href="{{ url('detail-saving-1') }}" class="btn btn-primary">Lokasi<i class="bi bi-geo-alt-fill"
-                            style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
-                    <a href="{{ url('detail-saving-1') }}" class="btn btn-primary choose-uker-btn">Pilih Kantor<i
                             class="bi bi-bank" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                 </div>
             </div>
@@ -216,6 +211,43 @@
                     });
                 }
             });
+        });
+
+        $(document).ready(function() {
+            var kantorSelect = $('#kantorSelect');
+            var ukerSection = $('.uker-section');
+            var cardSection = ukerSection.find('.card');
+            var loader = ukerSection.find('.loader');
+
+            kantorSelect.on('change', function() {
+                var selectedKantorId = $(this).val();
+
+                if (selectedKantorId === "") {
+                    cardSection.hide();
+                    return;
+                }
+
+                // Menampilkan loader saat permintaan sedang berlangsung
+                loader.show();
+
+                $.ajax({
+                    url: "/get-uker-data/" + selectedKantorId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        // Sembunyikan loader dan tampilkan card-section
+                        loader.hide();
+                        cardSection.show();
+                        updateCardData(data);
+                    }
+                });
+            });
+
+            function updateCardData(data) {
+                cardSection.find('.card-title').text(data.nama);
+                cardSection.find('.alamat').text(data.alamat);
+                // Update data lainnya sesuai kebutuhan
+            }
         });
     </script>
 @endpush

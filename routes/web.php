@@ -25,6 +25,7 @@ Route::get('/detail-saving-3', [LandingPageController::class, 'detail_3']);
 Route::get('/detail-saving-4', [LandingPageController::class, 'detail_4']);
 Route::get('/uker-choose', [LandingPageController::class, 'uker_choose']);
 Route::get('/get-kantor-options', [LandingPageController::class, 'getKantorOptions'])->name('get.kantor.options');;
+Route::get('/get-uker-data/{id}', [LandingPageController::class, 'getUkerData']);;
 
 
 // Route::controller(\App\Http\Controllers\UserController::class)-> group(function(){
