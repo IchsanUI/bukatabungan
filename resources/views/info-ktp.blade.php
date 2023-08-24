@@ -4,7 +4,7 @@
     <style>
         .container {
             width: 700px;
-            margin-top: 50px;
+            margin-top: 20px;
         }
 
         .info_head {
@@ -152,6 +152,7 @@
             }
 
             .info_head {
+                padding: 0;
                 text-align: center;
             }
 
@@ -281,7 +282,9 @@
             function startWebcam() {
                 loader.style.display = 'block'; // Menampilkan loader
                 navigator.mediaDevices.getUserMedia({
-                        video: true
+                        video: {
+                            facingMode: 'environment' // Menggunakan kamera belakang
+                        }
                     })
                     .then(function(stream) {
                         loader.style.display = 'none'; // Menyembunyikan loader jika terjadi error
