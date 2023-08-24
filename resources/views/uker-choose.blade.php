@@ -43,8 +43,28 @@
 
         .card {
             display: flex;
+            flex-direction: column;
+            /* padding: 20px; */
+            /* width: 100%; */
+            width: 20rem;
+        }
 
-            width: 18rem;
+        .card-body .button {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+            /* width: 100%; */
+            gap: 10px
+        }
+
+        .card-body .button .choose-uker-btn {
+            background: rgb(6, 105, 27);
+            background: linear-gradient(90deg, rgb(9, 77, 37) 0%, rgb(2, 77, 21) 100%, rgbrgb(196, 192, 8)0%);
+        }
+
+        .card-body .button a {
+            width: 100%;
         }
 
         .uker-section {
@@ -78,8 +98,8 @@
             border: 5px solid #f3f3f3;
             border-top: 5px solid #3498db;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 50px;
+            height: 50px;
             animation: spin 2s linear infinite;
             /* Pusatkan secara vertikal dan horizontal */
             position: absolute;
@@ -129,6 +149,7 @@
                 position: relative;
             }
 
+
             .card {
                 display: flex;
                 flex-direction: column;
@@ -155,7 +176,7 @@
             }
 
             .form-select {
-                width: 380px;
+                width: 900px;
                 margin-top: -25px;
                 height: 47px;
             }
@@ -196,7 +217,7 @@
         <div class="overlay" id="loaderOverlay">
             <div class="loader"></div>
         </div>
-        <div class="card" style="display: none;">
+        <div class="card mt-3" style="display: none;">
             <img class="card-img-top" src="" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"></h5>
@@ -210,7 +231,7 @@
                 <div class="button">
                     <a href="{{ url('detail-saving-1') }}" class="btn btn-primary lokasi">Lokasi<i
                             class="bi bi-geo-alt-fill" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
-                    <a href="{{ url('detail-saving-1') }}" class="btn  btn-primary choose-uker-btn">Pilih Kantor<i
+                    <a href="{{ url('info-ktp') }}" class="btn  choose-uker-btn text-light">Pilih Kantor<i
                             class="bi bi-bank" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                 </div>
             </div>

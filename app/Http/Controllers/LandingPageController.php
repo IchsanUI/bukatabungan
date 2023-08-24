@@ -30,6 +30,10 @@ class LandingPageController extends Controller
     {
         return view('uker-choose');
     }
+    public function info_ktp()
+    {
+        return view('info-ktp');
+    }
     public function getKantorOptions()
     {
     $kantors = Kantor::all();
