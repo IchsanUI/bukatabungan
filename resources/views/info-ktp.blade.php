@@ -181,8 +181,10 @@
 
                 <div class="camera-frame">
                     <video id="videoElement" autoplay width="100%"></video>
-                    <img id="resultImage" style="display: none;" /> <!-- Menempatkan elemen img resultImage di sini -->
-                    <canvas id="canvasElement" style="display: none;"></canvas> <!-- Menambahkan elemen canvas -->
+                    <img id="resultImage" style="display: none;" width="100%" />
+                    <!-- Menempatkan elemen img resultImage di sini -->
+                    <canvas id="canvasElement" style="display: none;"></canvas>
+                    <!-- Menambahkan elemen canvas -->
                     <div class="frame-overlay" id="frameOverlay"></div>
                 </div>
                 <small style="font-size: 8pt">*Pastikan KTP Tepat Berada di Dalam Bingkai yang Tersedia.</small>
@@ -232,41 +234,6 @@
 @endsection
 
 @push('script-end')
-    {{-- <script>
-        // JavaScript
-        document.addEventListener("DOMContentLoaded", function() {
-            var videoElement = document.getElementById('videoElement');
-            var startButton = document.getElementById('startButton');
-            var loader = document.querySelector('.loader');
-
-            // Fungsi untuk memulai feed webcam
-            function startWebcam() {
-                loader.style.display = 'block'; // Menampilkan loader
-
-                navigator.mediaDevices.getUserMedia({
-                        video: true
-                    })
-                    .then(function(stream) {
-                        loader.style.display = 'none'; // Menyembunyikan loader setelah kamera terbuka
-                        videoElement.srcObject = stream;
-                    })
-                    .catch(function(error) {
-                        loader.style.display = 'none'; // Menyembunyikan loader jika terjadi error
-                        console.error('Error accessing webcam:', error);
-                    });
-            }
-
-            // Event listener untuk tombol "Mulai Ambil"
-            startButton.addEventListener('click', function() {
-                // Menampilkan elemen kamera dan menyembunyikan info_contect
-                document.querySelector('.camera-open').style.display = 'block';
-                document.querySelector('.info_contect').style.display = 'none';
-
-                // Memulai feed webcam
-                startWebcam();
-            });
-        });
-    </script> --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var videoElement = document.getElementById('videoElement');
