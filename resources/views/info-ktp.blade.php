@@ -25,7 +25,7 @@
         .info_img {
             display: flex;
             flex-direction: row;
-            padding: 20px;
+            padding: 20px 0 20px 0;
             gap: 30px;
             width: 600px;
         }
@@ -156,6 +156,12 @@
             }
 
             .info_img {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                /* padding: 20px; */
+                /* gap: 5px; */
                 width: 100%;
             }
 
@@ -167,10 +173,11 @@
     <div class="container">
         <div class="info_ktp">
             <div class="info_head">
-                <h3>Foto e-KTP</h3>
+                <h3><strong>Foto e-KTP</strong></h3>
                 <p>Ambil foto e-KTP sebagai bukti identitas diri.</p>
             </div>
             <div class="camera-open" style="display: none">
+
                 <div class="camera-frame">
                     <video id="videoElement" autoplay width="100%"></video>
                     <img id="resultImage" style="display: none;" /> <!-- Menempatkan elemen img resultImage di sini -->
@@ -178,6 +185,8 @@
                     <div class="frame-overlay" id="frameOverlay"></div>
                 </div>
                 <small style="font-size: 8pt">*Pastikan KTP Tepat Berada di Dalam Bingkai yang Tersedia.</small>
+
+
                 <div class="info_btn">
                     <button class="btn btn-primary" id="takePicture">Ambil Gambar <i class="bi bi-camera-fill"
                             style="font-size: 1rem; color: rgb(255, 255, 255); margin-left: 0.5rem;"></i>
@@ -202,7 +211,7 @@
                     </div>
                 </div>
                 <div class="info_decs">
-                    <h4>Perhatikan hal-hal berikut :</h4>
+                    <h6>Perhatikan hal-hal berikut :</h6>
                     <ol>
                         <li>Foto KTP harus difoto secara langsung, bukan fotokopi KTP atau lainnya</li>
                         <li>Pastikan seluruh KTP masuk ke dalam frame dan tidak terpotong</li>
