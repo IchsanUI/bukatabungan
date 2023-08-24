@@ -18,6 +18,7 @@
             display: flex;
             flex-direction: column;
             padding: 20px;
+            margin-bottom: 50px;
             justify-content: center;
             align-items: center;
         }
