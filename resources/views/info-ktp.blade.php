@@ -53,7 +53,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin-top: 20px;
+            /* margin-top: 20px; */
             gap: 10px;
         }
 
@@ -141,6 +141,15 @@
             }
         }
 
+        /* Teks dalam tombol ketika loader aktif */
+        #takePicture.loading .button-text {
+            display: none;
+        }
+
+        /* Loader dalam tombol */
+        #takePicture.loading .loader {
+            display: inline-block;
+        }
 
         @media (max-width: 1000px) {
             .container {
@@ -192,11 +201,14 @@
 
 
                 <div class="info_btn">
-                    <button class="btn btn-primary" id="takePicture">Ambil Gambar <i class="bi bi-camera-fill"
+                    <button class="btn btn-primary" id="takePicture" disabled>
+                        <span class="button-text">Ambil Gambar</span>
+                        <i class="bi bi-camera-fill"
                             style="font-size: 1rem; color: rgb(255, 255, 255); margin-left: 0.5rem;"></i>
-                        <div class="loader" style="display: none;">
+                        <div class="loader"></div>
                     </button>
                 </div>
+
                 <div class="info_btn_ulang">
                     <button class="btn btn-light" style="display: none" id="retakeButton"> <i class="bi bi-arrow-repeat"
                             style="font-size: 1rem; color: rgb(0, 0, 0); margin-right: 0.5rem;"></i> Ulangi Foto</button>
@@ -246,9 +258,13 @@
             var submitButton = document.getElementById('submitButton');
             var frameOverlay = document.getElementById('frameOverlay');
             var loader = document.querySelector('.loader');
+            var buttonText = document.querySelector('.button-text'); // Menambahkan referensi untuk teks tombol
+            var icon = document.querySelector('.bi-camera-fill'); // Menambahkan referensi untuk ikon tombol
             // Fungsi untuk memulai feed webcam
             function startWebcam() {
                 loader.style.display = 'block'; // Menampilkan loader
+                buttonText.textContent = 'Loading...'; // Mengubah teks tombol
+                icon.style.display = 'none'; // Menyembunyikan ikon tombol
                 navigator.mediaDevices.getUserMedia({
                         video: {
                             facingMode: 'environment' // Menggunakan kamera belakang
@@ -256,10 +272,16 @@
                     })
                     .then(function(stream) {
                         loader.style.display = 'none'; // Menyembunyikan loader jika terjadi error
+                        takePictureButton.disabled = false; // Mengaktifkan tombol kembali
+                        buttonText.textContent = 'Ambil Gambar'; // Mengembalikan teks tombol
+                        icon.style.display = 'inline'; // Menampilkan ikon tombol
                         videoElement.srcObject = stream;
                     })
                     .catch(function(error) {
                         loader.style.display = 'none'; // Menyembunyikan loader jika terjadi error
+                        takePictureButton.disabled = false; // Mengaktifkan tombol kembali
+                        buttonText.textContent = 'Ambil Gambar'; // Mengembalikan teks tombol
+                        icon.style.display = 'inline'; // Menampilkan ikon tombol
                         console.error('Error accessing webcam:', error);
                     });
             }
