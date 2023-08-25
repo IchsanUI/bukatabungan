@@ -65,6 +65,23 @@
             gap: 10px;
         }
 
+        .form_content {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            flex-grow: 4;
+        }
+
+        .img_file {
+            width: 40%;
+        }
+
+        .form_file {
+            width: 60%;
+        }
+
+
+
         #retakeButton {
             background: rgb(238, 238, 238);
             background: linear-gradient(90deg, rgba(238, 238, 238, 1) 0%, rgba(226, 226, 226, 1) 100%);
@@ -176,6 +193,21 @@
                 width: 100%;
             }
 
+            .form_content {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                /* flex-grow: 4; */
+            }
+
+            .img_file {
+                width: 100%;
+            }
+
+            .form_file {
+                width: 100%;
+            }
+
         }
     </style>
 @endpush
@@ -188,7 +220,6 @@
                 <p>Ambil foto e-KTP sebagai bukti identitas diri.</p>
             </div>
             <div class="camera-open" style="display: none">
-
                 <div class="camera-frame">
                     <video id="videoElement" autoplay width="100%"></video>
                     <img id="resultImage" style="display: none;" width="100%" />
@@ -208,13 +239,12 @@
                         <div class="loader"></div>
                     </button>
                 </div>
-
                 <div class="info_btn_ulang">
                     <button class="btn btn-light" style="display: none" id="retakeButton"> <i class="bi bi-arrow-repeat"
                             style="font-size: 1rem; color: rgb(0, 0, 0); margin-right: 0.5rem;"></i> Ulangi Foto</button>
                     <button class="btn btn-primary" style="display: none" id="submitButton">Gunakan <i
-                            class="bi bi-arrow-right-short"
-                            style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></button>
+                            class="bi bi-arrow-right-short" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
+                    </button>
                 </div>
             </div>
             <div class="info_contect">
@@ -241,6 +271,80 @@
                     </button>
                 </div>
             </div>
+            <div class="info_form" style="display: none">
+                <h3><strong>Data Diri</strong></h3>
+                <p>Isi data utama untuk mempermudah pembukaan rekening. pastikan data diisi dengan benar.</p>
+                <div class="form_content">
+                    <div class="img_file">
+                        <img id="ElementresultImage" width="100%">
+                    </div>
+                    <div class="form_file">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">NIK</label>
+                            <input type="number" class="form-control" id="" placeholder="">
+                            <div id="passwordHelpBlock" class="form-text">
+                                <small> Pastikan NIK sesuai KTP.</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="" placeholder="" required>
+                            <div id="passwordHelpBlock" class="form-text">
+                                <small>Pastikan Nama sesuai KTP.</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="" placeholder="" required>
+                            <div id="passwordHelpBlock" class="form-text">
+                                <small>Contoh : <i>DD/MM/YYYY.</i></small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">No HP</label>
+                            <input type="text" class="form-control" id="" placeholder="" required>
+                            <div id="passwordHelpBlock" class="form-text">
+                                <small>Nomor akan digunakan untuk Verifikasi. (ex : 08xxxxxxxxxx)</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="" placeholder="" required>
+                            <div id="passwordHelpBlock" class="form-text">
+                                <small>Email Akan digunakan untuk Verifikasi.</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Nama Gadis Ibu Kandung</label>
+                            <input type="email" class="form-control" id="" placeholder="" required>
+                            <div id="passwordHelpBlock" class="form-text">
+                                <small>Pastikan Penulisan Ejaan Benar.</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Kode Pos</label>
+                            <input type="email" class="form-control" id="" placeholder="" required>
+
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                <small class="lh-1">Dengan ini saya menyetujui <i> <a href=" "
+                                            style="text-decoration: none">Kebijakan dan
+                                            Ketentuan Layanan
+                                            Pembukaan
+                                            Tabungan Online</a></i> Bank Gresik.</small>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info_btn">
+                    <button class="btn btn-primary" id="">Daftar Sekarang<i class="bi bi-arrow-right-short"
+                            style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     </div>
@@ -260,6 +364,8 @@
             var loader = document.querySelector('.loader');
             var buttonText = document.querySelector('.button-text'); // Menambahkan referensi untuk teks tombol
             var icon = document.querySelector('.bi-camera-fill'); // Menambahkan referensi untuk ikon tombol
+            var infoHead = document.querySelector('.info_head');
+            var infoForm = document.querySelector('.info_form');
             // Fungsi untuk memulai feed webcam
             function startWebcam() {
                 loader.style.display = 'block'; // Menampilkan loader
@@ -327,6 +433,25 @@
                 takePictureButton.style.display = 'block';
                 videoElement.style.display = 'block';
                 frameOverlay.style.display = 'block';
+            });
+
+            submitButton.addEventListener('click', function() {
+
+                document.querySelector('.camera-open').style.display = 'none';
+                infoHead.style.display = 'none';
+                infoForm.style.display = 'block';
+
+                // Ambil elemen gambar
+                var resultImageElement = document.getElementById('ElementresultImage');
+
+                // Setel atribut src dengan data gambar dari canvas
+                resultImageElement.src = canvas.toDataURL('image/jpeg');
+
+                resultImageElement.style.display = 'block'; // Menampilkan gambar yang sudah diambil
+
+                // Menampilkan elemen gambar
+                // resultImageElement.style.display = 'block';
+
             });
         });
     </script>
