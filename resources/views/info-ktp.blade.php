@@ -477,10 +477,19 @@
                     }
                 });
 
-                // Jika ada field yang belum diisi, tampilkan alert
+                // Validasi checkbox
+                var checkbox = document.getElementById('flexCheckDefault');
+                if (!checkbox.checked) {
+                    allFieldsFilled = false;
+                    checkbox.classList.add('is-invalid');
+                } else {
+                    checkbox.classList.remove('is-invalid');
+                }
+
+                // Jika ada field yang belum diisi atau checkbox belum dicentang, tampilkan alert
                 if (!allFieldsFilled) {
-                    alert('Harap isi semua field sebelum mengirim data.');
-                    return; // Hentikan aksi pengiriman jika ada field yang belum diisi
+                    alert('Harap isi semua field dan centang kotak persetujuan sebelum mengirim data.');
+                    return; // Hentikan aksi pengiriman jika ada field yang belum diisi atau checkbox belum dicentang
                 }
 
                 // Menonaktifkan tombol
