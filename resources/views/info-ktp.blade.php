@@ -242,7 +242,7 @@
                 <div class="info_btn_ulang">
                     <button class="btn btn-light" style="display: none" id="retakeButton"> <i class="bi bi-arrow-repeat"
                             style="font-size: 1rem; color: rgb(0, 0, 0); margin-right: 0.5rem;"></i> Ulangi Foto</button>
-                    <button class="btn btn-primary" style="display: none" id="submitButton">Gunakan <i
+                    <button class="btn btn-primary" style="display: none" id="useButton">Gunakan <i
                             class="bi bi-arrow-right-short" style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
                     </button>
                 </div>
@@ -302,7 +302,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">No HP</label>
-                            <input type="text" class="form-control" id="" placeholder="" required>
+                            <input type="number" maxlength="13" class="form-control" id="" placeholder=""
+                                required>
                             <div id="passwordHelpBlock" class="form-text">
                                 <small>Nomor akan digunakan untuk Verifikasi. (ex : 08xxxxxxxxxx)</small>
                             </div>
@@ -316,14 +317,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Nama Gadis Ibu Kandung</label>
-                            <input type="email" class="form-control" id="" placeholder="" required>
+                            <input type="text" class="form-control" id="" placeholder="" required>
                             <div id="passwordHelpBlock" class="form-text">
                                 <small>Pastikan Penulisan Ejaan Benar.</small>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Kode Pos</label>
-                            <input type="email" class="form-control" id="" placeholder="" required>
+                            <input type="number" class="form-control" id="" placeholder="" required>
 
                         </div>
                         <div class="form-check">
@@ -340,8 +341,10 @@
                 </div>
 
                 <div class="info_btn">
-                    <button class="btn btn-primary" id="">Daftar Sekarang<i class="bi bi-arrow-right-short"
+                    <button class="btn btn-primary" id="submitButton" ty><span class="button-text-submit">Daftar
+                            Sekarang</span><i class="bi bi-arrow-right-short icon_submit"
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
+                        <div class="loader" id="loader_Submit"></div>
                     </button>
                 </div>
             </div>
@@ -359,18 +362,22 @@
             var canvas = document.getElementById('canvasElement');
             var resultImage = document.getElementById('resultImage');
             var retakeButton = document.getElementById('retakeButton');
-            var submitButton = document.getElementById('submitButton');
+            var useButton = document.getElementById('useButton');
             var frameOverlay = document.getElementById('frameOverlay');
+            var submitButton = document.getElementById('submitButton');
             var loader = document.querySelector('.loader');
+            var loaderSubmit = document.querySelector('#loader_Submit');
             var buttonText = document.querySelector('.button-text'); // Menambahkan referensi untuk teks tombol
-            var icon = document.querySelector('.bi-camera-fill'); // Menambahkan referensi untuk ikon tombol
+            var buttonTextSubmit = document.querySelector('.button-text-submit');
+            var icon_camera = document.querySelector('.bi-camera-fill'); // Menambahkan referensi untuk ikon tombol
+            var icon_submit = document.querySelector('.icon_submit');
             var infoHead = document.querySelector('.info_head');
             var infoForm = document.querySelector('.info_form');
             // Fungsi untuk memulai feed webcam
             function startWebcam() {
                 loader.style.display = 'block'; // Menampilkan loader
                 buttonText.textContent = 'Loading...'; // Mengubah teks tombol
-                icon.style.display = 'none'; // Menyembunyikan ikon tombol
+                icon_camera.style.display = 'none'; // Menyembunyikan ikon tombol
                 navigator.mediaDevices.getUserMedia({
                         video: {
                             facingMode: 'environment' // Menggunakan kamera belakang
@@ -380,14 +387,14 @@
                         loader.style.display = 'none'; // Menyembunyikan loader jika terjadi error
                         takePictureButton.disabled = false; // Mengaktifkan tombol kembali
                         buttonText.textContent = 'Ambil Gambar'; // Mengembalikan teks tombol
-                        icon.style.display = 'inline'; // Menampilkan ikon tombol
+                        icon_camera.style.display = 'inline'; // Menampilkan ikon tombol
                         videoElement.srcObject = stream;
                     })
                     .catch(function(error) {
                         loader.style.display = 'none'; // Menyembunyikan loader jika terjadi error
                         takePictureButton.disabled = false; // Mengaktifkan tombol kembali
                         buttonText.textContent = 'Ambil Gambar'; // Mengembalikan teks tombol
-                        icon.style.display = 'inline'; // Menampilkan ikon tombol
+                        icon_camera.style.display = 'inline'; // Menampilkan ikon tombol
                         console.error('Error accessing webcam:', error);
                     });
             }
@@ -404,6 +411,7 @@
 
             // Event listener untuk tombol "Ambil Gambar"
             takePictureButton.addEventListener('click', function() {
+                // loader.style.display = 'block';
                 canvas.width = videoElement.videoWidth;
                 canvas.height = videoElement.videoHeight;
                 canvas.getContext('2d').drawImage(videoElement, 0, 0, canvas.width, canvas.height);
@@ -420,7 +428,7 @@
                 // Menyembunyikan tombol "Ambil Gambar" dan menampilkan tombol "Ulangi Foto"
                 takePictureButton.style.display = 'none';
                 retakeButton.style.display = 'block';
-                submitButton.style.display = 'block';
+                useButton.style.display = 'block';
             });
 
 
@@ -429,17 +437,18 @@
                 // Menghapus gambar hasil, mengembalikan tombol "Ambil Gambar", dan membuka kembali kamera
                 resultImage.src = '';
                 retakeButton.style.display = 'none';
-                submitButton.style.display = 'none';
+                useButton.style.display = 'none';
                 takePictureButton.style.display = 'block';
                 videoElement.style.display = 'block';
                 frameOverlay.style.display = 'block';
             });
 
-            submitButton.addEventListener('click', function() {
-
+            useButton.addEventListener('click', function() {
+                loaderSubmit.style.display = 'none';
                 document.querySelector('.camera-open').style.display = 'none';
                 infoHead.style.display = 'none';
                 infoForm.style.display = 'block';
+
 
                 // Ambil elemen gambar
                 var resultImageElement = document.getElementById('ElementresultImage');
@@ -451,8 +460,39 @@
 
                 // Menampilkan elemen gambar
                 // resultImageElement.style.display = 'block';
+            });
+            submitButton.addEventListener('click', function() {
+
+                var allFieldsFilled = true; // Menyimpan status apakah semua field telah diisi
+
+                // Lakukan validasi untuk setiap field
+                var formFields = document.querySelectorAll('.form-control');
+                formFields.forEach(function(field) {
+                    if (field.value.trim() === '') {
+                        allFieldsFilled = false;
+                        field.classList.add(
+                        'is-invalid'); // Tambah class untuk menunjukkan field tidak valid
+                    } else {
+                        field.classList.remove('is-invalid');
+                    }
+                });
+
+                // Jika ada field yang belum diisi, tampilkan alert
+                if (!allFieldsFilled) {
+                    alert('Harap isi semua field sebelum mengirim data.');
+                    return; // Hentikan aksi pengiriman jika ada field yang belum diisi
+                }
+
+                // Menonaktifkan tombol
+                loaderSubmit.style.display = 'block';
+                submitButton.disabled = true;
+                // Mengubah teks tombol menjadi "Mengirim"
+                buttonTextSubmit.textContent = 'Mengirim Data...';
+                icon_submit.style.display = 'none';
+                // Menampilkan loader
 
             });
+
         });
     </script>
 @endpush
