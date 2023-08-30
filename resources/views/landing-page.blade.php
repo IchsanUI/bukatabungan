@@ -69,7 +69,7 @@
                 align-items: center;
                 margin-top: 20px;
                 gap: 20px;
-                margin-bottom: 150px
+                margin-bottom: 50px
             }
 
             .well_service .card {
