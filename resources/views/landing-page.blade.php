@@ -54,6 +54,10 @@
             margin-bottom: -20px;
         }
 
+        .card {
+            padding: 4px;
+        }
+
         @media (max-width: 1100px) {
             .well_title h1 {
                 font-size: 30pt;
