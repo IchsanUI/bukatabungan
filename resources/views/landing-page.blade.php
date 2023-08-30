@@ -61,7 +61,7 @@
                 justify-content: center;
                 align-items: center;
                 margin-top: 20px;
-                gap: 20px;
+                gap: 10px;
                 /* margin-bottom: 150px */
             }
 
