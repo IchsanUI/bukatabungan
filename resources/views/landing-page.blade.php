@@ -81,6 +81,10 @@
                 /* display: none; */
             }
 
+            .card {
+                padding: 4px;
+            }
+
             .well_footer {
                 display: none;
             }
