@@ -2,7 +2,7 @@
 @push('styles')
     <style>
         body {
-            background-image: url("{{ asset('img/Back.jpg') }}");
+            background-image: url("{{ asset('img/123.jpg') }}");
             background-position: center;
             background-size: cover;
         }
@@ -28,7 +28,7 @@
             justify-content: center;
             align-items: center;
             margin-top: 20px;
-            gap: 10px;
+            gap: 40px;
         }
 
         .well_service .card {
@@ -56,6 +56,17 @@
 
         .card {
             padding: 4px;
+        }
+
+        /* Tambahkan style ini ke dalam CSS Anda */
+        .well_service .card {
+            transition: transform 0.10s ease;
+        }
+
+        .well_service .card:hover,
+        .well_service .card:focus {
+            transform: translateY(10px);
+            /* Atur jarak mengangkat sesuai keinginan */
         }
 
         @media (max-width: 1100px) {
@@ -92,6 +103,18 @@
             .well_footer {
                 display: none;
             }
+
+            /* Tambahkan style ini ke dalam CSS Anda */
+            .well_service .card {
+                transition: transform 0.10s ease;
+            }
+
+            .well_service .card:hover,
+            .well_service .card:focus {
+                transform: translateY(-10px);
+                /* Atur jarak mengangkat sesuai keinginan */
+            }
+
         }
     </style>
 @endpush
@@ -104,7 +127,7 @@
         </div>
         <div class="well_service">
             <div class="card text-center">
-                <i class="bi bi-piggy-bank-fill icon-head" style="color: rgb(0, 0, 0); margin-right: 1rem;"></i>
+                <i class="bi bi-piggy-bank icon-head" style="color: rgb(0, 0, 0); margin-right: 1rem;"></i>
                 <div class="card-body lh-1">
                     <h5 class="card-title">Pembukaan Rekening Tabungan</h5>
                     <p class="card-text" style="font-size: 9pt">With supporting text below as a natural lead-in to
