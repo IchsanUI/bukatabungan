@@ -100,7 +100,7 @@
         </div>
         <div class="well_service">
             <div class="card text-center">
-                <i class="bi bi-piggy-bank-fill icon-head" style="color: rgb(46, 46, 46); margin-right: 1rem;"></i>
+                <i class="bi bi-piggy-bank-fill icon-head" style="color: rgb(0, 0, 0); margin-right: 1rem;"></i>
                 <div class="card-body lh-1">
                     <h5 class="card-title">Pembukaan Rekening Tabungan</h5>
                     <p class="card-text" style="font-size: 9pt">With supporting text below as a natural lead-in to
@@ -110,7 +110,7 @@
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
             </div>
             <div class="card text-center">
-                <i class="bi bi bi-cash-stack icon-head" style=" color: rgb(71, 71, 71)"></i>
+                <i class="bi bi bi-cash-stack icon-head" style=" color: rgb(0, 0, 0)"></i>
                 <div class="card-body  lh-1">
                     <h5 class="card-title">Pengajuan Pinjaman Kredit</h5>
                     <p class="card-text" style="font-size: 9pt">With supporting text below as a natural lead-in to
@@ -120,7 +120,7 @@
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
             </div>
             <div class="card text-center">
-                <i class="bi bi-qr-code-scan icon-head" style=" color: rgb(71, 71, 71)"></i>
+                <i class="bi bi-qr-code-scan icon-head" style=" color: rgb(0, 0, 0)"></i>
                 <div class="card-body ">
                     <h5 class="card-title">Penerbitan QRIS</h5>
                     <p class="card-text lh-1" style="font-size: 9pt">With supporting text below as a natural lead-in to
