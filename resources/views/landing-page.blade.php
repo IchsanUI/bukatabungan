@@ -55,6 +55,13 @@
         }
 
         @media (max-width: 1100px) {
+            .well_title h1 {
+                font-size: 30pt;
+                text-align: center;
+                line-height: 50px;
+                margin-bottom: 10px;
+            }
+
             .well_service {
                 display: flex;
                 flex-direction: column;
@@ -62,7 +69,7 @@
                 align-items: center;
                 margin-top: 20px;
                 gap: 20px;
-                /* margin-bottom: 150px */
+                margin-bottom: 150px
             }
 
             .well_service .card {
