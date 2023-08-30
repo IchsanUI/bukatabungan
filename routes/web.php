@@ -19,6 +19,7 @@ Route::get('/test', function () {
 });
 Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/info', [LandingPageController::class, 'info']);
+Route::get('/digital-saving', [LandingPageController::class, 'digital_saving']);
 Route::get('/detail-saving-1', [LandingPageController::class, 'detail_1']);
 Route::get('/detail-saving-2', [LandingPageController::class, 'detail_2']);
 Route::get('/detail-saving-3', [LandingPageController::class, 'detail_3']);

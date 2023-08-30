@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Kantor;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
     public function index()
+    {
+        return view('landing-page');
+    }
+    public function digital_saving()
     {
         return view('digital-saving');
     }
@@ -36,13 +41,12 @@ class LandingPageController extends Controller
     }
     public function getKantorOptions()
     {
-    $kantors = Kantor::all();
-    return response()->json($kantors);
+        $kantors = Kantor::all();
+        return response()->json($kantors);
     }
     public function getUkerData($id)
     {
-    $ukerData = Kantor::find($id); // Ganti 'Kantor' dengan model yang sesuai
-    return response()->json($ukerData);
+        $ukerData = Kantor::find($id); // Ganti 'Kantor' dengan model yang sesuai
+        return response()->json($ukerData);
     }
-
 }
