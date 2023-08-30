@@ -73,6 +73,10 @@
             .card .icon-head {
                 display: none;
             }
+
+            .well_footer {
+                display: none;
+            }
         }
     </style>
 @endpush
