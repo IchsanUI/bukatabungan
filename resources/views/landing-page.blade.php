@@ -71,7 +71,7 @@
             }
 
             .card .icon-head {
-                display: none;
+                /* display: none; */
             }
 
             .well_footer {
