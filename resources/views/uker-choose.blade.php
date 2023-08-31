@@ -209,7 +209,7 @@
 
     <div class="select-section">
         <select class="form-select" id="kantorSelect" required>
-            <option value="">-- Pilih Kantor --</option>
+            <option value="" disabled selected>-- Pilih Kantor --</option>
         </select>
     </div>
 

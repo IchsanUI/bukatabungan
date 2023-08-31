@@ -15,13 +15,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     @stack('styles')
-    {{-- @vite([]) --}}
+    @vite([])
 </head>
 
 <body>
     <nav class="flex-container">
         <div class="flex-items" style="display: flex;justify-content: center;align-items: center;">
-            <img class="data-img " src="{{ asset('img/LogoB.png') }}" style="width: 18vh; padding: 5px 0px;" />
+            <a href="{{ url('') }}"><img class="data-img " src="{{ asset('img/LogoB.png') }}"
+                    style="width: 18vh; padding: 5px 0px;" /></a>
+
         </div>
     </nav>
 

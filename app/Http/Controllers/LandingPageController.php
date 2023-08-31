@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kantor;
 use Illuminate\Http\Request;
+use App\Models\CategoryMerchant;
 
 class LandingPageController extends Controller
 {
@@ -47,6 +48,11 @@ class LandingPageController extends Controller
     {
         $kantors = Kantor::all();
         return response()->json($kantors);
+    }
+    public function getCategoryMerchOptions()
+    {
+        $categories = CategoryMerchant::all();
+        return response()->json($categories);
     }
     public function getUkerData($id)
     {

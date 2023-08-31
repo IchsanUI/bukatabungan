@@ -1,9 +1,16 @@
 @extends('template')
 @push('styles')
     <style>
-        body {
-            background-position: center;
-            background-size: cover;
+        /* body {
+                                                                                                                background-position: center;
+                                                                                                                background-size: cover;
+                                                                                                            } */
+
+        .cq-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .cq-form {
@@ -13,6 +20,9 @@
             margin-bottom: 50px;
             justify-content: center;
             align-items: center;
+            margin-top: 20px;
+            width: 700px;
+            /* background-color: rgb(241, 241, 241); */
         }
 
         .info_btn {
@@ -31,7 +41,7 @@
             width: 100%;
         }
 
-        .step_2 {
+        .with_back {
             gap: 20px;
         }
 
@@ -58,210 +68,240 @@
             background: rgb(238, 238, 238);
             background: linear-gradient(90deg, rgba(238, 238, 238, 1) 0%, rgba(226, 226, 226, 1) 100%);
         }
+
+        @media (max-width: 1000px) {
+            .cq-form {
+                display: flex;
+                flex-direction: column;
+                padding: 30px;
+                margin-bottom: 50px;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                width: 100%;
+            }
+
+            .cq-form {
+                display: none;
+            }
+
+            .cq-form.active {
+                display: block;
+            }
+        }
     </style>
 @endpush
 @section('content')
-    <div class="cq-form active">
-        <div class="cq-first">
-            <h3><strong>Indentitas Pemilik</strong></h3>
-            <p>Isi data utama untuk mempermudah pembukaan rekening. pastikan data diisi dengan benar.</p>
-            <div class="cq-form-1">
-                <div class="img_file">
-                    <img id="ElementresultImage" width="100%">
+    <div class="cq-section">
+        <div class="cq-form active">
+            <div class="cq-first">
+                <h3> <i class="bi bi-1-circle-fill"></i><strong> Indentitas Pemilik</strong></h3>
+                <p>Isi data utama untuk mempermudah pembukaan rekening. pastikan data diisi dengan benar.</p>
+                <div class="cq-form-1">
+                    <div class="img_file">
+                        <img id="ElementresultImage" width="100%">
+                    </div>
+                    <div class="form_file">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">No. Rekening Bank Gresik</label>
+                            <input type="text" class="form-control" id="norek_bg" placeholder="" maxlength="12">
+                            <div id="" class="form-text">
+                                <small>Contoh : 01.10.001234.01</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Nama Pemilik </label>
+                            <input type="text" class="form-control" id="nama_pemilik" placeholder="" required>
+                            <div id="" class="form-text">
+                                <small>Contoh : Toko Bang Gilman</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">No. KTP</label>
+                            <input type="text" class="form-control" id="ktp" placeholder="" required
+                                maxlength="16">
+                            <div id="" class="form-text">
+                                <small>Contoh : 3525121312590001</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Alamat</label>
+                            <input type="address" class="form-control" id="alamat" placeholder="" required>
+                            <div id="" class="form-text">
+                                <small>Contoh : Jl. Basuki Rahmat No.18</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email</label>
+                            <input type="" class="form-control" id="email" placeholder="" required>
+                            <div id="" class="form-text">
+                                <small>Contoh : bg@gmail.com</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Nomor WhatsApp</label>
+                            <input type="number" class="form-control" id="no_wa" placeholder="" required>
+                            <div id="" class="form-text">
+                                <small>Contoh : 62xxxxxxxxxx</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="prov" class="form-label">Provinsi</label>
+                            <select class="form-select" id="prov" required>
+                                <option value="" disabled selected>Pilih Provinsi</option>
+                            </select>
+                            <div id="provDescription" class="form-text">
+                                <small>Pilih provinsi tempat Anda tinggal.</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kab" class="form-label">Kabupaten / Kota</label>
+                            <select class="form-select" id="kab" required>
+                                <option value="" disabled selected>Pilih Kabupaten / Kota</option>
+                            </select>
+                            <div id="kabDescription" class="form-text">
+                                <small>Pilih kabupaten atau kota tempat Anda tinggal.</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Kode Pos</label>
+                            <input type="text" class="form-control" id="kode_pos" placeholder="" required
+                                maxlength="5">
+                            <div id="" class="form-text">
+                                <small></small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form_file">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">No. Rekening Bank Gresik</label>
-                        <input type="text" class="form-control" id="norek_bg" placeholder="" maxlength="12">
-                        <div id="" class="form-text">
-                            <small>Contoh : 01.10.001234.01</small>
-                        </div>
+                <div class="info_btn">
+                    <button class="btn btn-primary" id="buttonNext">
+                        <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
+                            style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
+                        <div class="loader" id="loader_Submit1"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="cq-form ">
+            <div class="cq-second">
+                <h3> <i class="bi bi-2-circle-fill"></i><strong> Data Merchant</strong></h3>
+                <p>Isi Data Merchant untuk mempermudah penerbitan QRIS anda. pastikan data diisi dengan benar.</p>
+                <div class="cq-form-1">
+                    <div class="img_file">
+                        <img id="ElementresultImage" width="100%">
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nama Pemilik </label>
-                        <input type="text" class="form-control" id="nama_pemilik" placeholder="" required>
-                        <div id="" class="form-text">
-                            <small>Contoh : Toko Bang Gilman</small>
+                    <div class="form_file">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Nama Merchant / Nama Display</label>
+                            <input type="text" class="form-control" id="nama_merchant" placeholder="">
+                            <div id="" class="form-text">
+                                <small>Contoh : 01.10.001234.01</small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">No. KTP</label>
-                        <input type="text" class="form-control" id="ktp" placeholder="" required maxlength="16">
-                        <div id="" class="form-text">
-                            <small>Contoh : 3525121312590001</small>
+                        <div class="mb-3">
+                            <label for="prov" class="form-label">Merchant Category</label>
+                            <select class="form-select" id="kategori_merchant" required>
+                                <option value="" disabled selected>Pilih Merchant Category</option>
+                            </select>
+                            <div id="provDescription" class="form-text">
+                                <small>Pilih provinsi tempat Anda tinggal.</small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Alamat</label>
-                        <input type="address" class="form-control" id="alamat" placeholder="" required>
-                        <div id="" class="form-text">
-                            <small>Contoh : Jl. Basuki Rahmat No.18</small>
+                        <div class="mb-3">
+                            <label for="prov" class="form-label">Merchant Type</label>
+                            <select class="form-select" id="type_merchant" required>
+                                <option value="" disabled selected>Pilih Merchant Type</option>
+                                <option value="">Badan Usaha</option>
+                                <option value="">Perorangan</option>
+                            </select>
+                            <div id="provDescription" class="form-text">
+                                <small>Pilih provinsi tempat Anda tinggal.</small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email</label>
-                        <input type="" class="form-control" id="email" placeholder="" required>
+                        <div class="mb-3">
+                            <label for="prov" class="form-label">Merchant Criteria</label>
+                            <select class="form-select" id="kriteria_merchant" required>
+                                <option value="" disabled selected>Pilih Merchant Criteria</option>
+                                <option value="">Usaha Kecil</option>
+                                <option value="">Usaha Menengah</option>
+                                <option value="">Usaha Besar</option>
+                            </select>
+                            <div id="provDescription" class="form-text">
+                                <small>Pilih provinsi tempat Anda tinggal.</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Nomor NPWP</label>
+                            <input type="text" class="form-control" id="no_npwp" placeholder="" maxlength="15"
+                                required>
+                            <div id="" class="form-text">
+
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Koordinat Google Maps</label>
+                            <input type="text" class="form-control" id="no_wa" placeholder="" required>
+                        </div>
+
+                        <div id="map"></div>
                         <div id="" class="form-text">
                             <small>Contoh : bg@gmail.com</small>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nomor WhatsApp</label>
-                        <input type="number" class="form-control" id="no_wa" placeholder="" required>
-                        <div id="" class="form-text">
-                            <small>Contoh : 62xxxxxxxxxx</small>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="prov" class="form-label">Provinsi</label>
-                        <select class="form-select" id="prov" required>
-                            <option value="" disabled selected>Pilih Provinsi</option>
-                        </select>
-                        <div id="provDescription" class="form-text">
-                            <small>Pilih provinsi tempat Anda tinggal.</small>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="kab" class="form-label">Kabupaten / Kota</label>
-                        <select class="form-select" id="kab" required>
-                            <option value="" disabled selected>Pilih Kabupaten / Kota</option>
-                        </select>
-                        <div id="kabDescription" class="form-text">
-                            <small>Pilih kabupaten atau kota tempat Anda tinggal.</small>
-                        </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Kode Pos</label>
-                        <input type="text" class="form-control" id="kode_pos" placeholder="" required maxlength="5">
-                        <div id="" class="form-text">
-                            <small></small>
-                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="info_btn">
-                <button class="btn btn-primary" id="buttonNext">
-                    <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
-                        style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
-                    <div class="loader" id="loader_Submit1"></div>
-                </button>
+                <div class="info_btn with_back">
+                    <button class="btn btn-light btn-back" id="buttonBack">
+                        <i class="bi bi-arrow-left-short icon_submit"
+                            style="font-size: 1rem; color: rgb(0, 0, 0); margin-right: 0.5rem;"></i>
+                        <span class="button-text-submit">Kembali </span>
+                    </button>
+                    <button class="btn btn-primary" id="buttonNext">
+                        <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
+                            style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="cq-form ">
-        <div class="cq-second">
-            <h3><strong>Data Merchant</strong></h3>
-            <p>Isi Data Merchant untuk mempermudah penerbitan QRIS anda. pastikan data diisi dengan benar.</p>
-            <div class="cq-form-1">
-                <div class="img_file">
-                    <img id="ElementresultImage" width="100%">
-                </div>
-                <div class="form_file">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nama Merchant / Nama Display</label>
-                        <input type="text" class="form-control" id="nama_merchant" placeholder="">
-                        <div id="" class="form-text">
-                            <small>Contoh : 01.10.001234.01</small>
+        <div class="cq-form">
+            <div class="cq-third">
+                <h3> <i class="bi bi-3-circle-fill"></i><strong> Upload Data Legalitas</strong></h3>
+                <p>Isi Data Legalitas untuk mempermudah penerbitan QRIS anda,pastikan data diisi dengan benar.</p>
+                <div class="cq-form-1">
+                    <div class="form_file mt-5">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload KTP</label>
+                            <input class="form-control" type="file" id="formFile" accept="image/*"
+                                capture="camera">
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="prov" class="form-label">Merchant Category</label>
-                        <select class="form-select" id="kategori_merchant" required>
-                            <option value="" disabled selected>Pilih Merchant Category</option>
-                        </select>
-                        <div id="provDescription" class="form-text">
-                            <small>Pilih provinsi tempat Anda tinggal.</small>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload Foto Selfie + KTP</label>
+                            <input class="form-control" type="file" id="formFile" accept="image/*" capture="user">
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="prov" class="form-label">Merchant Type</label>
-                        <select class="form-select" id="type_merchant" required>
-                            <option value="" disabled selected>Pilih Merchant Type</option>
-                            <option value="">Badan Usaha</option>
-                            <option value="">Perorangan</option>
-                        </select>
-                        <div id="provDescription" class="form-text">
-                            <small>Pilih provinsi tempat Anda tinggal.</small>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload Foto Lokasi Merchant</label>
+                            <input class="form-control" type="file" id="formFile" accept="image/*"
+                                capture="camera">
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="prov" class="form-label">Merchant Criteria</label>
-                        <select class="form-select" id="kriteria_merchant" required>
-                            <option value="" disabled selected>Pilih Merchant Criteria</option>
-                            <option value="">Usaha Kecil</option>
-                            <option value="">Usaha Menengah</option>
-                            <option value="">Usaha Besar</option>
-                        </select>
-                        <div id="provDescription" class="form-text">
-                            <small>Pilih provinsi tempat Anda tinggal.</small>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload NPWP</label>
+                            <input class="form-control" type="file" id="formFile" accept="image/*"
+                                capture="camera">
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nomor NPWP</label>
-                        <input type="text" class="form-control" id="no_npwp" placeholder="" maxlength="15"
-                            required>
-                        <div id="" class="form-text">
-
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Koordinat Google Maps</label>
-                        <input type="text" class="form-control" id="no_wa" placeholder="" required>
-                    </div>
-
-                    <div id="map"></div>
-                    <div id="" class="form-text">
-                        <small>Contoh : bg@gmail.com</small>
-                    </div>
-
-                </div>
-            </div>
-            <div class="info_btn step_2">
-                <button class="btn btn-light btn-back" id="buttonBack">
-                    <i class="bi bi-arrow-left-short icon_submit"
-                        style="font-size: 1rem; color: rgb(0, 0, 0); margin-right: 0.5rem;"></i>
-                    <span class="button-text-submit">Kembali </span>
-                    <div class="loader" id="loader_Submit"></div>
-                </button>
-                <button class="btn btn-primary" id="buttonNext">
-                    <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
-                        style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
-                    <div class="loader" id="loader_Submit"></div>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="cq-form">
-        <div class="cq-third">
-            <h3><strong>Upload Data Legalitas</strong></h3>
-            <p>Isi Data Legalitas untuk mempermudah penerbitan QRIS anda,pastikan data diisi dengan benar.</p>
-            <div class="cq-form-1">
-                <div class="form_file mt-5">
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Upload KTP</label>
-                        <input class="form-control" type="file" id="formFile" accept="image/*" capture="camera">
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Upload Foto Selfie + KTP</label>
-                        <input class="form-control" type="file" id="formFile" accept="image/*" capture="user">
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Upload Foto Lokasi Merchant</label>
-                        <input class="form-control" type="file" id="formFile" accept="image/*" capture="camera">
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Upload NPWP</label>
-                        <input class="form-control" type="file" id="formFile" accept="image/*" capture="camera">
                     </div>
                 </div>
-            </div>
-            <div class="info_btn">
-                <button class="btn btn-success btn-cq-submit" id="buttonSubmit">
-                    <span class="button-text-submit">Submit</span><i class="bi bi-arrow-right-short icon_submit"
-                        style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
-                    <div class="loader" id="loader_Submit"></div>
-                </button>
+                <div class="info_btn with_back">
+                    <button class="btn btn-light btn-back" id="buttonBack">
+                        <i class="bi bi-arrow-left-short icon_submit"
+                            style="font-size: 1rem; color: rgb(0, 0, 0); margin-right: 0.5rem;"></i>
+                        <span class="button-text-submit">Kembali </span>
+                    </button>
+                    <button class="btn btn-success btn-cq-submit" id="buttonSubmit">
+                        <span class="button-text-submit">Submit</span><i class="bi bi-arrow-right-short icon_submit"
+                            style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -271,7 +311,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const formSteps = document.querySelectorAll(".cq-form");
             const nextButtons = document.querySelectorAll(".info_btn #buttonNext");
-            const backButton = document.querySelector(".info_btn #buttonBack");
+            const backButton = document.querySelectorAll(".info_btn .btn-back");
 
             nextButtons.forEach((button, index) => {
                 button.addEventListener("click", function() {
@@ -280,12 +320,14 @@
                 });
             });
 
-            backButton.addEventListener("click", function() {
-                const currentStep = document.querySelector(".cq-form.active");
-                const currentStepIndex = Array.from(formSteps).indexOf(currentStep);
+            backButton.forEach((button, index) => {
+                button.addEventListener("click", function() {
+                    const currentStep = document.querySelector(".cq-form.active");
+                    const currentStepIndex = Array.from(formSteps).indexOf(currentStep);
 
-                currentStep.classList.remove("active");
-                formSteps[currentStepIndex - 1].classList.add("active");
+                    currentStep.classList.remove("active");
+                    formSteps[currentStepIndex - 1].classList.add("active");
+                });
             });
         });
     </script>
@@ -370,5 +412,24 @@
 
             return formattedValue;
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "{{ route('get.categoryMerchant.options') }}",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    var kategorySelect = $('#kategori_merchant');
+                    $.each(data, function(index, category) {
+                        kategorySelect.append($('<option>', {
+                            value: category.id,
+                            text: category
+                                .category // Ganti dengan nama field yang sesuai di model Kantor
+                        }));
+                    });
+                }
+            });
+        });
     </script>
 @endpush
