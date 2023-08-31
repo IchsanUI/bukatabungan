@@ -18,6 +18,9 @@ Route::get('/test', function () {
     return view('welcome');
 });
 Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/createqris', [LandingPageController::class, 'createQris']);
+
+
 Route::get('/info', [LandingPageController::class, 'info']);
 Route::get('/digital-saving', [LandingPageController::class, 'digital_saving']);
 Route::get('/detail-saving-1', [LandingPageController::class, 'detail_1']);

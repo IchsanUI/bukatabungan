@@ -11,6 +11,10 @@ class LandingPageController extends Controller
     {
         return view('landing-page');
     }
+    public function createQris()
+    {
+        return view('create-qris');
+    }
     public function digital_saving()
     {
         return view('digital-saving');

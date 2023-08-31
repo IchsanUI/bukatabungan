@@ -2,12 +2,13 @@
 @push('styles')
     <style>
         body {
-            background-image: url("{{ asset('img/123.jpg') }}");
+            background-image: url("{{ asset('img/Back2.jpg') }}");
             background-position: center;
             background-size: cover;
         }
 
         .well_head {
+            margin-top: 100px;
             padding: 20px;
             width: 100%;
             /* height: 100vh; */
@@ -20,6 +21,13 @@
             flex-direction: column;
             color: white;
             line-height: 0.5;
+        }
+
+        .well_title h1 {
+            font-size: 40pt;
+            text-align: center;
+            line-height: 50px;
+            margin-bottom: 10px;
         }
 
         .well_service {
@@ -70,6 +78,13 @@
         }
 
         @media (max-width: 1100px) {
+            .well_head {
+                margin-top: 0px;
+                padding: 20px;
+                width: 100%;
+                /* height: 100vh; */
+            }
+
             .well_title h1 {
                 font-size: 30pt;
                 text-align: center;
@@ -153,7 +168,7 @@
                     <p class="card-text lh-1" style="font-size: 9pt">With supporting text below as a natural lead-in to
                         additional content.</p>
                 </div>
-                <a href="#" class="btn btn-primary">Pilih <i class="bi bi-arrow-right-short"
+                <a href="{{ url('createqris') }}" class="btn btn-primary">Pilih <i class="bi bi-arrow-right-short"
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
             </div>
         </div>
