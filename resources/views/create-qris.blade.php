@@ -31,15 +31,37 @@
             width: 100%;
         }
 
+        .step_2 {
+            gap: 20px;
+        }
+
         #map {
             width: 100%;
             height: 400px;
             /* Atur sesuai kebutuhan */
         }
+
+        .btn-cq-submit {
+            background: rgb(17, 168, 0);
+            background: linear-gradient(71deg, rgba(17, 168, 0, 1) 100%, rgba(0, 255, 98, 1) 100%);
+        }
+
+        .cq-form {
+            display: none;
+        }
+
+        .cq-form.active {
+            display: block;
+        }
+
+        .btn-back {
+            background: rgb(238, 238, 238);
+            background: linear-gradient(90deg, rgba(238, 238, 238, 1) 0%, rgba(226, 226, 226, 1) 100%);
+        }
     </style>
 @endpush
 @section('content')
-    <div class="cq-form">
+    <div class="cq-form active">
         <div class="cq-first">
             <h3><strong>Indentitas Pemilik</strong></h3>
             <p>Isi data utama untuk mempermudah pembukaan rekening. pastikan data diisi dengan benar.</p>
@@ -111,7 +133,7 @@
 
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Kode Pos</label>
-                        <input type="" class="form-control" id="kode_pos" placeholder="" required>
+                        <input type="text" class="form-control" id="kode_pos" placeholder="" required maxlength="5">
                         <div id="" class="form-text">
                             <small></small>
                         </div>
@@ -119,15 +141,15 @@
                 </div>
             </div>
             <div class="info_btn">
-                <button class="btn btn-primary" id="buttonNext1" disabled>
+                <button class="btn btn-primary" id="buttonNext">
                     <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
-                    <div class="loader" id="loader_Submit"></div>
+                    <div class="loader" id="loader_Submit1"></div>
                 </button>
             </div>
         </div>
     </div>
-    <div class="cq-form">
+    <div class="cq-form ">
         <div class="cq-second">
             <h3><strong>Data Merchant</strong></h3>
             <p>Isi Data Merchant untuk mempermudah penerbitan QRIS anda. pastikan data diisi dengan benar.</p>
@@ -195,8 +217,14 @@
 
                 </div>
             </div>
-            <div class="info_btn">
-                <button class="btn btn-primary" id="buttonNext2">
+            <div class="info_btn step_2">
+                <button class="btn btn-light btn-back" id="buttonBack">
+                    <i class="bi bi-arrow-left-short icon_submit"
+                        style="font-size: 1rem; color: rgb(0, 0, 0); margin-right: 0.5rem;"></i>
+                    <span class="button-text-submit">Kembali </span>
+                    <div class="loader" id="loader_Submit"></div>
+                </button>
+                <button class="btn btn-primary" id="buttonNext">
                     <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
                     <div class="loader" id="loader_Submit"></div>
@@ -229,8 +257,8 @@
                 </div>
             </div>
             <div class="info_btn">
-                <button class="btn btn-primary" id="buttonNext3">
-                    <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
+                <button class="btn btn-success btn-cq-submit" id="buttonSubmit">
+                    <span class="button-text-submit">Submit</span><i class="bi bi-arrow-right-short icon_submit"
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
                     <div class="loader" id="loader_Submit"></div>
                 </button>
@@ -239,6 +267,29 @@
     </div>
 @endsection
 @push('script-end')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const formSteps = document.querySelectorAll(".cq-form");
+            const nextButtons = document.querySelectorAll(".info_btn #buttonNext");
+            const backButton = document.querySelector(".info_btn #buttonBack");
+
+            nextButtons.forEach((button, index) => {
+                button.addEventListener("click", function() {
+                    formSteps[index].classList.remove("active");
+                    formSteps[index + 1].classList.add("active");
+                });
+            });
+
+            backButton.addEventListener("click", function() {
+                const currentStep = document.querySelector(".cq-form.active");
+                const currentStepIndex = Array.from(formSteps).indexOf(currentStep);
+
+                currentStep.classList.remove("active");
+                formSteps[currentStepIndex - 1].classList.add("active");
+            });
+        });
+    </script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUJ_0vn4u0eFDwQlk_340b1Uy5dyiwlJI&callback=initMap" async
         defer></script>
     <script>
