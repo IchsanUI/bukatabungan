@@ -207,7 +207,7 @@
     <div class="cq-form">
         <div class="cq-third">
             <h3><strong>Upload Data Legalitas</strong></h3>
-            <p>Isi Data Legalitas untuk mempermudah penerbitan QRIS anda, pastikan data diisi dengan benar.</p>
+            <p>Isi Data Legalitas untuk mempermudah penerbitan QRIS anda,pastikan data diisi dengan benar.</p>
             <div class="cq-form-1">
                 <div class="form_file mt-5">
                     <div class="mb-3">
