@@ -75,6 +75,10 @@
         }
 
         @media (max-width: 1000px) {
+            .cq-section {
+                font-size: 10.5pt;
+            }
+
             .cq-form {
                 display: flex;
                 flex-direction: column;
@@ -108,6 +112,7 @@
                         <img id="ElementresultImage" width="100%">
                     </div>
                     <div class="form_file">
+
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">No. Rekening Bank Gresik</label>
                             <input type="text" class="form-control" id="norek_bg" placeholder="" maxlength="12">
@@ -115,6 +120,12 @@
                                 <small>Contoh : 01.10.001234.01</small>
                             </div>
                         </div>
+                        <div class="alert alert-info" role="alert">
+                            <i class="bi bi-info-circle-fill"></i> <small>Jika Anda Belum Memiliki Rekening
+                                Bank Gresik. <a href="{{ url('digital-saving') }}"><i>Daftar
+                                        Sekarang.</i></a></small>
+                        </div>
+
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Nama Pemilik </label>
                             <input type="text" class="form-control" id="nama_pemilik" placeholder="" required>
@@ -134,7 +145,7 @@
                             <label for="exampleFormControlInput1" class="form-label">Alamat</label>
                             <input type="address" class="form-control" id="alamat" placeholder="" required>
                             <div id="" class="form-text">
-                                <small>Contoh : Jl. Basuki Rahmat No.18</small>
+                                <small>Contoh : Jl. Basuki Rahmat No.18 Gresik - Jawa Timur</small>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -149,7 +160,7 @@
                             <input type="text" class="form-control" id="no_wa" placeholder="" required
                                 maxlength="17">
                             <div id="" class="form-text">
-                                <small>Contoh : 62xxxxxxxxxx</small>
+                                <small>Contoh : +62xxxxxxxxxx</small>
                             </div>
                         </div>
                         <div class="mb-3">
