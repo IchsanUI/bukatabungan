@@ -1,16 +1,18 @@
 @extends('template')
 @push('styles')
     <style>
-        /* body {
-                                                                                                                background-position: center;
-                                                                                                                background-size: cover;
-                                                                                                            } */
+        body {
+            background-image: url("{{ asset('img/Back3.jpg') }}");
+            background-position: center;
+            background-size: cover;
+        }
 
         .cq-section {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
         }
 
         .cq-form {
@@ -22,7 +24,10 @@
             align-items: center;
             margin-top: 20px;
             width: 700px;
-            /* background-color: rgb(241, 241, 241); */
+            background-color: rgb(255, 255, 255);
+            box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
+            -webkit-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
+            -moz-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
         }
 
         .info_btn {
@@ -74,10 +79,10 @@
                 display: flex;
                 flex-direction: column;
                 padding: 30px;
-                margin-bottom: 50px;
+                margin-bottom: 25px;
                 justify-content: center;
                 align-items: center;
-                margin-top: 20px;
+                margin-top: 0px;
                 width: 100%;
             }
 
@@ -97,6 +102,7 @@
             <div class="cq-first">
                 <h3> <i class="bi bi-1-circle-fill"></i><strong> Indentitas Pemilik</strong></h3>
                 <p>Isi data utama untuk mempermudah pembukaan rekening. pastikan data diisi dengan benar.</p>
+                <hr>
                 <div class="cq-form-1">
                     <div class="img_file">
                         <img id="ElementresultImage" width="100%">
@@ -121,7 +127,7 @@
                             <input type="text" class="form-control" id="ktp" placeholder="" required
                                 maxlength="16">
                             <div id="" class="form-text">
-                                <small>Contoh : 3525121312590001</small>
+                                <small>Contoh : 3525121312590001 / 16 Digit Angka</small>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -140,7 +146,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Nomor WhatsApp</label>
-                            <input type="number" class="form-control" id="no_wa" placeholder="" required>
+                            <input type="text" class="form-control" id="no_wa" placeholder="" required
+                                maxlength="17">
                             <div id="" class="form-text">
                                 <small>Contoh : 62xxxxxxxxxx</small>
                             </div>
@@ -187,7 +194,8 @@
             <div class="cq-second">
                 <h3> <i class="bi bi-2-circle-fill"></i><strong> Data Merchant</strong></h3>
                 <p>Isi Data Merchant untuk mempermudah penerbitan QRIS anda. pastikan data diisi dengan benar.</p>
-                <div class="cq-form-1">
+                <hr>
+                <div class="cq-form-2">
                     <div class="img_file">
                         <img id="ElementresultImage" width="100%">
                     </div>
@@ -196,7 +204,7 @@
                             <label for="exampleFormControlInput1" class="form-label">Nama Merchant / Nama Display</label>
                             <input type="text" class="form-control" id="nama_merchant" placeholder="">
                             <div id="" class="form-text">
-                                <small>Contoh : 01.10.001234.01</small>
+                                <small>Contoh : Toko Kelonotong Haji Gilman</small>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -212,8 +220,8 @@
                             <label for="prov" class="form-label">Merchant Type</label>
                             <select class="form-select" id="type_merchant" required>
                                 <option value="" disabled selected>Pilih Merchant Type</option>
-                                <option value="">Badan Usaha</option>
-                                <option value="">Perorangan</option>
+                                <option value="BU">Badan Usaha</option>
+                                <option value="PR">Perorangan</option>
                             </select>
                             <div id="provDescription" class="form-text">
                                 <small>Pilih provinsi tempat Anda tinggal.</small>
@@ -223,9 +231,9 @@
                             <label for="prov" class="form-label">Merchant Criteria</label>
                             <select class="form-select" id="kriteria_merchant" required>
                                 <option value="" disabled selected>Pilih Merchant Criteria</option>
-                                <option value="">Usaha Kecil</option>
-                                <option value="">Usaha Menengah</option>
-                                <option value="">Usaha Besar</option>
+                                <option value="UKE">Usaha Kecil</option>
+                                <option value="UME">Usaha Menengah</option>
+                                <option value="UBE">Usaha Besar</option>
                             </select>
                             <div id="provDescription" class="form-text">
                                 <small>Pilih provinsi tempat Anda tinggal.</small>
@@ -268,23 +276,24 @@
             <div class="cq-third">
                 <h3> <i class="bi bi-3-circle-fill"></i><strong> Upload Data Legalitas</strong></h3>
                 <p>Isi Data Legalitas untuk mempermudah penerbitan QRIS anda,pastikan data diisi dengan benar.</p>
-                <div class="cq-form-1">
-                    <div class="form_file mt-5">
-                        <div class="mb-3">
+                <hr>
+                <div class="cq-form-3">
+                    <div class="form_file mt-3">
+                        <div class="mb-4">
                             <label for="formFile" class="form-label">Upload KTP</label>
                             <input class="form-control" type="file" id="formFile" accept="image/*"
                                 capture="camera">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label for="formFile" class="form-label">Upload Foto Selfie + KTP</label>
                             <input class="form-control" type="file" id="formFile" accept="image/*" capture="user">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label for="formFile" class="form-label">Upload Foto Lokasi Merchant</label>
                             <input class="form-control" type="file" id="formFile" accept="image/*"
                                 capture="camera">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label for="formFile" class="form-label">Upload NPWP</label>
                             <input class="form-control" type="file" id="formFile" accept="image/*"
                                 capture="camera">
@@ -307,6 +316,7 @@
     </div>
 @endsection
 @push('script-end')
+    {{-- NavControl --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const formSteps = document.querySelectorAll(".cq-form");
@@ -315,8 +325,13 @@
 
             nextButtons.forEach((button, index) => {
                 button.addEventListener("click", function() {
-                    formSteps[index].classList.remove("active");
-                    formSteps[index + 1].classList.add("active");
+                    const currentStep = formSteps[index];
+                    if (validateForm(currentStep)) {
+                        currentStep.classList.remove("active");
+                        formSteps[index + 1].classList.add("active");
+                    } else {
+                        validateForm();
+                    }
                 });
             });
 
@@ -329,9 +344,30 @@
                     formSteps[currentStepIndex - 1].classList.add("active");
                 });
             });
+
+            function validateForm(step) {
+                const inputs = step.querySelectorAll("input, select"); // Menyesuaikan dengan input dan select
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    if (input.value.trim() === "") {
+                        isValid = false;
+                        input.classList.add("is-invalid");
+                        input.addEventListener("input", function() {
+                            if (input.value.trim() !== "") {
+                                input.classList.remove("is-invalid");
+                            }
+                        });
+                    } else {
+                        input.classList.remove("is-invalid");
+                    }
+                });
+
+                return isValid;
+            }
         });
     </script>
-
+    {{-- confForMap --}}
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUJ_0vn4u0eFDwQlk_340b1Uy5dyiwlJI&callback=initMap" async
         defer></script>
     <script>
@@ -345,6 +381,7 @@
             });
         }
     </script>
+    {{-- APIKabProv --}}
     <script>
         async function populateDropdown(elementId, apiUrl) {
             const dropdown = document.getElementById(elementId);
@@ -379,6 +416,7 @@
 
         populateDropdown("prov", "https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json");
     </script>
+
     <script>
         const buttonNext1 = document.getElementById("buttonNext1");
         const noWaInput = document.getElementById("kode_pos"); // Ganti dengan ID input nomor WhatsApp
@@ -395,6 +433,7 @@
         // Menambahkan event listener untuk memeriksa input nomor WhatsApp setiap kali nilainya berubah
         noWaInput.addEventListener("input", checkUserInput);
     </script>
+    {{-- NumberRekening --}}
     <script>
         const norekInput = document.getElementById("norek_bg");
 
@@ -413,6 +452,7 @@
             return formattedValue;
         }
     </script>
+    {{-- CatergoryFetch --}}
     <script>
         $(document).ready(function() {
             $.ajax({
@@ -431,5 +471,38 @@
                 }
             });
         });
+    </script>
+
+    {{-- Change Number Input --}}
+    <script>
+        const ktpInput = document.getElementById("ktp");
+        const no_waInput = document.getElementById("no_wa");
+
+        ktpInput.addEventListener("input", formatToNumber);
+        no_waInput.addEventListener("input", formatPhoneNumber);
+
+        function formatToNumber(event) {
+            const inputElement = event.target;
+            let inputValue = inputElement.value;
+
+            // Hanya menghapus karakter selain angka
+            inputValue = inputValue.replace(/[^0-9]/g, '');
+            inputElement.value = inputValue;
+        }
+
+        function formatPhoneNumber(event) {
+            const inputElement = event.target;
+            let inputValue = inputElement.value;
+
+            // Menghapus semua karakter kecuali angka
+            // inputValue = inputValue.replace(/[^0-9]/g, '');
+
+            // Jika input diawali dengan "08", ubah menjadi "+62"
+            if (inputValue.startsWith("08")) {
+                inputValue = "+628" + inputValue.slice(2);
+            }
+
+            inputElement.value = inputValue;
+        }
     </script>
 @endpush
