@@ -341,7 +341,7 @@
                         currentStep.classList.remove("active");
                         formSteps[index + 1].classList.add("active");
                     } else {
-                        validateForm();
+                        alert("Harap isi semua form sebelum melanjutkan.");
                     }
                 });
             });
