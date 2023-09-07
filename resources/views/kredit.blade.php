@@ -57,7 +57,7 @@
 @section('content')
     <div class="container mt-5">
         <div class="card-items mb-5">
-            <h5 class="card-title "><strong>Pilih Jenis Tabungan</strong></h5>
+            <h5 class="card-title "><strong>Pilih Jenis Kredit</strong></h5>
             <p class="card-text p-2">Pilih produk tabungan yang anda inginkan</p>
 
             <div class="card">
@@ -67,11 +67,11 @@
                             src="https://bukarekening.bri.co.id/digital-saving/assets/images/simpedes-umum2.png">
                     </div>
                     <div class="card-info">
-                        <h5 class="card-title">Tabungan Umum</h5>
+                        <h5 class="card-title">Kredit Ultra Mikro</h5>
                         <p align="justify" class="card-text">Produk tabungan yang memberikan beragam kemudahan dalam
                             melakukan transaksi perbankan dengan didukung fasilitas e-banking dan sistem real time online
                             yang akan memungkinkan nasabah untuk bertransaksi kapanpun dan dimanapun.</p>
-                        <a href="{{ url('detail-saving-1') }}" class="btn btn-primary">Detail Tabungan<i
+                        <a href="{{ route('detail-kredit-1') }}" class="btn btn-primary">Lihat Persyaratan<i
                                 class="bi bi-arrow-right-short"
                                 style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                     </div>
@@ -85,11 +85,11 @@
                             src="https://bukarekening.bri.co.id/digital-saving/assets/images/britamabisnis_image_url.png">
                     </div>
                     <div class="card-info">
-                        <h5 class="card-title">Tabungan Kotak</h5>
+                        <h5 class="card-title">Kredit Barokah</h5>
                         <p class="card-text">Produk tabungan yang memberikan beragam kemudahan dalam melakukan transaksi
                             perbankan dengan didukung fasilitas e-banking dan sistem real time online yang akan memungkinkan
                             nasabah untuk bertransaksi kapanpun dan dimanapun.</p>
-                        <a href="{{ url('detail-saving-2') }}" class="btn btn-primary">Detail Tabungan<i
+                        <a href="{{ url('detail-kredit-2') }}" class="btn btn-primary">Lihat Persyaratan<i
                                 class="bi bi-arrow-right-short"
                                 style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                     </div>
@@ -102,11 +102,11 @@
                             src="https://bukarekening.bri.co.id/digital-saving/assets/images/logo-simpedesbisa.png">
                     </div>
                     <div class="card-info">
-                        <h5 class="card-title">Tabungan Simpel</h5>
+                        <h5 class="card-title">Kredit Umum</h5>
                         <p class="card-text">Produk tabungan yang memberikan beragam kemudahan dalam melakukan transaksi
                             perbankan dengan didukung fasilitas e-banking dan sistem real time online yang akan memungkinkan
                             nasabah untuk bertransaksi kapanpun dan dimanapun.</p>
-                        <a href="{{ url('detail-saving-3') }}" class="btn btn-primary">Detail Tabungan<i
+                        <a href="{{ url('detail-kredit-3') }}" class="btn btn-primary">Lihat Persyaratan<i
                                 class="bi bi-arrow-right-short"
                                 style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                     </div>
@@ -119,11 +119,11 @@
                             src="https://bukarekening.bri.co.id/digital-saving/assets/images/britamabisnis_image_url.png">
                     </div>
                     <div class="card-info">
-                        <h5 class="card-title">Tabungan Qurban</h5>
+                        <h5 class="card-title">Kredit Pegawai</h5>
                         <p class="card-text">Produk tabungan yang memberikan beragam kemudahan dalam melakukan transaksi
                             perbankan dengan didukung fasilitas e-banking dan sistem real time online yang akan memungkinkan
                             nasabah untuk bertransaksi kapanpun dan dimanapun.</p>
-                        <a href="{{ url('detail-saving-4') }}" class="btn btn-primary">Detail Tabungan<i
+                        <a href="{{ url('detail-kredit-4') }}" class="btn btn-primary">Lihat Persyaratan<i
                                 class="bi bi-arrow-right-short"
                                 style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                     </div>

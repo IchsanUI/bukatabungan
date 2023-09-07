@@ -12,6 +12,18 @@ class LandingPageController extends Controller
     {
         return view('landing-page');
     }
+    public function kredit()
+    {
+        return view('kredit');
+    }
+    public function detail_kredit_1()
+    {
+        return view('detail-kredit-1');
+    }
+    public function form_kredit_1()
+    {
+        return view('form-kredit-1');
+    }
     public function createQris()
     {
         return view('create-qris');

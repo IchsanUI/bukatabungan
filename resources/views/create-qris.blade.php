@@ -309,6 +309,15 @@
                             <input class="form-control" type="file" id="formFile" accept="image/*"
                                 capture="camera">
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                <small class="lh-1">Dengan ini saya menyetujui <i> <a href=" "
+                                            style="text-decoration: none">Kebijakan dan
+                                            Ketentuan Layanan
+                                            Penerbitan QRIS Online</a></i> Bank Gresik.</small>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="info_btn with_back">
