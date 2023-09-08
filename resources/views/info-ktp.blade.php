@@ -208,9 +208,9 @@
                 width: 100%;
             }
 
-            .info_form {
-                padding: 20px;
-            }
+            /* .info_form {
+                    padding: 20px;
+                } */
 
         }
     </style>

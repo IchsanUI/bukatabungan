@@ -71,7 +71,7 @@
             .kd-form {
                 display: flex;
                 flex-direction: column;
-                padding: 50px;
+                padding: 30px;
                 margin-bottom: 25px;
                 justify-content: center;
                 align-items: center;
