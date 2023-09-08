@@ -33,6 +33,7 @@ Route::get('/uker-choose', [LandingPageController::class, 'uker_choose']);
 Route::get('/info-ktp', [LandingPageController::class, 'info_ktp']);
 Route::get('/get-kantor-options', [LandingPageController::class, 'getKantorOptions'])->name('get.kantor.options');
 Route::get('/get-categoryMerchant-options', [LandingPageController::class, 'getCategoryMerchOptions'])->name('get.categoryMerchant.options');
+Route::get('/get-dataJaminan-options', [LandingPageController::class, 'getdataJaminanOptions'])->name('get.dataJaminan.API');
 Route::get('/get-uker-data/{id}', [LandingPageController::class, 'getUkerData']);
 
 

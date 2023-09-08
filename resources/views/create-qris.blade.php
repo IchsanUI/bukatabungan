@@ -472,7 +472,7 @@
             return formattedValue;
         }
     </script>
-    {{-- CatergoryFetch --}}
+    {{-- CatergoryMerchFetch --}}
     <script>
         $(document).ready(function() {
             $.ajax({

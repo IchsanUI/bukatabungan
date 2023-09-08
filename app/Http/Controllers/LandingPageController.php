@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kantor;
 use Illuminate\Http\Request;
 use App\Models\CategoryMerchant;
+use App\Models\DataJaminan;
 
 class LandingPageController extends Controller
 {
@@ -65,6 +66,11 @@ class LandingPageController extends Controller
     {
         $categories = CategoryMerchant::all();
         return response()->json($categories);
+    }
+    public function getdataJaminanOptions()
+    {
+        $jaminans = DataJaminan::all();
+        return response()->json($jaminans);
     }
     public function getUkerData($id)
     {

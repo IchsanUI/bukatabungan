@@ -71,7 +71,7 @@
             .kd-form {
                 display: flex;
                 flex-direction: column;
-                padding: 30px;
+                padding: 50px;
                 margin-bottom: 25px;
                 justify-content: center;
                 align-items: center;
@@ -81,13 +81,13 @@
                 border: 0px solid transparent;
             }
 
-            /* .kd-form {
-                                                                                                                                                                                                                                                        display: none;
-                                                                                                                                                                                                                                                    }
+            .kd-form {
+                display: none;
+            }
 
-                                                                                                                                                                                                                                                    .kd-form.active {
-                                                                                                                                                                                                                                                        display: block;
-                                                                                                                                                                                                                                                    } */
+            .kd-form.active {
+                display: block;
+            }
         }
     </style>
 @endpush
@@ -107,7 +107,7 @@
                             <label for="exampleFormControlInput1" class="form-label">Nama Calon Debitur</label> <small
                                 class="text-danger">*Wajib
                                 Diisi</small>
-                            <input type="text" class="form-control" id="nama_pemilik" placeholder="" required>
+                            <input type="text" class="form-control wajib" id="nama_pemilik" placeholder="" required>
                         </div>
                         <div class="mb-3">
                             <label for="kab" class="form-label">Jenis Kelamin</label>
@@ -147,7 +147,7 @@
                             <label for="exampleFormControlInput1" class="form-label">Nama Ibu Kandung</label> <small
                                 class="text-danger">*Wajib
                                 Diisi</small>
-                            <input type="text" class="form-control" id="no_wa" placeholder="" required
+                            <input type="text" class="form-control" id="nama_ibu" placeholder="" required
                                 maxlength="17">
                         </div>
                         <div class="card bg-light mb-3" style="padding: 20px; margin-top: 40px">
@@ -331,19 +331,24 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Akan digunakan untuk apa pinjaman
-                                ini </label>
-                            <input type="text" class="form-control" id="nama_pemilik" placeholder="" required>
+                                ini </label> <small class="text-danger">*Wajib
+                                Diisi</small>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                             <div id="" class="form-text">
                                 <small>Contoh : Keperluan Usaha / Kebutuhan mendesak. / Investasi dalam pendidikan atau
                                     bisnis.</small>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Agunan / Jaminan</label> <small
+                            <label for="jaminan" class="form-label">Agunan / Jaminan</label> <small
                                 class="text-danger">*Wajib
                                 Diisi</small>
-                            <input type="address" class="form-control" id="alamat" placeholder="" required>
-                            <div id="" class="form-text">
+                            <select class="form-select" id="dataJaminan" required>
+                                <option value="" disabled selected>Pilih Merchant Category</option>
+                            </select>
+                            <div id="provDescription" class="form-text">
+                                <small>Contoh Agunan Bergerak Adalah Kendaraan Bermotor seperti Mobil, Motor, Kapal, dan
+                                    lainnya</small>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -391,8 +396,8 @@
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     <small class="lh-1">Dengan ini saya menyetujui <i> <a href="#"
-                                                style="text-decoration: none"> <b>Kebijakan dan
-                                                    Ketentuan Layanan Pembukaan Tabungan Online</b></a></i> Bank
+                                                style="text-decoration: none"> Kebijakan dan
+                                                Ketentuan Layanan Pembukaan Tabungan Online</a></i> Bank
                                         Gresik.</small>
                                 </label>
                             </div>
@@ -400,10 +405,44 @@
                     </div>
                 </div>
                 <div class="info_btn">
-                    <button class="btn btn-success btn-cq-submit" id="buttonSubmit">
+                    <button class="btn btn-success btn-cq-submit" id="buttonNext">
                         <span class="button-text-submit">Submit</span><i class="bi bi-arrow-right-short icon_submit"
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Pengajuan</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="title-question">
+                        Apakah Anda Yakin Ingin Mengajukan Kredit Sekarang ?
+                    </div>
+                    <div class="desc-question" style="line-height: 0.9;margin-top: 6px">
+                        <small style="font-size: 9pt;">Pastikan Anda Sudang Membaca Persyaratan dan
+                            Kententuan
+                            dalam Pengajuan
+                            Kredit. Jika Anda sudah
+                            yakin klik <b>"Yakin"</b> untuk Melanjutkan Proses Pengajuan.</small>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ligth" id="buttonCloseModal" data-dismiss="modal"
+                        style="color:#000000"> <i class="bi bi-x"></i>
+                        Belum</button>
+                    <a href="{{ route('form-kredit-1') }}" class="btn btn-success " id="buttonYakin"
+                        onclick="handleButtonClick()">Yakin <i class="bi bi-arrow-right-short iconYakin"
+                            style="font-size: 1rem; color: rgb(255, 255, 255); margin-left: 0.5rem;"></i>
+                        <div class="loader" id="loader_Yakin"></div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -420,12 +459,13 @@
             nextButtons.forEach((button, index) => {
                 button.addEventListener("click", function() {
                     const currentStep = formSteps[index];
-                    if (validateForm(currentStep)) {
-                        currentStep.classList.remove("active");
-                        formSteps[index + 1].classList.add("active");
-                    } else {
-                        alert("Harap isi semua form sebelum melanjutkan.");
+                    if ((index === 0 || index === 2) && !validateForm(currentStep)) {
+                        alert("Harap isi Semua Form Sebelum Melanjutkan.");
+                        return; // Jika form 1 atau 3 tidak valid, jangan lanjutkan
                     }
+
+                    currentStep.classList.remove("active");
+                    formSteps[index + 1].classList.add("active");
                 });
             });
 
@@ -440,7 +480,8 @@
             });
 
             function validateForm(step) {
-                const inputs = step.querySelectorAll("input, select"); // Menyesuaikan dengan input dan select
+                const inputs = step.querySelectorAll(
+                    "input, select, textarea, #flexCheckDefault"); // Menyesuaikan dengan input dan select
                 let isValid = true;
 
                 inputs.forEach(input => {
@@ -538,6 +579,26 @@
         var ubahRupiah2 = document.getElementById('ubahRupiah2');
         ubahRupiah2.addEventListener('keyup', function(e) {
             this.value = formatRupiah(this.value, '');
+        });
+    </script>
+    {{-- APIdataJaminan --}}
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "{{ route('get.dataJaminan.API') }}",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    var kategorySelect = $('#dataJaminan');
+                    $.each(data, function(index, jaminan) {
+                        kategorySelect.append($('<option>', {
+                            value: jaminan.kode_jaminan,
+                            text: jaminan
+                                .nama_jaminan // Ganti dengan nama field yang sesuai di model Kantor
+                        }));
+                    });
+                }
+            });
         });
     </script>
 @endpush

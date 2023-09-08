@@ -40,8 +40,8 @@
 
         /* Tabs*/
         /* section {
-                                                                                                                                                                                        padding: 60px 0;
-                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                padding: 60px 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } */
 
 
 
@@ -74,6 +74,43 @@
         .btn-detail {
             background: rgb(0, 65, 255);
             background: linear-gradient(90deg, rgba(0, 65, 255, 1) 0%, rgba(31, 31, 215, 1) 100%, rgba(9, 9, 121, 1) 100%);
+        }
+
+        #buttonCloseModal {
+            background: rgb(238, 238, 238);
+            background: linear-gradient(90deg, rgba(238, 238, 238, 1) 0%, rgba(226, 226, 226, 1) 100%);
+        }
+
+        /* Styles for loader */
+        .loader {
+            border: 3.5px solid #f3f3f3;
+            border-top: 3.5px solid #3498db;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            animation: spin 2s linear infinite;
+            position: relative;
+            /* margin-left: 10px; */
+            /* Sesuaikan margin sesuai kebutuhan */
+            display: inline-block;
+            /* Menampilkan loader dalam baris yang sama dengan tombol */
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .modal-footer a {
+            display: flex;
+            justify-content: baseline;
+            align-items: center;
+            gap: 7px
         }
 
         @media (max-width: 1000px) {
@@ -122,9 +159,14 @@
                 <p align="justify" class="card-text">Produk tabungan yang memberikan beragam kemudahan dalam melakukan
                     transaksi perbankan dengan didukung fasilitas e-banking dan sistem real time online yang akan
                     memungkinkan nasabah untuk bertransaksi kapanpun dan dimanapun.</p>
-                <a href="{{ route('form-kredit-1') }}" class="btn btn-success btn-detail"> Pilih Kredit<i
+                <button type="button" class="btn btn-success btn-detail" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                    Ajukan Kredit Sekarang <i class="bi bi-arrow-right-short"
+                        style="font-size: 1rem; color: rgb(255, 255, 255); margin-left: 0.5rem;"></i>
+                </button>
+                {{-- <a href="{{ route('form-kredit-1') }}" class="btn btn-success btn-detail"> Pilih Kredit<i
                         class="bi bi-arrow-right-short"
-                        style="font-size: 1rem; color: rgb(255, 255, 255); margin-left: 0.5rem;"></i></a>
+                        style="font-size: 1rem; color: rgb(255, 255, 255); margin-left: 0.5rem;"></i></a> --}}
             </div>
         </div>
     </div>
@@ -184,6 +226,41 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Pengajuan</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="title-question">
+                        Apakah Anda Yakin Ingin Mengajukan Kredit Sekarang ?
+                    </div>
+                    <div class="desc-question" style="line-height: 0.9;margin-top: 6px">
+                        <small style="font-size: 9pt;">Pastikan Anda Sudang Membaca Persyaratan dan
+                            Kententuan
+                            dalam Pengajuan
+                            Kredit. Jika Anda sudah
+                            yakin klik <b>"Yakin"</b> untuk Melanjutkan Proses Pengajuan.</small>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ligth" id="buttonCloseModal" data-dismiss="modal"
+                        style="color:#000000"> <i class="bi bi-x"></i>
+                        Belum</button>
+                    <a href="{{ route('form-kredit-1') }}" class="btn btn-success " id="buttonYakin"
+                        onclick="handleButtonClick()">Yakin <i class="bi bi-arrow-right-short iconYakin"
+                            style="font-size: 1rem; color: rgb(255, 255, 255); margin-left: 0.5rem;"></i>
+                        <div class="loader" id="loader_Yakin"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
@@ -193,5 +270,41 @@
             e.preventDefault()
             $(this).tab('show')
         })
+    </script>
+    <script>
+        // Menghilangkan loader ketika halaman dimuat
+        window.addEventListener('load', function() {
+            // Menghilangkan loader
+            const loader = document.querySelector("#loader_Yakin");
+            if (loader) {
+                loader.style.display = "none";
+            }
+        });
+
+        function handleButtonClick() {
+            // Menyembunyikan ikon check
+            const checkIcon = document.querySelector(".iconYakin");
+            if (checkIcon) {
+                checkIcon.style.display = "none";
+            }
+
+            // Menampilkan loader
+            const loader = document.querySelector("#loader_Yakin");
+            if (loader) {
+                loader.style.display = "block";
+            }
+
+            // Menonaktifkan kedua tombol
+            const closeButton = document.querySelector("#buttonCloseModal");
+            const yakinButton = document.querySelector("#buttonYakin");
+
+            if (closeButton) {
+                closeButton.disabled = true;
+            }
+
+            if (yakinButton) {
+                yakinButton.classList.add("disabled");
+            }
+        }
     </script>
 @endpush
