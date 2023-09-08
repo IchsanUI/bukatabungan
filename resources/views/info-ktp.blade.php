@@ -208,6 +208,10 @@
                 width: 100%;
             }
 
+            .info_form {
+                padding: 20px;
+            }
+
         }
     </style>
 @endpush
@@ -471,7 +475,7 @@
                     if (field.value.trim() === '') {
                         allFieldsFilled = false;
                         field.classList.add(
-                        'is-invalid'); // Tambah class untuk menunjukkan field tidak valid
+                            'is-invalid'); // Tambah class untuk menunjukkan field tidak valid
                     } else {
                         field.classList.remove('is-invalid');
                     }

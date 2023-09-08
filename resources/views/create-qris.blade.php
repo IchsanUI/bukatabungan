@@ -24,6 +24,10 @@
             align-items: center;
             margin-top: 20px;
             width: 700px;
+            background: linear-gradient(white, white) padding-box,
+                linear-gradient(to right, rgb(184, 184, 184), rgb(255, 255, 255)) border-box;
+            border-radius: 12px;
+            border: 2px solid transparent;
             background-color: rgb(255, 255, 255);
             box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
             -webkit-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
@@ -82,12 +86,14 @@
             .cq-form {
                 display: flex;
                 flex-direction: column;
-                padding: 30px;
+                padding: 50px;
                 margin-bottom: 25px;
                 justify-content: center;
                 align-items: center;
                 margin-top: 0px;
                 width: 100%;
+                border-radius: 0px;
+                border: 0px solid transparent;
             }
 
             .cq-form {
