@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\DataKreditController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,7 @@ Route::get('/info', [LandingPageController::class, 'info']);
 Route::get('/kredit', [LandingPageController::class, 'kredit']);
 Route::get('/kredit/detail-kredit-1', [LandingPageController::class, 'detail_kredit_1'])->name('detail-kredit-1');
 Route::get('/kredit/1', [LandingPageController::class, 'form_kredit_1'])->name('form-kredit-1');
+Route::get('/error/maintenance/', [LandingPageController::class, 'maintenance'])->name('maintenance');
 Route::get('/digital-saving', [LandingPageController::class, 'digital_saving']);
 Route::get('/detail-saving-1', [LandingPageController::class, 'detail_1']);
 Route::get('/detail-saving-2', [LandingPageController::class, 'detail_2']);
@@ -35,6 +38,10 @@ Route::get('/get-kantor-options', [LandingPageController::class, 'getKantorOptio
 Route::get('/get-categoryMerchant-options', [LandingPageController::class, 'getCategoryMerchOptions'])->name('get.categoryMerchant.options');
 Route::get('/get-dataJaminan-options', [LandingPageController::class, 'getdataJaminanOptions'])->name('get.dataJaminan.API');
 Route::get('/get-uker-data/{id}', [LandingPageController::class, 'getUkerData']);
+
+// Route::post('/data-kredit', [DataKreditController::class, 'saveData'])->name('terimaData');
+Route::post('/proses-ajax', 'DataKreditController@saveData')->name('post.dataKredit.API');
+
 
 
 // Route::controller(\App\Http\Controllers\UserController::class)-> group(function(){

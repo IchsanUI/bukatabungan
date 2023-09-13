@@ -6,12 +6,17 @@ use App\Models\Kantor;
 use Illuminate\Http\Request;
 use App\Models\CategoryMerchant;
 use App\Models\DataJaminan;
+use Illuminate\Support\Facades\Crypt;
 
 class LandingPageController extends Controller
 {
     public function index()
     {
         return view('landing-page');
+    }
+    public function maintenance()
+    {
+        return view('pageMaintenance');
     }
     public function kredit()
     {
@@ -77,4 +82,19 @@ class LandingPageController extends Controller
         $ukerData = Kantor::find($id); // Ganti 'Kantor' dengan model yang sesuai
         return response()->json($ukerData);
     }
+
+    public function saveData(Request $request)
+    {
+        // Mengambil data dari permintaan Ajax
+        $dataToEncrypt = $request->all();
+
+        // Melakukan enkripsi data
+        $encryptedData = Crypt::encryptString(json_encode($dataToEncrypt));
+
+        // // Tampilkan hasil enkripsi untuk pemeriksaan (gunakan dd() hanya untuk debugging)
+        dd($encryptedData);
+
+        return response()->json(['encryptedData' => $encryptedData]);
+    }
+    
 }

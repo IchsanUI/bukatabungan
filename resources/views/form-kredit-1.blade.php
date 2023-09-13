@@ -63,9 +63,35 @@
             background: linear-gradient(71deg, rgba(17, 168, 0, 1) 100%, rgba(0, 255, 98, 1) 100%);
         }
 
+        #buttonCloseModal {
+            background: rgb(238, 238, 238);
+            background: linear-gradient(90deg, rgba(238, 238, 238, 1) 0%, rgba(226, 226, 226, 1) 100%);
+        }
+
+        .info_ktp {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            /* margin-bottom: 50px; */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info_ktp .info_img {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-bottom: 30px;
+        }
+
+        .info_ktp .info_decs {
+            font-size: 9pt;
+        }
+
         @media (max-width: 1000px) {
             .form-section {
                 font-size: 10.5pt;
+                padding: 15px;
             }
 
             .kd-form {
@@ -77,23 +103,31 @@
                 align-items: center;
                 margin-top: 0px;
                 width: 100%;
-                border-radius: 0px;
-                border: 0px solid transparent;
+                background: linear-gradient(white, white) padding-box,
+                    linear-gradient(to right, rgb(194, 180, 255), rgb(255, 255, 255)) border-box;
+                border-radius: 12px;
+                border: 1, 5px solid transparent;
+                background-color: rgb(255, 255, 255);
+                box-shadow: 15px 15px 20px -6px rgba(25, 3, 104, 0.14);
+                -webkit-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
+                -moz-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
             }
 
-            .kd-form {
-                display: none;
-            }
+            /* .kd-form {
+                                                                                                                                                                                                                                                                                                                    display: none;
+                                                                                                                                                                                                                                                                                                                }
 
-            .kd-form.active {
-                display: block;
-            }
+                                                                                                                                                                                                                                                                                                                .kd-form.active {
+                                                                                                                                                                                                                                                                                                                    display: block;
+                                                                                                                                                                                                                                                                                                                } */
         }
     </style>
+    {{-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
 @endpush
 @section('content')
     <div class="form-section">
         <div class="kd-form active">
+            @csrf
             <div class="firstStep">
                 <h3> <i class="bi bi-1-circle-fill"></i><strong> DATA CALON DEBITUR</strong></h3>
                 <p>Isi data utama untuk mempermudah pembukaan rekening. pastikan data diisi dengan benar.</p>
@@ -107,11 +141,13 @@
                             <label for="exampleFormControlInput1" class="form-label">Nama Calon Debitur</label> <small
                                 class="text-danger">*Wajib
                                 Diisi</small>
-                            <input type="text" class="form-control wajib" id="nama_pemilik" placeholder="" required>
+                            <input type="text" class="form-control wajib" id="namacalonDebitur" placeholder="" required>
                         </div>
                         <div class="mb-3">
-                            <label for="kab" class="form-label">Jenis Kelamin</label>
-                            <select class="form-select" id="kab" required>
+                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin </label> <small
+                                class="text-danger">*Wajib
+                                Diisi</small>
+                            <select class="form-select" id="jenis_kelamin" required>
                                 <option value="" disabled selected>Pilih Kelamin</option>
                                 <option value="L">Laki-Laki</option>
                                 <option value="P">Perempuan</option>
@@ -121,7 +157,7 @@
                             <label for="exampleFormControlInput1" class="form-label">Tempat Lahir</label> <small
                                 class="text-danger">*Wajib
                                 Diisi</small>
-                            <input type="address" class="form-control" id="alamat" placeholder="" required>
+                            <input type="address" class="form-control" id="tempatLahir" placeholder="" required>
                             <div id="" class="form-text">
                                 <small>Isi sesuai dengan data KTP anda.</small>
                             </div>
@@ -130,15 +166,15 @@
                             <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir</label> <small
                                 class="text-danger">*Wajib
                                 Diisi</small>
-                            <input type="date" class="form-control" id="tanggal" placeholder="">
+                            <input type="date" class="form-control" id="tanggaLahir" placeholder="" required>
                             <div id="" class="form-text">
                                 <small>Contoh : 06-07-2000 /Pastikan Anda Sudah Memiliki KTP</small>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">No. Telp / WhatsApp </label>
-                            <input type="text" class="form-control" id="no_wa" placeholder="" required
-                                maxlength="17">
+                            <input type="text" class="form-control" id="noWA" placeholder="" maxlength="17"
+                                required>
                             <div id="" class="form-text">
                                 <small>Contoh : +62xxxxxxxxxx</small>
                             </div>
@@ -147,7 +183,7 @@
                             <label for="exampleFormControlInput1" class="form-label">Nama Ibu Kandung</label> <small
                                 class="text-danger">*Wajib
                                 Diisi</small>
-                            <input type="text" class="form-control" id="nama_ibu" placeholder="" required
+                            <input type="text" class="form-control" id="namaIbu" placeholder="" required
                                 maxlength="17">
                         </div>
                         <div class="card bg-light mb-3" style="padding: 20px; margin-top: 40px">
@@ -155,7 +191,7 @@
                                 <label for="exampleFormControlInput1" class="form-label">No. KTP </label> <small
                                     class="text-danger">*Wajib
                                     Diisi</small>
-                                <input type="text" class="form-control" id="ktp" placeholder="" required
+                                <input type="text" class="form-control" id="noKTP" placeholder="" required
                                     maxlength="16">
                                 <div id="" class="form-text">
                                     <small>Contoh : 3525121312590001 / 16 Digit Angka</small>
@@ -165,14 +201,15 @@
                                 <label for="formFile" class="form-label">Upload Foto KTP </label> <small
                                     class="text-danger">*Wajib
                                     Diisi</small>
-                                <input class="form-control" type="file" id="formFile" accept="image/*" capture="camera">
+                                <input class="form-control" type="file" id="fileKTP" accept="image/*" capture="camera"
+                                    required>
 
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">No. Kartu Keluarga
                                 </label> <small class="text-danger">*Wajib
                                     Diisi</small>
-                                <input type="text" class="form-control" id="ktp" placeholder="" required
+                                <input type="text" class="form-control" id="noKK" placeholder="" required
                                     maxlength="16">
                                 <div id="" class="form-text">
                                     <small>Contoh : 3525121312590001 / 16 Digit Angka</small>
@@ -182,17 +219,19 @@
                                 <label for="formFile" class="form-label">Upload Kartu Keluarga </label> <small
                                     class="text-danger">*Wajib
                                     Diisi</small>
-                                <input class="form-control" type="file" id="formFile" accept="image/*"
-                                    capture="camera">
+                                <input class="form-control" type="file" id="fileKK" accept="image/*"
+                                    capture="camera" required>
                             </div>
                             <div id="" class="form-text">
-                                <a href=""> <i class="bi bi-info-circle-fill"
+                                <a style=" color: rgb(0, 4, 252);" data-toggle="modal" data-target="#infoKTPModalCenter">
+                                    <i class="bi bi-info-circle-fill"
                                         style="font-size: 0.8rem; color: rgb(44, 4, 187); margin-left: 0.5rem;"></i>
                                     Panduan
                                     Mengambil
                                     Gambar KTP / KK.
                                 </a>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -200,7 +239,7 @@
                     <button class="btn btn-primary" id="buttonNext">
                         <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
-                        <div class="loader" id="loader_Submit1"></div>
+                        {{-- <div class="loader" id="loader_Submit1"></div> --}}
                     </button>
                 </div>
             </div>
@@ -217,39 +256,39 @@
                     </div>
                     <div class="form_file">
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nama Pasangan</label>
-                            <input type="text" class="form-control" id="nama_pemilik" placeholder="" required>
+                            <label for="exampleFormControlInput1" class="form-label">Nama <i>Pasangan</i></label>
+                            <input type="text" class="form-control" id="namaPasangan" placeholder="">
                             <div id="" class="form-text">
                                 <small>Contoh : Toko Bang Gilman</small>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="kab" class="form-label">Jenis Kelamin</label>
-                            <select class="form-select" id="kab" required>
+                            <label for="jenis_kelamin_pasangan" class="form-label">Jenis Kelamin <i>Pasangan</i></label>
+                            <select class="form-select" id="jeniskelaminPasangan">
                                 <option value="" disabled selected>Pilih Kelamin</option>
                                 <option value="L">Laki-Laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Tempat Lahir</label>
-                            <input type="address" class="form-control" id="alamat" placeholder="" required>
+                            <label for="exampleFormControlInput1" class="form-label">Tempat Lahir <i>Pasangan</i></label>
+                            <input type="address" class="form-control" id="tempatlahirPasangan" placeholder="">
                             <div id="" class="form-text">
                                 <small>Contoh : Jl. Basuki Rahmat No.18 Gresik - Jawa Timur</small>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Tanggal Lahir</label> <small
-                                class="text-danger">*Wajib
+                            <label for="tanggallahirPasangan" class="form-label">Tanggal Lahir <i>Pasangan</i></label>
+                            <small class="text-danger">*Wajib
                                 Diisi</small>
-                            <input type="date" class="form-control" id="tanggal1" placeholder="">
+                            <input type="date" class="form-control" id="tanggallahirPasangan" placeholder="">
                             <div id="" class="form-text">
                                 <small>Contoh : 06-07-2000 / Pastikan Anda Sudah Memiliki KTP</small>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nama Ibu Kandung</label>
-                            <input type="text" class="form-control" id="no_wa" placeholder="" required
+                            <label for="namaibuPasangan" class="form-label">Nama Ibu Kandung <i>Pasangan</i></label>
+                            <input type="text" class="form-control" id="namaibuPasangan" placeholder=""
                                 maxlength="17">
                             <div id="" class="form-text">
                                 <small>Contoh : +62xxxxxxxxxx</small>
@@ -258,7 +297,7 @@
                         <div class="card bg-light mb-3" style="padding: 20px; margin-top: 40px">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">No. KTP <i>Pasangan</i></label>
-                                <input type="text" class="form-control" id="ktp" placeholder="" required
+                                <input type="text" class="form-control" id="noKTPPasangan" placeholder=""
                                     maxlength="16">
                                 <div id="" class="form-text">
                                     <small>Contoh : 3525121312590001 / 16 Digit Angka</small>
@@ -266,13 +305,13 @@
                             </div>
                             <div class="mb-4">
                                 <label for="formFile" class="form-label">Upload Foto KTP <i>Pasangan</i></label>
-                                <input class="form-control" type="file" id="formFile" accept="image/*"
+                                <input class="form-control" type="file" id="fileKTPPasangan" accept="image/*"
                                     capture="camera">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">No. Kartu Keluarga
                                     <i>Pasangan</i></label>
-                                <input type="text" class="form-control" id="ktp" placeholder="" required
+                                <input type="text" class="form-control" id="noKKPasangan" placeholder=""
                                     maxlength="16">
                                 <div id="" class="form-text">
                                     <small>Contoh : 3525121312590001 / 16 Digit Angka</small>
@@ -280,11 +319,12 @@
                             </div>
                             <div class="mb-4">
                                 <label for="formFile" class="form-label">Upload Kartu Keluarga <i>Pasangan</i></label>
-                                <input class="form-control" type="file" id="formFile" accept="image/*"
+                                <input class="form-control" type="file" id="fileKKPasangan" accept="image/*"
                                     capture="camera">
                             </div>
                             <div id="" class="form-text">
-                                <a href=""> <i class="bi bi-info-circle-fill"
+                                <a style=" color: rgb(0, 4, 252);" data-toggle="modal" data-target="#infoKTPModalCenter">
+                                    <i class="bi bi-info-circle-fill"
                                         style="font-size: 0.8rem; color: rgb(44, 4, 187); margin-left: 0.5rem;"></i>
                                     Panduan
                                     Mengambil
@@ -298,7 +338,7 @@
                     <button class="btn btn-primary" id="buttonNext">
                         <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
-                        <div class="loader" id="loader_Submit1"></div>
+                        {{-- <div class="loader" id="loader_Submit1"></div> --}}
                     </button>
                 </div>
             </div>
@@ -323,7 +363,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Rp.</span>
                                 </div>
-                                <input type="text" class="form-control" id="ubahRupiah1" required>
+                                <input type="text" class="form-control" id="rupiahDiinginkan" required>
                             </div>
                             <div id="" class="form-text">
                                 <small>Contoh : 10.000.000 / 20.000.0000 dst</small>
@@ -333,7 +373,7 @@
                             <label for="exampleFormControlInput1" class="form-label">Akan digunakan untuk apa pinjaman
                                 ini </label> <small class="text-danger">*Wajib
                                 Diisi</small>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            <textarea class="form-control" id="keperluan" rows="5" required></textarea>
                             <div id="" class="form-text">
                                 <small>Contoh : Keperluan Usaha / Kebutuhan mendesak. / Investasi dalam pendidikan atau
                                     bisnis.</small>
@@ -344,7 +384,7 @@
                                 class="text-danger">*Wajib
                                 Diisi</small>
                             <select class="form-select" id="dataJaminan" required>
-                                <option value="" disabled selected>Pilih Merchant Category</option>
+                                <option value="" disabled selected>Pilih Jenis Jaminan </option>
                             </select>
                             <div id="provDescription" class="form-text">
                                 <small>Contoh Agunan Bergerak Adalah Kendaraan Bermotor seperti Mobil, Motor, Kapal, dan
@@ -355,7 +395,7 @@
                             <label for="exampleFormControlInput1" class="form-label">Pekerjaan / Usaha</label> <small
                                 class="text-danger">*Wajib
                                 Diisi</small>
-                            <input type="text" class="form-control" id="email" placeholder="" required>
+                            <input type="text" class="form-control" id="pekerjaan" placeholder="" required>
                             <div id="" class="form-text">
                             </div>
                         </div>
@@ -367,7 +407,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Rp.</span>
                                 </div>
-                                <input type="text" class="form-control" id="ubahRupiah2" required>
+                                <input type="text" class="form-control" id="pendapatanBersih" required>
                             </div>
                             <div id="" class="form-text">
                                 <small>Contoh : 10.000.000 / 20.000.0000 dst</small>
@@ -375,37 +415,37 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Kode Referral</label>
-                            <input type="text" class="form-control" id="no_wa" placeholder="" required
-                                maxlength="17">
+                            <input type="text" class="form-control" id="kodeReferral" placeholder="" maxlength="17">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nama Mitra Gresik Pay</label>
-                            <input type="text" class="form-control" id="no_wa" placeholder="" required
+                            <label for="exampleFormControlInput1" class="form-label">Nama Mitra GresiKita</label>
+                            <input type="text" class="form-control" id="namaMitraGKita" placeholder=""
                                 maxlength="17">
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">No. HP Mitra Gresik Pay</label>
-                            <input type="text" class="form-control" id="no_wa" placeholder="" required
-                                maxlength="17">
+                            <input type="text" class="form-control" id="noWAMitra" placeholder="" maxlength="17">
                             <div id="" class="form-text">
                                 <small>Contoh : +62xxxxxxxxxx</small>
                             </div>
                         </div>
                         <div class="card bg-light mb-3" style="padding: 20px">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
+                                <input class="form-check-input " type="checkbox" id="CheckDefault">
+                                <label class="form-check-label" for="CheckDefault">
                                     <small class="lh-1">Dengan ini saya menyetujui <i> <a href="#"
                                                 style="text-decoration: none"> Kebijakan dan
                                                 Ketentuan Layanan Pembukaan Tabungan Online</a></i> Bank
                                         Gresik.</small>
                                 </label>
                             </div>
+
                         </div>
+                        {{-- <div class="g-recaptcha" data-sitekey="6Lf63BooAAAAAFqDDV2UHe6fud9CHIQo7743tTUC"></div> --}}
                     </div>
                 </div>
                 <div class="info_btn">
-                    <button class="btn btn-success btn-cq-submit" id="buttonNext">
+                    <button class="btn btn-success btn-cq-submit " id="buttonSubmit">
                         <span class="button-text-submit">Submit</span><i class="bi bi-arrow-right-short icon_submit"
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
                     </button>
@@ -413,36 +453,43 @@
             </div>
         </div>
     </div>
+    </div>
+
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+    <div class="modal fade" id="infoKTPModalCenter" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Pengajuan</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Panduan Mengambil Gambar KTP / KK.</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="title-question">
-                        Apakah Anda Yakin Ingin Mengajukan Kredit Sekarang ?
+                    <div class="info_ktp">
+                        <div class="info_img">
+                            <h6>Contoh Kartu Tanda Penduduk.</h6>
+                            <div class="info_img_1">
+                                <img width="100%" class="data-img" src="{{ asset('img/guide_takePicture/KTPC.png') }}">
+                            </div>
+                            <h6>Contoh Kartu Keluarga.</h6>
+                            <div class="info_img_1">
+                                <img width="100%" class="data-img" src="{{ asset('img/guide_takePicture/KKC.png') }}">
+                            </div>
+                        </div>
+                        <div class="info_decs">
+                            <h6>Perhatikan hal-hal berikut :</h6>
+                            <ol>
+                                <li>Pastikan kamu upload foto KTP/KK asli. Bukan hasil scan atau fotokopi.</li>
+                                <li>Pastikan KTP kamu masih berlaku (khusus non e-KTP).</li>
+                                <li>Pastikan KTP/KK terlihat jelas tulisan maupun gambar wajah.</li>
+                                <li>Pastikan foto yang kamu upload tidak blur dan pencahayaannya bagus.</li>
+                            </ol>
+                        </div>
                     </div>
-                    <div class="desc-question" style="line-height: 0.9;margin-top: 6px">
-                        <small style="font-size: 9pt;">Pastikan Anda Sudang Membaca Persyaratan dan
-                            Kententuan
-                            dalam Pengajuan
-                            Kredit. Jika Anda sudah
-                            yakin klik <b>"Yakin"</b> untuk Melanjutkan Proses Pengajuan.</small>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-ligth" id="buttonCloseModal" data-dismiss="modal"
                         style="color:#000000"> <i class="bi bi-x"></i>
-                        Belum</button>
-                    <a href="{{ route('form-kredit-1') }}" class="btn btn-success " id="buttonYakin"
-                        onclick="handleButtonClick()">Yakin <i class="bi bi-arrow-right-short iconYakin"
-                            style="font-size: 1rem; color: rgb(255, 255, 255); margin-left: 0.5rem;"></i>
-                        <div class="loader" id="loader_Yakin"></div>
-                    </a>
+                        Tutup</button>
                 </div>
             </div>
         </div>
@@ -454,7 +501,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const formSteps = document.querySelectorAll(".kd-form");
             const nextButtons = document.querySelectorAll(".info_btn #buttonNext");
-            const backButton = document.querySelectorAll(".info_btn .btn-back");
+            const submitButton = document.querySelectorAll(".info_btn #buttonSubmit");
 
             nextButtons.forEach((button, index) => {
                 button.addEventListener("click", function() {
@@ -469,19 +516,10 @@
                 });
             });
 
-            backButton.forEach((button, index) => {
-                button.addEventListener("click", function() {
-                    const currentStep = document.querySelector(".kd_form.active");
-                    const currentStepIndex = Array.from(formSteps).indexOf(currentStep);
-
-                    currentStep.classList.remove("active");
-                    formSteps[currentStepIndex - 1].classList.add("active");
-                });
-            });
-
             function validateForm(step) {
                 const inputs = step.querySelectorAll(
-                    "input, select, textarea, #flexCheckDefault"); // Menyesuaikan dengan input dan select
+                    "input:required, select:required, textarea:required, #CheckDefault"
+                ); // Menyesuaikan dengan input dan select
                 let isValid = true;
 
                 inputs.forEach(input => {
@@ -500,12 +538,41 @@
 
                 return isValid;
             }
+            submitButton.forEach(button => {
+                button.addEventListener("click", function(event) {
+                    event.preventDefault(); // Menghentikan perilaku default tombol submit
+
+                    // Validasi form terakhir sebelum mengirim data
+                    const lastStep = formSteps[formSteps.length - 1];
+                    if (!validateForm(lastStep)) {
+                        alert("Harap isi Semua Form Terakhir Dengan Benar.");
+                        return;
+                    }
+                    // Mengumpulkan data dari semua langkah
+                    var formData = {};
+                    formSteps.forEach((step, index) => {
+                        const inputs = step.querySelectorAll(
+                            "input, select, textarea, #CheckDefault"
+                        );
+
+                        inputs.forEach(input => {
+                            formData[input.id] = input.value;
+                        });
+                    });
+
+                    // Serialize object to JSON
+                    var formDataJSON = JSON.stringify(formData);
+                    console.log(formDataJSON);
+
+
+                });
+            });
         });
     </script>
     {{-- Change Number Input KTP and NoPhone --}}
     <script>
-        const ktpInput = document.getElementById("ktp");
-        const no_waInput = document.getElementById("no_wa");
+        const ktpInput = document.getElementById("noKTP");
+        const no_waInput = document.getElementById("noWA");
 
         ktpInput.addEventListener("input", formatToNumber);
         no_waInput.addEventListener("input", formatPhoneNumber);
@@ -545,12 +612,12 @@
         var maxDateString = maxDate.toISOString().slice(0, 10);
 
         // Set nilai max pada elemen input tanggal
-        document.getElementById('tanggal').max = maxDateString;
-        document.getElementById('tanggal1').max = maxDateString;
-        document.getElementById('tanggal').value = maxDateString;
-        document.getElementById('tanggal1').value = maxDateString;
+        document.getElementById('tanggaLahir').max = maxDateString;
+        document.getElementById('tanggallahirPasangan').max = maxDateString;
+        // document.getElementById('tanggal').value = maxDateString;
+        // document.getElementById('tanggal1').value = maxDateString;
     </script>
-    {{-- Ruoiah --}}
+    {{-- Rupiah --}}
     <script>
         /* Fungsi */
         function formatRupiah(angka, prefix) {
@@ -570,13 +637,13 @@
         }
 
         /* Event listener untuk input pertama */
-        var ubahRupiah1 = document.getElementById('ubahRupiah1');
+        var ubahRupiah1 = document.getElementById('rupiahDiinginkan');
         ubahRupiah1.addEventListener('keyup', function(e) {
             this.value = formatRupiah(this.value, '');
         });
 
         /* Event listener untuk input kedua */
-        var ubahRupiah2 = document.getElementById('ubahRupiah2');
+        var ubahRupiah2 = document.getElementById('pendapatanBersih');
         ubahRupiah2.addEventListener('keyup', function(e) {
             this.value = formatRupiah(this.value, '');
         });
@@ -599,6 +666,31 @@
                     });
                 }
             });
+        });
+    </script>
+    <script>
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            method: 'POST',
+            url: "{{ route('post.dataKredit.API') }}",
+            data: {
+                // _token: '{{ csrf_token() }}',
+                dataToEncrypt: formDataJSON
+            },
+            dataType: 'json',
+            success: function(response) {
+                // Menggunakan data terenkripsi yang diterima dari Laravel
+                var encryptedData = response.encryptedData;
+                console.log('Encrypted Data:', encryptedData);
+                alert("Data berhasil dikirim: " + response);
+            },
+            error: function(error) {
+                // console.log('Error:', error);
+                alert("Terjadi kesalahan saat mengirim data: " + error
+                    .statusText);
+            }
         });
     </script>
 @endpush

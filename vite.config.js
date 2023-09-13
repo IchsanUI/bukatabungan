@@ -7,7 +7,7 @@ export default defineConfig({
             input: ["resources/css/app.css", "resources/js/app.js"],
             refresh: [
                 "app/Http/Controllers",
-                "route",
+                "routes",
                 "public/assets/**",
                 "resources/views/**",
             ],
