@@ -162,7 +162,7 @@
                 </div>
                 {{-- <a href="{{ url('kredit') }}" class="btn btn-primary">Pilih <i class="bi bi-arrow-right-short"
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a> --}}
-                <a href="{{ url('maintenance') }}" class="btn btn-primary">Pilih <i class="bi bi-arrow-right-short"
+                <a href="{{ route('maintenance') }}" class="btn btn-primary">Pilih <i class="bi bi-arrow-right-short"
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
             </div>
             <div class="card text-center">
