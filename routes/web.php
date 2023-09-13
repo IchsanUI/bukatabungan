@@ -39,8 +39,8 @@ Route::get('/get-categoryMerchant-options', [LandingPageController::class, 'getC
 Route::get('/get-dataJaminan-options', [LandingPageController::class, 'getdataJaminanOptions'])->name('get.dataJaminan.API');
 Route::get('/get-uker-data/{id}', [LandingPageController::class, 'getUkerData']);
 
-// Route::post('/data-kredit', [DataKreditController::class, 'saveData'])->name('terimaData');
-Route::post('/proses-ajax', 'DataKreditController@saveData')->name('post.dataKredit.API');
+Route::post('/proses', [DataKreditController::class, 'saveData'])->name('post.dataKredit.API');
+Route::get('/endForm', [DataKreditController::class, 'successSend'])->name('success.dataKredit.API');
 
 
 

@@ -82,19 +82,4 @@ class LandingPageController extends Controller
         $ukerData = Kantor::find($id); // Ganti 'Kantor' dengan model yang sesuai
         return response()->json($ukerData);
     }
-
-    public function saveData(Request $request)
-    {
-        // Mengambil data dari permintaan Ajax
-        $dataToEncrypt = $request->all();
-
-        // Melakukan enkripsi data
-        $encryptedData = Crypt::encryptString(json_encode($dataToEncrypt));
-
-        // // Tampilkan hasil enkripsi untuk pemeriksaan (gunakan dd() hanya untuk debugging)
-        dd($encryptedData);
-
-        return response()->json(['encryptedData' => $encryptedData]);
-    }
-    
 }

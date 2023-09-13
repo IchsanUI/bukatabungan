@@ -50,6 +50,7 @@
             width: 100%;
         }
 
+
         .kd-form {
             display: none;
         }
@@ -88,6 +89,33 @@
             font-size: 9pt;
         }
 
+        .loader {
+            display: none;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .modal-footer #confirmSend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
         @media (max-width: 1000px) {
             .form-section {
                 font-size: 10.5pt;
@@ -113,21 +141,19 @@
                 -moz-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
             }
 
-            /* .kd-form {
-                                                                                                                                                                                                                                                                                                                    display: none;
-                                                                                                                                                                                                                                                                                                                }
+            .kd-form {
+                display: none;
+            }
 
-                                                                                                                                                                                                                                                                                                                .kd-form.active {
-                                                                                                                                                                                                                                                                                                                    display: block;
-                                                                                                                                                                                                                                                                                                                } */
+            .kd-form.active {
+                display: block;
+            }
         }
     </style>
-    {{-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
 @endpush
 @section('content')
     <div class="form-section">
         <div class="kd-form active">
-            @csrf
             <div class="firstStep">
                 <h3> <i class="bi bi-1-circle-fill"></i><strong> DATA CALON DEBITUR</strong></h3>
                 <p>Isi data utama untuk mempermudah pembukaan rekening. pastikan data diisi dengan benar.</p>
@@ -237,8 +263,10 @@
                 </div>
                 <div class="info_btn">
                     <button class="btn btn-primary" id="buttonNext">
-                        <span class="button-text-submit">Lanjut</span><i class="bi bi-arrow-right-short icon_submit"
+                        <span class="button-text-submit">Lanjut</span>
+                        <i class="bi bi-arrow-right-short icon_submit"
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
+
                         {{-- <div class="loader" id="loader_Submit1"></div> --}}
                     </button>
                 </div>
@@ -431,8 +459,8 @@
                         </div>
                         <div class="card bg-light mb-3" style="padding: 20px">
                             <div class="form-check">
-                                <input class="form-check-input " type="checkbox" id="CheckDefault">
-                                <label class="form-check-label" for="CheckDefault">
+                                <input class="form-check-input" type="checkbox" id="PersetujuanSK" required>
+                                <label class="form-check-label" for="PersetujuanSK">
                                     <small class="lh-1">Dengan ini saya menyetujui <i> <a href="#"
                                                 style="text-decoration: none"> Kebijakan dan
                                                 Ketentuan Layanan Pembukaan Tabungan Online</a></i> Bank
@@ -441,7 +469,6 @@
                             </div>
 
                         </div>
-                        {{-- <div class="g-recaptcha" data-sitekey="6Lf63BooAAAAAFqDDV2UHe6fud9CHIQo7743tTUC"></div> --}}
                     </div>
                 </div>
                 <div class="info_btn">
@@ -494,8 +521,33 @@
             </div>
         </div>
     </div>
+    <!-- Tambahkan modal Cofirm -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Konfirmasi Pengiriman Data</h5>
+                </div>
+                <div class="modal-body">
+                    <div>Apakah Anda yakin ingin mengirim data?</div>
+                    <small style="font-size: 9pt"> Pastikan Data Sudah diisi dengan Baik dan Benar.</small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ligth" id="buttonCloseModal"
+                        data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="confirmSend">
+                        <div class="loader" id="loaderID"></div><span class="textKirim">Kirim</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('script-end')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+
     {{-- NavControl --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -504,6 +556,7 @@
             const submitButton = document.querySelectorAll(".info_btn #buttonSubmit");
 
             nextButtons.forEach((button, index) => {
+
                 button.addEventListener("click", function() {
                     const currentStep = formSteps[index];
                     if ((index === 0 || index === 2) && !validateForm(currentStep)) {
@@ -513,17 +566,30 @@
 
                     currentStep.classList.remove("active");
                     formSteps[index + 1].classList.add("active");
+
                 });
             });
 
             function validateForm(step) {
                 const inputs = step.querySelectorAll(
-                    "input:required, select:required, textarea:required, #CheckDefault"
+                    "input:required, select:required, textarea:required, #PersetujuanSK ,#gcha"
                 ); // Menyesuaikan dengan input dan select
                 let isValid = true;
 
                 inputs.forEach(input => {
-                    if (input.value.trim() === "") {
+                    if (input.type === "checkbox") {
+                        if (!input.checked) {
+                            isValid = false;
+                            input.classList.add("is-invalid");
+                            input.addEventListener("change", function() {
+                                if (input.checked) {
+                                    input.classList.remove("is-invalid");
+                                }
+                            });
+                        } else {
+                            input.classList.remove("is-invalid");
+                        }
+                    } else if (input.value.trim() === "") {
                         isValid = false;
                         input.classList.add("is-invalid");
                         input.addEventListener("input", function() {
@@ -547,23 +613,93 @@
                     if (!validateForm(lastStep)) {
                         alert("Harap isi Semua Form Terakhir Dengan Benar.");
                         return;
+                    } else {
+                        showModal();
                     }
-                    // Mengumpulkan data dari semua langkah
-                    var formData = {};
-                    formSteps.forEach((step, index) => {
-                        const inputs = step.querySelectorAll(
-                            "input, select, textarea, #CheckDefault"
-                        );
 
-                        inputs.forEach(input => {
-                            formData[input.id] = input.value;
+
+                    function showModal() {
+                        $('#confirmationModal').modal('show');
+                    }
+                    // Event listener untuk tombol "confirmSend"
+                    $(document).ready(function() {
+                        $('#confirmSend').on('click', function() {
+                            $('#loaderID').show();
+                            const closeButton = document.querySelector(
+                                "#buttonCloseModal");
+                            const yakinButton = document.querySelector(
+                                "#confirmSend");
+                            const textKirim = document.querySelector(
+                                ".textKirim");
+                            textKirim.textContent =
+                                'Mengirim Data...';
+
+                            closeButton.classList.add("disabled");
+                            yakinButton.classList.add("disabled");
+                            // Mengumpulkan data dari semua langkah
+                            var csrfToken = $('meta[name="csrf-token"]').attr(
+                                'content');
+                            // Membuat objek FormData yang akan diisi dengan data
+                            var formData = new FormData();
+
+                            // Menambahkan token CSRF ke dalam FormData
+                            formData.append('_token', csrfToken);
+                            formSteps.forEach((step, index) => {
+                                const inputs = step.querySelectorAll(
+                                    "input, select, textarea, #PersetujuanSK"
+                                );
+
+                                inputs.forEach(input => {
+                                    formData.append(input.id, input
+                                        .value);
+                                });
+                            });
+                            // Mengkonversi FormData ke dalam format string JSON
+                            var formDataJSON = JSON.stringify(Object.fromEntries(
+                                formData.entries()));
+                            var encryptedData = CryptoJS.AES.encrypt(formDataJSON,
+                                    "sdada")
+                                .toString();
+                            var decryptedBytes = CryptoJS.AES.decrypt(encryptedData,
+                                "sdada");
+                            var decryptedData = decryptedBytes.toString(CryptoJS.enc
+                                .Utf8);
+
+                            $.ajax({
+                                headers: {
+                                    'X-CSRF-TOKEN': $(
+                                        'meta[name="csrf-token"]').attr(
+                                        'content')
+                                },
+                                method: 'POST',
+                                url: "{{ route('post.dataKredit.API') }}",
+                                data: {
+                                    Data: encryptedData,
+                                },
+                                dataType: 'json',
+                                success: function(response) {
+                                    // Menggunakan data terenkripsi yang diterima dari Laravel
+                                    // console.log(
+                                    //     'Sebelum di Encrypted Data:',
+                                    //     decryptedData);
+                                    // console.log('encryptedData:',
+                                    //     encryptedData);
+                                    // alert(
+                                    //     "Data Anda Berhasil Terkirim: "
+                                    //     );
+                                    window.location.href =
+                                        "{{ route('success.dataKredit.API') }}";
+                                    // $('#loaderID').hide();
+                                },
+                                error: function(error) {
+                                    // console.log('Error:', error);
+                                    alert("Terjadi kesalahan saat mengirim data: " +
+                                        error
+                                        .statusText);
+                                }
+                            });
                         });
                     });
-
-                    // Serialize object to JSON
-                    var formDataJSON = JSON.stringify(formData);
-                    console.log(formDataJSON);
-
 
                 });
             });
@@ -668,29 +804,5 @@
             });
         });
     </script>
-    <script>
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            method: 'POST',
-            url: "{{ route('post.dataKredit.API') }}",
-            data: {
-                // _token: '{{ csrf_token() }}',
-                dataToEncrypt: formDataJSON
-            },
-            dataType: 'json',
-            success: function(response) {
-                // Menggunakan data terenkripsi yang diterima dari Laravel
-                var encryptedData = response.encryptedData;
-                console.log('Encrypted Data:', encryptedData);
-                alert("Data berhasil dikirim: " + response);
-            },
-            error: function(error) {
-                // console.log('Error:', error);
-                alert("Terjadi kesalahan saat mengirim data: " + error
-                    .statusText);
-            }
-        });
-    </script>
+    <script></script>
 @endpush
