@@ -2,7 +2,7 @@
 @push('styles')
     <style>
         body {
-            background-image: url("{{ asset('img/Back2.jpg') }}");
+            background-image: url("{{ asset('img/Back5.jpg') }}");
             background-position: center;
             background-size: cover;
         }
@@ -148,10 +148,10 @@
                     <p class="card-text" style="font-size: 9pt">With supporting text below as a natural lead-in to
                         additional content.</p>
                 </div>
-                <a href="{{ route('maintenance') }}" class="btn btn-primary">Pilih<i class="bi bi-arrow-right-short"
-                        style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
-                {{-- <a href="{{ url('digital-saving') }}" class="btn btn-primary">Pilih<i class="bi bi-arrow-right-short"
+                {{-- <a href="{{ route('maintenance') }}" class="btn btn-primary">Pilih<i class="bi bi-arrow-right-short"
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a> --}}
+                <a href="{{ url('digital-saving') }}" class="btn btn-primary">Pilih<i class="bi bi-arrow-right-short"
+                        style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
             </div>
             <div class="card text-center">
                 <i class="bi bi bi-cash-stack icon-head" style=" color: rgb(0, 0, 0)"></i>

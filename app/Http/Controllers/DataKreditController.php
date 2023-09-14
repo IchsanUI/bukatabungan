@@ -25,4 +25,8 @@ class DataKreditController extends Controller
     {
         return view('successKredit');
     }
+    public function reloadCaptcha()
+    {
+        return response()->json(['captcha' => captcha_img()]);
+    }
 }

@@ -141,13 +141,13 @@
                 -moz-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
             }
 
-            .kd-form {
-                display: none;
-            }
+            /* .kd-form {
+                                                                    display: none;
+                                                                }
 
-            .kd-form.active {
-                display: block;
-            }
+                                                                .kd-form.active {
+                                                                    display: block;
+                                                                } */
         }
     </style>
 @endpush
@@ -458,7 +458,26 @@
                             </div>
                         </div>
                         <div class="card bg-light mb-3" style="padding: 20px">
-                            <div class="form-check">
+                            <div class="card bg-light mb-3" style="padding: 20px">
+                                <div class="form-group row">
+                                    <label for="captcha" class="col-md-4 col-form-label text-md-right">Captcha</label>
+                                    <div class="col-md-6 captcha">
+                                        <span>{!! captcha_img() !!}</span>
+                                        <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                            &#x21bb;
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="captcha" class="col-md-4 col-form-label text-md-right">Enter
+                                        Captcha</label>
+                                    <div class="col-md-6">
+                                        <input id="captcha" type="text" class="form-control"
+                                            placeholder="Enter Captcha" name="captcha" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-check mt-3">
                                 <input class="form-check-input" type="checkbox" id="PersetujuanSK" required>
                                 <label class="form-check-label" for="PersetujuanSK">
                                     <small class="lh-1">Dengan ini saya menyetujui <i> <a href="#"
@@ -467,7 +486,6 @@
                                         Gresik.</small>
                                 </label>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -547,7 +565,17 @@
 @endsection
 @push('script-end')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-
+    <script type="text/javascript">
+        $('#reload').click(function() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('get.reloadCaptcha') }}",
+                success: function(data) {
+                    $(".captcha span").html(data.captcha);
+                }
+            });
+        });
+    </script>
     {{-- NavControl --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -689,7 +717,7 @@
                                     //     );
                                     window.location.href =
                                         "{{ route('success.dataKredit.API') }}";
-                                    // $('#loaderID').hide();
+                                    $('#loaderID').hide();
                                 },
                                 error: function(error) {
                                     // console.log('Error:', error);

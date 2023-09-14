@@ -42,7 +42,7 @@ Route::get('/get-uker-data/{id}', [LandingPageController::class, 'getUkerData'])
 Route::post('/proses', [DataKreditController::class, 'saveData'])->name('post.dataKredit.API');
 Route::get('/endForm', [DataKreditController::class, 'successSend'])->name('success.dataKredit.API');
 
-
+Route::get('/reload-captcha', [DataKreditController::class, 'reloadCaptcha'])->name('get.reloadCaptcha');
 
 // Route::controller(\App\Http\Controllers\UserController::class)-> group(function(){
 //     Route::get('/login','login')->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class]);

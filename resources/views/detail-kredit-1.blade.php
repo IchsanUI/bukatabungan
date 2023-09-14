@@ -40,8 +40,8 @@
 
         /* Tabs*/
         /* section {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                padding: 60px 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                padding: 60px 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } */
 
 
 
@@ -305,6 +305,7 @@
             if (yakinButton) {
                 yakinButton.classList.add("disabled");
             }
+
         }
     </script>
 @endpush
