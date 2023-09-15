@@ -141,13 +141,13 @@
                 -moz-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
             }
 
-            /* .kd-form {
-                                                                                                        display: none;
-                                                                                                    }
+            .kd-form {
+                display: none;
+            }
 
-                                                                                                    .kd-form.active {
-                                                                                                        display: block;
-                                                                                                    } */
+            .kd-form.active {
+                display: block;
+            }
         }
     </style>
 @endpush
@@ -274,7 +274,8 @@
         </div>
         <div class="kd-form">
             <div class="secondStep">
-                <h3> <i class="bi bi-2-circle-fill"></i><strong> DATA PASANGAN <small><i>(Optional)</i></small></strong>
+                <h3> <i class="bi bi-2-circle-fill"></i><strong> DATA PASANGAN
+                        <small><i>(Optional)</i></small></strong>
                 </h3>
                 <p>Isi data utama untuk mempermudah pembukaan rekening. pastikan data diisi dengan benar.</p>
                 <hr>
@@ -570,18 +571,20 @@
 @endsection
 @push('script-end')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
     <script>
         // if using synchronous loading, will be called once the DOM is ready
         window.onloadTurnstileCallback = function() {
             turnstile.render('#example-container', {
-                sitekey: '<YOUR_SITE_KEY>',
+                sitekey: '0x4AAAAAAAKM8R08eNa06_mz',
                 callback: function(token) {
                     console.log(`Challenge Success ${token}`);
                 },
             });
         };
     </script>
+
     <script type="text/javascript">
         $('#reload').click(function() {
             $.ajax({
@@ -593,6 +596,7 @@
             });
         });
     </script>
+
     {{-- NavControl --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -606,12 +610,24 @@
                     const currentStep = formSteps[index];
                     if ((index === 0 || index === 2) && !validateForm(currentStep)) {
                         alert("Harap isi Semua Form Sebelum Melanjutkan.");
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
                         return; // Jika form 1 atau 3 tidak valid, jangan lanjutkan
                     }
 
                     currentStep.classList.remove("active");
                     formSteps[index + 1].classList.add("active");
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
 
+                });
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
             });
 
