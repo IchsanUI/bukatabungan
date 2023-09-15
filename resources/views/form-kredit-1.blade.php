@@ -141,13 +141,13 @@
                 -moz-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
             }
 
-            .kd-form {
-                display: none;
-            }
+            /* .kd-form {
+                                                                                        display: none;
+                                                                                    }
 
-            .kd-form.active {
-                display: block;
-            }
+                                                                                    .kd-form.active {
+                                                                                        display: block;
+                                                                                    } */
         }
     </style>
 @endpush
@@ -460,12 +460,13 @@
                         </div>
                         <div class="card bg-light mb-3" style="padding: 20px">
 
-                            <div class="card bg-light mb-3" style="padding: 20px">
+                            {{-- <div class="card bg-light mb-3" style="padding: 20px"> --}}
 
-                                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAKM8R08eNa06_mz"
-                                    data-callback="javascriptCallback">
-                                </div>
-                                {{-- <div class="form-group row">
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAKM8R08eNa06_mz"
+                                data-callback="javascriptCallback" style="width: 10%" data-theme="light"
+                                data-size="normal" data-language="id">
+                            </div>
+                            {{-- <div class="form-group row">
                                     <label for="captcha" class="col-md-4 col-form-label text-md-right">Captcha</label>
                                     <div class="col-md-6 captcha">
                                         <span>{!! captcha_img() !!}</span>
@@ -482,7 +483,7 @@
                                             placeholder="Enter Captcha" name="captcha" required>
                                     </div>
                                 </div> --}}
-                            </div>
+                            {{-- </div> --}}
                             <div class="form-check mt-3">
                                 <input class="form-check-input" type="checkbox" id="PersetujuanSK" required>
                                 <label class="form-check-label" for="PersetujuanSK">
@@ -578,6 +579,8 @@
         window.onloadTurnstileCallback = function() {
             turnstile.render('#example-container', {
                 sitekey: '0x4AAAAAAAKM8R08eNa06_mz',
+                theme: "light",
+                size: "Compact",
                 callback: function(token) {
                     console.log(`Challenge Success ${token}`);
                 },
