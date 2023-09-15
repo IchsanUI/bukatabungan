@@ -142,12 +142,12 @@
             }
 
             /* .kd-form {
-                                                                    display: none;
-                                                                }
+                                                                                            display: none;
+                                                                                        }
 
-                                                                .kd-form.active {
-                                                                    display: block;
-                                                                } */
+                                                                                        .kd-form.active {
+                                                                                            display: block;
+                                                                                        } */
         }
     </style>
 @endpush
@@ -458,7 +458,10 @@
                             </div>
                         </div>
                         <div class="card bg-light mb-3" style="padding: 20px">
-                            <div class="card bg-light mb-3" style="padding: 20px">
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAKM8R08eNa06_mz"
+                                data-callback="javascriptCallback">
+                            </div>
+                            {{-- <div class="card bg-light mb-3" style="padding: 20px">
                                 <div class="form-group row">
                                     <label for="captcha" class="col-md-4 col-form-label text-md-right">Captcha</label>
                                     <div class="col-md-6 captcha">
@@ -476,7 +479,7 @@
                                             placeholder="Enter Captcha" name="captcha" required>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="form-check mt-3">
                                 <input class="form-check-input" type="checkbox" id="PersetujuanSK" required>
                                 <label class="form-check-label" for="PersetujuanSK">
@@ -565,6 +568,18 @@
 @endsection
 @push('script-end')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+    <script>
+        // if using synchronous loading, will be called once the DOM is ready
+        turnstile.ready(function() {
+            turnstile.render('#example-container', {
+                sitekey: '0x4AAAAAAAKM8R08eNa06_mz',
+                callback: function(token) {
+                    console.log(`Challenge Success ${token}`);
+                },
+            });
+        });
+    </script>
     <script type="text/javascript">
         $('#reload').click(function() {
             $.ajax({
