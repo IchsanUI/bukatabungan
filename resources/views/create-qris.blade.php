@@ -96,13 +96,13 @@
                 border: 0px solid transparent;
             }
 
-            .cq-form {
-                display: none;
-            }
+            /* .cq-form {
+                    display: none;
+                }
 
-            .cq-form.active {
-                display: block;
-            }
+                .cq-form.active {
+                    display: block;
+                } */
         }
     </style>
 @endpush
@@ -447,7 +447,7 @@
             });
         }
     </script>
-    
+
     {{-- APIKabProv --}}
     <script>
         async function populateDropdown(elementId, apiUrl) {
