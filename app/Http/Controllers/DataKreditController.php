@@ -23,7 +23,7 @@ class DataKreditController extends Controller
     }
     public function successSend()
     {
-        return view('successKredit');
+        return view('successKredit' );
     }
     public function reloadCaptcha()
     {

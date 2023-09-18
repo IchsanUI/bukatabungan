@@ -142,12 +142,12 @@
             }
 
             /* .kd-form {
-                    display: none;
-                }
+                        display: none;
+                    }
 
-                .kd-form.active {
-                    display: block;
-                } */
+                    .kd-form.active {
+                        display: block;
+                    } */
         }
     </style>
 @endpush

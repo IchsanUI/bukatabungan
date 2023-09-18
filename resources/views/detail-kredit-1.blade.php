@@ -40,8 +40,8 @@
 
         /* Tabs*/
         /* section {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                padding: 60px 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 60px 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
 
 
 
@@ -228,7 +228,7 @@
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -306,6 +306,36 @@
                 yakinButton.classList.add("disabled");
             }
 
+            // Simulasi perpindahan halaman dengan setTimeout (ganti dengan logika perpindahan halaman sebenarnya)
+            setTimeout(function() {
+                // Kembali ke kondisi semula setelah perpindahan halaman
+                if (closeButton) {
+                    closeButton.disabled = false;
+                }
+
+                if (yakinButton) {
+                    yakinButton.classList.remove("disabled");
+                }
+
+                // Kembalikan ikon check
+                if (checkIcon) {
+                    checkIcon.style.display = "inline-block"; // Atur sesuai kebutuhan
+                }
+
+                // Nonaktifkan loader
+                if (loader) {
+                    loader.style.display = "none";
+                }
+
+                // Menyembunyikan modal tanpa efek fade
+                const modal = document.querySelector("#exampleModalCenter");
+                if (modal) {
+                    $('#exampleModalCenter').modal('hide');
+                }
+
+                // Anda dapat menambahkan logika perpindahan halaman sesuai kebutuhan di sini
+
+            }, 500); // Ganti dengan waktu yang sesuai dengan logika perpindahan halaman Anda
         }
     </script>
 @endpush

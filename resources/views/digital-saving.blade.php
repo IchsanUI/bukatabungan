@@ -1,12 +1,13 @@
 @extends('template')
 @section('content')
-      <div class="container mt-5">
+    <div class="container mt-5">
         <h5 class="card-title "><strong>Buka Rekening Baru</strong></h5>
         <p class="card-text p-2">Nikmati 3 Langkah mudah Buka Rekening Bank Gresik dimanapun, dan kapanpun .</p>
         <div class="card text-left mt-4" style="background-color:rgb(248, 248, 248)">
             <div class="card-body">
                 <div style="display: flex; align-items: center;">
-                    <i class="bi bi-file-earmark-check" style="font-size: 3rem; color: cornflowerblue; margin-right: 1rem;"></i>
+                    <i class="bi bi-file-earmark-check"
+                        style="font-size: 3rem; color: cornflowerblue; margin-right: 1rem;"></i>
                     <div>
                         <h6 class="card-title">1. Siakan Dokumen</h6>
                         <p class="card-text"><small>Siapkan KTP, NPWP (opsional), Data Diri</small></p>
@@ -35,8 +36,8 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-5" style="margin-bottom: 100px;">
-            <a href="{{ url('info') }}"> <button type="button" class="btn btn-rounded text-white " style="padding: 10px 90px;background-color: rgb(14, 14, 114);">Buka Rekening</button></a>
+            <a href="{{ url('info') }}"> <button type="button" class="btn btn-rounded text-white "
+                    style="padding: 10px 90px;background-color: rgb(14, 14, 114);">Buka Rekening</button></a>
         </div>
     </div>
 @endsection
-  

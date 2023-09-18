@@ -1,6 +1,8 @@
 <!doctype html>
 <title>Site Maintenance</title>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <style>
@@ -14,6 +16,8 @@
 
     * {
         box-sizing: border-box;
+        font-family: "Rubik", sans-serif;
+        font-size: 10pt;
     }
 
     body {
@@ -67,6 +71,10 @@
         width: 75px;
         margin-top: 1em;
     }
+
+    #judul {
+        font-weight: bold;
+    }
 </style>
 
 <article>
@@ -74,7 +82,7 @@
         <defs>
             <style>
                 .cls-1 {
-                    fill: #fff;
+                    fill: #bbff00;
                 }
             </style>
         </defs>
@@ -88,15 +96,16 @@
             </g>
         </g>
     </svg>
-    <h1 id="judul">Kami akan segera kembali!</h1>
+    <h1 id="judul">Mode Pemeliharaan.</h1>
     <div>
-        <p id="pesan">Maaf atas ketidaknyamanan ini. Kami sedang melakukan pemeliharaan website saat ini. Jika Anda
-            membutuhkan, Anda selalu dapat mengikuti kami di Social Media
-            untuk pembaruan, sebaliknya kami akan segera kembali!</p>
-        <p>&mdash; Tim Bank Gresik &mdash;</p>
+        <p id="pesan">Maaf atas ketidaknyamanan ini. Kami sedang melakukan Pemeliharaan Website saat ini.
+            Jika Anda
+            membutuhkan, Anda dapat menghubungi kami di Social Media,
+            untuk informasi lebih lanjut.</p>
+        <p>&mdash; <b>Tim Bank Gresik</b> &mdash;</p>
     </div>
 
-    <button class="btn btn-light mt-5" onclick="gantiBahasa()" style="">Ubah ke Bahasa Inggris</button>
+    <button class="btn btn-warning mt-5" onclick="gantiBahasa()" style="">Ubah ke Bahasa Inggris</button>
 </article>
 
 
@@ -106,15 +115,15 @@
         const pesan = document.getElementById('pesan');
         const tombol = document.querySelector('button');
 
-        if (judul.textContent === 'Kami akan segera kembali!') {
-            judul.textContent = 'We\'ll be back soon!';
+        if (judul.textContent === 'Mode Pemeliharaan.') {
+            judul.textContent = 'Maintenance Mode.';
             pesan.textContent =
                 'Sorry for the inconvenience. We\'re performing some maintenance at the moment. If you need to you can always follow us on Social Media for updates, otherwise we\'ll be back up shortly!';
             tombol.textContent = 'Switch to Indonesia Language';
         } else {
-            judul.textContent = 'Kami akan segera kembali!';
+            judul.textContent = 'Mode Pemeliharaan.';
             pesan.textContent =
-                'Maaf atas ketidaknyamanan ini. Kami sedang melakukan pemeliharaan saat ini. Jika Anda membutuhkan, Anda selalu dapat mengikuti kami di Social Media untuk pembaruan, sebaliknya kami akan segera kembali!';
+                'Maaf atas ketidaknyamanan ini. Kami sedang melakukan Pemeliharaan Website saat ini. Jika Anda membutuhkan, Anda dapat menghubungi kami di Social Media, untuk informasi lebih lanjut.';
             tombol.textContent = 'Ubah ke Bahasa Inggris';
         }
     }
