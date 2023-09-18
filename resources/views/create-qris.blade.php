@@ -189,7 +189,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Kode Pos</label>
+                            <label for="kode_pos" class="form-label">Kode Pos</label>
                             <input type="text" class="form-control" id="kode_pos" placeholder="" required
                                 maxlength="5">
                             <div id="" class="form-text">
@@ -315,14 +315,20 @@
                             <input class="form-control" type="file" id="formFile" accept="image/*"
                                 capture="camera">
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                <small class="lh-1">Dengan ini saya menyetujui <i> <a href=" "
-                                            style="text-decoration: none">Kebijakan dan
-                                            Ketentuan Layanan
-                                            Penerbitan QRIS Online</a></i> Bank Gresik.</small>
-                            </label>
+                        <div class="card bg-light mb-3" style="padding: 20px">
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAKM8R08eNa06_mz"
+                                data-callback="javascriptCallback" style="width: 10%" data-theme="light"
+                                data-size="normal" data-language="id">
+                            </div>
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="PersetujuanSK" required>
+                                <label class="form-check-label" for="PersetujuanSK">
+                                    <small class="lh-1">Dengan ini saya menyetujui <i> <a href="#"
+                                                style="text-decoration: none"> Kebijakan dan
+                                                Ketentuan Layanan Pembukaan Tabungan Online</a></i> Bank
+                                        Gresik.</small>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -342,6 +348,22 @@
     </div>
 @endsection
 @push('script-end')
+    {{-- Turnstile --}}
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
+    <script>
+        // if using synchronous loading, will be called once the DOM is ready
+        window.onloadTurnstileCallback = function() {
+            turnstile.render('#example-container', {
+                sitekey: '0x4AAAAAAAKM8R08eNa06_mz',
+                theme: "light",
+                size: "Compact",
+                callback: function(token) {
+                    console.log(`Challenge Success ${token}`);
+                },
+            });
+        };
+    </script>
+
     {{-- NavControl --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -355,8 +377,16 @@
                     if (validateForm(currentStep)) {
                         currentStep.classList.remove("active");
                         formSteps[index + 1].classList.add("active");
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
                     } else {
                         alert("Harap isi semua form sebelum melanjutkan.");
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
                     }
                 });
             });
@@ -368,6 +398,10 @@
 
                     currentStep.classList.remove("active");
                     formSteps[currentStepIndex - 1].classList.add("active");
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
             });
 
@@ -384,15 +418,21 @@
                                 input.classList.remove("is-invalid");
                             }
                         });
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
                     } else {
                         input.classList.remove("is-invalid");
                     }
                 });
 
                 return isValid;
+
             }
         });
     </script>
+
     {{-- confForMap --}}
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUJ_0vn4u0eFDwQlk_340b1Uy5dyiwlJI&callback=initMap" async
         defer></script>
@@ -407,6 +447,7 @@
             });
         }
     </script>
+    
     {{-- APIKabProv --}}
     <script>
         async function populateDropdown(elementId, apiUrl) {
@@ -443,7 +484,7 @@
         populateDropdown("prov", "https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json");
     </script>
 
-    <script>
+    {{-- <script>
         const buttonNext1 = document.getElementById("buttonNext1");
         const noWaInput = document.getElementById("kode_pos"); // Ganti dengan ID input nomor WhatsApp
 
@@ -458,7 +499,7 @@
 
         // Menambahkan event listener untuk memeriksa input nomor WhatsApp setiap kali nilainya berubah
         noWaInput.addEventListener("input", checkUserInput);
-    </script>
+    </script> --}}
     {{-- NumberRekening --}}
     <script>
         const norekInput = document.getElementById("norek_bg");
