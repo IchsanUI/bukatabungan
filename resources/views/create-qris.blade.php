@@ -97,12 +97,12 @@
             }
 
             /* .cq-form {
-                    display: none;
-                }
+                        display: none;
+                    }
 
-                .cq-form.active {
-                    display: block;
-                } */
+                    .cq-form.active {
+                        display: block;
+                    } */
         }
     </style>
 @endpush
@@ -353,7 +353,7 @@
     <script>
         // if using synchronous loading, will be called once the DOM is ready
         window.onloadTurnstileCallback = function() {
-            turnstile.render('#example-container', {
+            turnstile.render('.cq-section', {
                 sitekey: '0x4AAAAAAAKM8R08eNa06_mz',
                 theme: "light",
                 size: "Compact",
