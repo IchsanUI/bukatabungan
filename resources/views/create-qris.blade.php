@@ -78,6 +78,11 @@
             background: linear-gradient(90deg, rgba(238, 238, 238, 1) 0%, rgba(226, 226, 226, 1) 100%);
         }
 
+        #buttonCloseModal {
+            background: rgb(238, 238, 238);
+            background: linear-gradient(90deg, rgba(238, 238, 238, 1) 0%, rgba(226, 226, 226, 1) 100%);
+        }
+
         @media (max-width: 1000px) {
             .cq-section {
                 font-size: 10.5pt;
@@ -97,12 +102,12 @@
             }
 
             /* .cq-form {
-                        display: none;
-                    }
+                                                                                                                                                                                                    display: none;
+                                                                                                                                                                                                }
 
-                    .cq-form.active {
-                        display: block;
-                    } */
+                                                                                                                                                                                                .cq-form.active {
+                                                                                                                                                                                                    display: block;
+                                                                                                                                                                                                } */
         }
     </style>
 @endpush
@@ -121,7 +126,8 @@
 
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">No. Rekening Bank Gresik</label>
-                            <input type="text" class="form-control" id="norek_bg" placeholder="" maxlength="12">
+                            <input type="text" class="form-control" id="norek_bg" placeholder="" maxlength="12"
+                                required>
                             <div id="" class="form-text">
                                 <small>Contoh : 01.10.001234.01</small>
                             </div>
@@ -190,8 +196,8 @@
 
                         <div class="mb-3">
                             <label for="kode_pos" class="form-label">Kode Pos</label>
-                            <input type="text" class="form-control" id="kode_pos" placeholder="" required
-                                maxlength="5">
+                            <input type="text" class="form-control" id="kode_pos" placeholder="" maxlength="5"
+                                required>
                             <div id="" class="form-text">
                                 <small></small>
                             </div>
@@ -219,7 +225,7 @@
                     <div class="form_file">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Nama Merchant / Nama Display</label>
-                            <input type="text" class="form-control" id="nama_merchant" placeholder="">
+                            <input type="text" class="form-control" id="nama_merchant" placeholder="" required>
                             <div id="" class="form-text">
                                 <small>Contoh : Toko Kelonotong Haji Gilman</small>
                             </div>
@@ -298,28 +304,29 @@
                     <div class="form_file mt-3">
                         <div class="mb-4">
                             <label for="formFile" class="form-label">Upload KTP</label>
-                            <input class="form-control" type="file" id="formFile" accept="image/*"
-                                capture="camera">
+                            <input class="form-control" type="file" id="formFile" accept="image/*" capture="camera"
+                                required>
                         </div>
                         <div class="mb-4">
                             <label for="formFile" class="form-label">Upload Foto Selfie + KTP</label>
-                            <input class="form-control" type="file" id="formFile" accept="image/*" capture="user">
+                            <input class="form-control" type="file" id="formFile" accept="image/*" capture="user"
+                                required>
                         </div>
                         <div class="mb-4">
                             <label for="formFile" class="form-label">Upload Foto Lokasi Merchant</label>
                             <input class="form-control" type="file" id="formFile" accept="image/*"
-                                capture="camera">
+                                capture="camera"required>
                         </div>
                         <div class="mb-4">
                             <label for="formFile" class="form-label">Upload NPWP</label>
-                            <input class="form-control" type="file" id="formFile" accept="image/*"
-                                capture="camera">
+                            <input class="form-control" type="file" id="formFile" accept="image/*" capture="camera"
+                                required>
                         </div>
                         <div class="card bg-light mb-3" style="padding: 20px">
-                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAKM8R08eNa06_mz"
+                            {{-- <div class="cf-turnstile" data-sitekey="0x4AAAAAAAKM8R08eNa06_mz"
                                 data-callback="javascriptCallback" style="width: 10%" data-theme="light"
                                 data-size="normal" data-language="id">
-                            </div>
+                            </div> --}}
                             <div class="form-check mt-3">
                                 <input class="form-check-input" type="checkbox" id="PersetujuanSK" required>
                                 <label class="form-check-label" for="PersetujuanSK">
@@ -346,14 +353,40 @@
             </div>
         </div>
     </div>
+
+
+
+    <!-- Tambahkan modal Cofirm -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Konfirmasi Pengiriman Data</h5>
+                </div>
+                <div class="modal-body">
+                    <div>Apakah Anda yakin ingin mengirim data?</div>
+                    <small style="font-size: 9pt"> Pastikan Data Sudah diisi dengan Baik dan Benar.</small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ligth" id="buttonCloseModal"
+                        data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="confirmSend">
+                        <div class="loader" id="loaderID"></div><span class="textKirim">Kirim</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('script-end')
     {{-- Turnstile --}}
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
+    {{-- <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
     <script>
         // if using synchronous loading, will be called once the DOM is ready
         window.onloadTurnstileCallback = function() {
-            turnstile.render('.cq-section', {
+            turnstile.render('#example-container', {
                 sitekey: '0x4AAAAAAAKM8R08eNa06_mz',
                 theme: "light",
                 size: "Compact",
@@ -362,13 +395,17 @@
                 },
             });
         };
-    </script>
+    </script> --}}
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 
     {{-- NavControl --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const formSteps = document.querySelectorAll(".cq-form");
             const nextButtons = document.querySelectorAll(".info_btn #buttonNext");
+            const submitButtons = document.querySelectorAll(".info_btn #buttonSubmit");
             const backButton = document.querySelectorAll(".info_btn .btn-back");
 
             nextButtons.forEach((button, index) => {
@@ -406,21 +443,31 @@
             });
 
             function validateForm(step) {
-                const inputs = step.querySelectorAll("input, select"); // Menyesuaikan dengan input dan select
+                const inputs = step.querySelectorAll(
+                    "input:required, select:required, textarea:required, #PersetujuanSK"
+                ); // Menyesuaikan dengan input dan select
                 let isValid = true;
 
                 inputs.forEach(input => {
-                    if (input.value.trim() === "") {
+                    if (input.type === "checkbox") {
+                        if (!input.checked) {
+                            isValid = false;
+                            input.classList.add("is-invalid");
+                            input.addEventListener("change", function() {
+                                if (input.checked) {
+                                    input.classList.remove("is-invalid");
+                                }
+                            });
+                        } else {
+                            input.classList.remove("is-invalid");
+                        }
+                    } else if (input.value.trim() === "") {
                         isValid = false;
                         input.classList.add("is-invalid");
                         input.addEventListener("input", function() {
                             if (input.value.trim() !== "") {
                                 input.classList.remove("is-invalid");
                             }
-                        });
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
                         });
                     } else {
                         input.classList.remove("is-invalid");
@@ -430,6 +477,72 @@
                 return isValid;
 
             }
+            submitButtons.forEach(button => {
+                button.addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    const lastStep = formSteps[formSteps.length - 1];
+                    if (!validateForm(lastStep)) {
+                        alert("Harap isi Semua Form Terakhir Dengan Benar.");
+                        return;
+                    } else {
+                        showModal();
+                    }
+
+                    function showModal() {
+                        $('#confirmationModal').modal('show');
+                    }
+                    $(document).ready(function() {
+                        $('#confirmSend').on('click', function() {
+                            var csrfToken = $('meta[name="csrf-token"]').attr(
+                                'content');
+                            // Membuat objek FormData yang akan diisi dengan data
+                            var formData = new FormData();
+                            formData.append('_token', csrfToken);
+                            formSteps.forEach((step, index) => {
+                                const inputs = step.querySelectorAll(
+                                    "input, select, textarea, #PersetujuanSK"
+                                );
+
+                                inputs.forEach(input => {
+                                    formData.append(input.id, input
+                                        .value);
+                                });
+                            });
+                            var formDataJSON = JSON.stringify(Object.fromEntries(
+                                formData.entries()));
+
+                            $.ajax({
+                                headers: {
+                                    'X-CSRF-TOKEN': $(
+                                        'meta[name="csrf-token"]').attr(
+                                        'content')
+                                },
+                                type: 'POST',
+                                url: "{{ route('post.dataQRIS.API') }}", // Gantilah 'URL_tujuan' dengan URL endpoint tujuan
+                                data: {
+                                    data: formDataJSON
+                                },
+                                dataType: 'json',
+                                success: function(response) {
+                                    // Tindakan yang perlu dilakukan setelah berhasil mengirim data
+                                    console.log(response);
+                                    // Misalnya, menampilkan pesan sukses atau mengarahkan pengguna ke halaman lain
+                                },
+                                error: function(xhr, status, error) {
+                                    // Tindakan yang perlu dilakukan jika terjadi kesalahan
+                                    console.error(error);
+                                    // Misalnya, menampilkan pesan kesalahan kepada pengguna
+                                }
+                            });
+
+
+                        });
+                    });
+
+
+                });
+            });
         });
     </script>
 

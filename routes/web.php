@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DataKreditController;
+use App\Http\Controllers\DataQRISController;
 
 
 /*
@@ -42,7 +43,11 @@ Route::get('/get-uker-data/{id}', [LandingPageController::class, 'getUkerData'])
 Route::post('/proses', [DataKreditController::class, 'saveData'])->name('post.dataKredit.API');
 Route::get('/endForm', [DataKreditController::class, 'successSend'])->name('success.dataKredit.API');
 
+Route::post('/prosesQRIS', [DataQRISController::class, 'saveData'])->name('post.dataQRIS.API');
+
+
 Route::get('/reload-captcha', [DataKreditController::class, 'reloadCaptcha'])->name('get.reloadCaptcha');
+Route::get('/get-job-suggestions', [DataKreditController::class, 'getJobSuggestions'])->name('get.job.API');
 
 // Route::controller(\App\Http\Controllers\UserController::class)-> group(function(){
 //     Route::get('/login','login')->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class]);

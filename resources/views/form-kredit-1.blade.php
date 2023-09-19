@@ -116,6 +116,13 @@
             gap: 5px;
         }
 
+        .ui-autocomplete {
+            max-height: 200px;
+            /* Tinggi maksimum daftar autokomplet */
+            overflow-y: auto;
+            /* Aktifkan pengguliran vertikal jika melebihi tinggi maksimum */
+        }
+
         @media (max-width: 1000px) {
             .form-section {
                 font-size: 10.5pt;
@@ -141,13 +148,14 @@
                 -moz-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
             }
 
-            /* .kd-form {
-                        display: none;
-                    }
 
-                    .kd-form.active {
-                        display: block;
-                    } */
+            .kd-form {
+                display: none;
+            }
+
+            .kd-form.active {
+                display: block;
+            }
         }
     </style>
 @endpush
@@ -421,13 +429,11 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Pekerjaan / Usaha</label> <small
-                                class="text-danger">*Wajib
-                                Diisi</small>
-                            <input type="text" class="form-control" id="pekerjaan" placeholder="" required>
-                            <div id="" class="form-text">
-                            </div>
+                            <label for="exampleFormControlInput1" class="form-label">Pekerjaan / Usaha</label>
+                            <small class="text-danger">*Wajib Diisi</small>
+                            <input type="text" class="form-control" id="pekerjaan" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Pendapatan Bersih per
                                 Bulan</label> <small class="text-danger">*Wajib
@@ -462,7 +468,7 @@
 
                             {{-- <div class="card bg-light mb-3" style="padding: 20px"> --}}
 
-                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAKM8R08eNa06_mz"
+                            <div class="cf-turnstile" id="cfTurnstile" data-sitekey="0x4AAAAAAAKM8R08eNa06_mz"
                                 data-callback="javascriptCallback" style="width: 10%" data-theme="light"
                                 data-size="normal" data-language="id">
                             </div>
@@ -502,6 +508,21 @@
                             style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <div class="kd-form">
+            <div class="fourStep">
+                <div style="display: flex;; align-items: center " class="mb-3">
+                    <i class="bi bi-check-circle-fill" style="margin-right: 0.5rem;color: green; font-size: 30pt"></i>
+                    <h3><strong>Pengajuan Anda Berhasil</strong></h3>
+                </div>
+                <p>Terima kasih banyak telah memilih layanan kredit kami! Kami senang sekali bisa membantu Anda. Semoga
+                    kredit ini membantu mewujudkan impian finansial Anda. Jika ada yang perlu Anda tanyakan atau bantuan
+                    lebih lanjut, jangan ragu untuk menghubungi kami.</p>
+                <p>Kami berharap dapat terus menjadi mitra finansial yang dapat diandalkan untuk Anda. Selamat atas
+                    pengajuan kredit yang sukses!</p>
+                <hr>
             </div>
         </div>
     </div>
@@ -570,24 +591,17 @@
         </div>
     </div>
 @endsection
+
+
+
 @push('script-end')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script> --}}
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
-    <script>
-        // if using synchronous loading, will be called once the DOM is ready
-        window.onloadTurnstileCallback = function() {
-            turnstile.render('#example-container', {
-                sitekey: '0x4AAAAAAAKM8R08eNa06_mz',
-                theme: "light",
-                size: "Compact",
-                callback: function(token) {
-                    console.log(`Challenge Success ${token}`);
-                },
-            });
-        };
-    </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
+    {{-- cpachat manual --}}
     <script type="text/javascript">
         $('#reload').click(function() {
             $.ajax({
@@ -608,7 +622,6 @@
             const submitButton = document.querySelectorAll(".info_btn #buttonSubmit");
 
             nextButtons.forEach((button, index) => {
-
                 button.addEventListener("click", function() {
                     const currentStep = formSteps[index];
                     if ((index === 0 || index === 2) && !validateForm(currentStep)) {
@@ -636,7 +649,7 @@
 
             function validateForm(step) {
                 const inputs = step.querySelectorAll(
-                    "input:required, select:required, textarea:required, #PersetujuanSK ,#gcha"
+                    "input:required, select:required, textarea:required, #PersetujuanSK"
                 ); // Menyesuaikan dengan input dan select
                 let isValid = true;
 
@@ -673,7 +686,7 @@
                     event.preventDefault(); // Menghentikan perilaku default tombol submit
 
                     // Validasi form terakhir sebelum mengirim data
-                    const lastStep = formSteps[formSteps.length - 1];
+                    const lastStep = formSteps[formSteps.length - 2];
                     if (!validateForm(lastStep)) {
                         alert("Harap isi Semua Form Terakhir Dengan Benar.");
                         return;
@@ -721,13 +734,6 @@
                             // Mengkonversi FormData ke dalam format string JSON
                             var formDataJSON = JSON.stringify(Object.fromEntries(
                                 formData.entries()));
-                            var encryptedData = CryptoJS.AES.encrypt(formDataJSON,
-                                    "sdada")
-                                .toString();
-                            var decryptedBytes = CryptoJS.AES.decrypt(encryptedData,
-                                "sdada");
-                            var decryptedData = decryptedBytes.toString(CryptoJS.enc
-                                .Utf8);
 
                             $.ajax({
                                 headers: {
@@ -738,25 +744,16 @@
                                 method: 'POST',
                                 url: "{{ route('post.dataKredit.API') }}",
                                 data: {
-                                    Data: encryptedData,
+                                    Data: formDataJSON,
                                 },
                                 dataType: 'json',
                                 success: function(response) {
-                                    // Menggunakan data terenkripsi yang diterima dari Laravel
-                                    // console.log(
-                                    //     'Sebelum di Encrypted Data:',
-                                    //     decryptedData);
-                                    // console.log('encryptedData:',
-                                    //     encryptedData);
-                                    // alert(
-                                    //     "Data Anda Berhasil Terkirim: "
-                                    //     );
-                                    window.location.href =
-                                        "{{ route('success.dataKredit.API') }}";
                                     $('#loaderID').hide();
+                                    const lastStep = formSteps[formSteps
+                                        .length];
+                                    alert(formDataJSON);
                                 },
                                 error: function(error) {
-                                    // console.log('Error:', error);
                                     alert("Terjadi kesalahan saat mengirim data: " +
                                         error
                                         .statusText);
@@ -766,6 +763,34 @@
                     });
 
                 });
+            });
+        });
+    </script>
+
+    {{-- API Pekerjaan --}}
+    <script>
+        $(function() {
+            $("#pekerjaan").autocomplete({
+                source: function(request, response) {
+                    // Tampilkan elemen loading sebelum permintaan AJAX
+                    $("#loading").show();
+
+                    $.ajax({
+                        url: "{{ route('get.job.API') }}",
+                        dataType: "json",
+                        data: {
+                            query: request.term
+                        },
+                        success: function(data) {
+                            response(data);
+                        },
+                        complete: function() {
+                            // Sembunyikan elemen loading setelah permintaan selesai
+                            $("#loading").hide();
+                        }
+                    });
+                },
+                minLength: 1 // Jumlah karakter yang diperlukan sebelum pencarian dimulai
             });
         });
     </script>
