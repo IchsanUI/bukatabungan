@@ -149,13 +149,13 @@
             }
 
 
-            /* .kd-form {
-                    display: none;
-                }
+            .kd-form {
+                display: none;
+            }
 
-                .kd-form.active {
-                    display: block;
-                } */
+            .kd-form.active {
+                display: block;
+            }
         }
     </style>
 @endpush
