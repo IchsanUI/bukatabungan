@@ -510,22 +510,30 @@
                 </div>
             </div>
         </div>
-
         <div class="kd-form">
             <div class="fourStep">
                 <div style="display: flex;; align-items: center " class="mb-3">
                     <i class="bi bi-check-circle-fill" style="margin-right: 0.5rem;color: green; font-size: 30pt"></i>
-                    <h3><strong>Pengajuan Anda Berhasil</strong></h3>
+                    <h3><strong>Pengajuan Anda Berhasil.</strong></h3>
                 </div>
-                <p>Terima kasih banyak telah memilih layanan kredit kami! Kami senang sekali bisa membantu Anda. Semoga
-                    kredit ini membantu mewujudkan impian finansial Anda. Jika ada yang perlu Anda tanyakan atau bantuan
-                    lebih lanjut, jangan ragu untuk menghubungi kami.</p>
-                <p>Kami berharap dapat terus menjadi mitra finansial yang dapat diandalkan untuk Anda. Selamat atas
-                    pengajuan kredit yang sukses!</p>
+                <h6>Selamat Bergabung sebagai Nasabah Baru Bank Gresik - Pengajuan Kredit Anda Telah Selesai!</h6>
+                <p>Terima kasih banyak telah memilih layanan kredit kami! Kami senang sekali bisa membantu Anda. </p>
+                <p style="text-align: justify;">Setelah masa review selesai,Kami akan menghubungi Anda untuk proses
+                    pencairan dana kredit dan
+                    langkah-langkah selanjutnya. Kami akan memberikan informasi lebih lanjut terkait jumlah yang akan
+                    dicairkan, jangka waktu kredit, dan rincian lainnya. Jangan ragu untuk menghubungi kami jika ada
+                    pertanyaan atau klarifikasi yang diperlukan. Terima kasih atas kepercayaan Anda kepada Bank Gresik.</p>
+                <small style="color: gray"><i>- Hormat Kami, BANK GRESIK -</i></small>
                 <hr>
+                <div class="info_btn">
+                    <button class="btn btn-primary" id="backLanding">
+                        <span class="button-text-submit" id="countdown">Kembali Ke Beranda </span><i
+                            class="bi bi-arrow-right-short icon_submit"
+                            style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- Modal -->
@@ -600,6 +608,46 @@
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+
+    <script>
+        // Temukan tombol dengan ID "backLanding"
+        var backButton = document.getElementById("backLanding");
+
+        // Temukan elemen countdown dengan ID "countdown"
+        var countdownElement = document.getElementById("countdown");
+
+        // Fungsi untuk menonaktifkan tombol dan memulai countdown
+        function startCountdown() {
+            // Ganti URL laman beranda sesuai dengan URL yang Anda inginkan
+            var berandaURL = "{{ url('/') }}"; // Ganti dengan URL beranda Anda
+
+            // Menonaktifkan tombol
+            backButton.disabled = true;
+
+            // Set waktu awal countdown (dalam detik)
+            var countdownTime = 5;
+
+            // Fungsi untuk mengupdate countdown
+            function updateCountdown() {
+                countdownElement.innerText = "Kembali ke Beranda dalam " + countdownTime + " detik";
+                countdownTime--;
+                if (countdownTime >= 0) {
+                    setTimeout(updateCountdown, 1000); // Perbarui setiap 1 detik
+                } else {
+                    window.location.href = berandaURL; // Berpindah ke URL beranda setelah countdown selesai
+                }
+            }
+
+            // Memulai countdown pertama
+            updateCountdown();
+        }
+
+        // Tambahkan event listener untuk mendengarkan klik tombol
+        backButton.addEventListener("click", startCountdown);
+    </script>
+
 
     {{-- cpachat manual --}}
     <script type="text/javascript">
@@ -748,13 +796,14 @@
                                 },
                                 dataType: 'json',
                                 success: function(response) {
-                                    $('#loaderID').hide();
-                                    const dataEcrypt = response
-                                        .encryptedData;
-                                    // const lastStep = formSteps[formSteps
-                                    //     .length];\
-                                    console.log(dataEcrypt);
+                                    formSteps[formSteps.length - 2]
+                                        .classList.remove("active");
+                                    formSteps[formSteps.length - 1]
+                                        .classList.add("active");
                                     alert(dataEcrypt);
+                                    $('#loaderID').hide();
+                                    $('#confirmationModal').modal(
+                                        'hide');
                                 },
                                 error: function(error) {
                                     alert("Terjadi kesalahan saat mengirim data: " +
