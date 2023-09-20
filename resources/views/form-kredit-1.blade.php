@@ -148,14 +148,14 @@
                 -moz-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
             }
 
+            /*
+                .kd-form {
+                    display: none;
+                }
 
-            .kd-form {
-                display: none;
-            }
-
-            .kd-form.active {
-                display: block;
-            }
+                .kd-form.active {
+                    display: block;
+                } */
         }
     </style>
 @endpush
