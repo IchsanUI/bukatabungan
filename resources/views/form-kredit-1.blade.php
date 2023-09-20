@@ -796,6 +796,8 @@
                                 },
                                 dataType: 'json',
                                 success: function(response) {
+                                    const dataEcrypt = response
+                                        .encryptedData;
                                     formSteps[formSteps.length - 2]
                                         .classList.remove("active");
                                     formSteps[formSteps.length - 1]
