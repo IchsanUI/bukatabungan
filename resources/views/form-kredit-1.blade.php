@@ -798,14 +798,15 @@
                                 success: function(response) {
                                     const dataEcrypt = response
                                         .encryptedData;
-                                    formSteps[formSteps.length - 2]
-                                        .classList.remove("active");
-                                    formSteps[formSteps.length - 1]
-                                        .classList.add("active");
                                     alert(dataEcrypt);
                                     $('#loaderID').hide();
                                     $('#confirmationModal').modal(
                                         'hide');
+                                    formSteps[formSteps.length - 2]
+                                        .classList.remove("active");
+                                    formSteps[formSteps.length - 1]
+                                        .classList.add("active");
+
                                 },
                                 error: function(error) {
                                     alert("Terjadi kesalahan saat mengirim data: " +
