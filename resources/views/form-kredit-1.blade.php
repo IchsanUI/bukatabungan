@@ -148,8 +148,8 @@
                 -moz-box-shadow: 15px 15px 20px -6px rgba(0, 0, 0, 0.14);
             }
 
-            /*
-                .kd-form {
+
+            /* .kd-form {
                     display: none;
                 }
 
