@@ -160,7 +160,7 @@
     </style>
 @endpush
 @section('content')
-    <h1>Hahaha</h1>
+    {{-- <h1>Hahaha</h1> --}}
     <div class="form-section">
         <div class="kd-form active">
             <div class="firstStep">
