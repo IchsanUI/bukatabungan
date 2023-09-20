@@ -749,9 +749,12 @@
                                 dataType: 'json',
                                 success: function(response) {
                                     $('#loaderID').hide();
-                                    const lastStep = formSteps[formSteps
-                                        .length];
-                                    alert(formDataJSON);
+                                    const dataEcrypt = response
+                                        .encryptedData;
+                                    // const lastStep = formSteps[formSteps
+                                    //     .length];\
+                                    console.log(dataEcrypt);
+                                    alert(dataEcrypt);
                                 },
                                 error: function(error) {
                                     alert("Terjadi kesalahan saat mengirim data: " +
