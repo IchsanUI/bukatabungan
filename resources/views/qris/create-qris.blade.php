@@ -102,12 +102,12 @@
             }
 
             /* .cq-form {
-                                                                                                                                                                                                    display: none;
-                                                                                                                                                                                                }
+                    display: none;
+                }
 
-                                                                                                                                                                                                .cq-form.active {
-                                                                                                                                                                                                    display: block;
-                                                                                                                                                                                                } */
+                .cq-form.active {
+                    display: block;
+                } */
         }
     </style>
 @endpush

@@ -30,10 +30,11 @@ class LandingPageController extends Controller
     {
         return view('form-kredit-1');
     }
-    public function createQris()
+    public function landingQris()
     {
-        return view('create-qris');
+        return view('qris/landing');
     }
+
     public function digital_saving()
     {
         return view('digital-saving');

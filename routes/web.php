@@ -21,7 +21,8 @@ Route::get('/test', function () {
     return view('welcome');
 });
 Route::get('/', [LandingPageController::class, 'index']);
-Route::get('/createqris', [LandingPageController::class, 'createQris']);
+
+
 Route::get('/info', [LandingPageController::class, 'info']);
 
 Route::get('/kredit', [LandingPageController::class, 'kredit']);
@@ -52,3 +53,7 @@ Route::get('/get-job-suggestions', [DataKreditController::class, 'getJobSuggesti
 // Route::controller(\App\Http\Controllers\UserController::class)-> group(function(){
 //     Route::get('/login','login')->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class]);
 // });
+
+// QRIS Route
+Route::get('/landing', [LandingPageController::class, 'landingQris'])->name('landing.qris');
+Route::get('/landing/createqris', [DataQRISController::class, 'createQris'])->name('create.qris');

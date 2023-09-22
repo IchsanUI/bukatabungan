@@ -38,6 +38,10 @@ class DataQRISController extends Controller
     //         return response()->json(['error' => 'Gagal mendekripsi data.'], 400);
     //     }
     // }
+    public function createQris()
+    {
+        return view('qris/create-qris');
+    }
     public function saveData(Request $request)
     {
 

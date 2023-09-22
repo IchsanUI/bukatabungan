@@ -5,6 +5,8 @@
             background-image: url("{{ asset('img/Back5.jpg') }}");
             background-position: center;
             background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .well_head {
@@ -174,7 +176,7 @@
                     <p class="card-text lh-1" style="font-size: 9pt">With supporting text below as a natural lead-in to
                         additional content.</p>
                 </div>
-                <a href="{{ url('createqris') }}" class="btn btn-primary">Pilih <i class="bi bi-arrow-right-short"
+                <a href="{{ route('landing.qris') }}" class="btn btn-primary">Pilih <i class="bi bi-arrow-right-short"
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a>
                 {{-- <a href="{{ route('maintenance') }}" class="btn btn-primary">Pilih <i class="bi bi-arrow-right-short"
                         style="font-size: 1rem; color: white; margin-left: 0.5rem;"></i></a> --}}
