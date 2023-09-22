@@ -120,7 +120,7 @@
 @section('content')
     <div class="head">
         <h1>Penerbitan <img src="{{ asset('img/QRIS_logo.png') }}" alt="" style="width:190px"></h1>
-        <p>" Satu QR Code untuk Semua Payment. "</p>
+        <p>" Satu QR Code untuk Semua Payment "</p>
     </div>
     <div class="wall_service">
         <div class="card text-center">
