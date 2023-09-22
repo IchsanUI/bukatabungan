@@ -116,6 +116,7 @@
                 justify-content: space-between;
             }
 
+
         }
     </style>
 @endpush
@@ -131,25 +132,25 @@
                     <h3 style="margin: 0;margin-top:10px">Check QRIS Saya.</h3>
                     <p class="card-text" style="font-size: 9pt">Check QRIS yang Sudah Kamu Ajukan.</p>
                 </div>
-                <div class="content-card">
+                <hr>
+                {{-- <div class="content-card">
                     <img src="{{ asset('img/qrcode-example.png') }}" width="100%" style="padding:50px" alt="">
-                </div>
+                </div> --}}
                 <div class="button-card">
-                    <div class="mb-3" style="font-size: 10pt;">
+                    <div style="font-size: 10pt;margin-bottom:30px">
                         <label for="codeQRIS" class="form-label">Masukan Kode Pengajuan QRIS Anda.</label>
-                        <input type="text" class="form-control" id="codepengajuan_qris" placeholder="" maxlength="12"
-                            required>
-                        <div id="" class="form-text">
-                            <small>Contoh : QRBGXXXXXX</small>
-                        </div>
+                        <input type="text" style="text-align:center;" class="form-control" id="codepengajuan_qris"
+                            placeholder="QRBGXXXXXXX" required>
                     </div>
                     <a href="{{ route('maintenance') }}" class="btn btn-primary" id="checkPengajuan">Check Pengajuan
                         QRIS</a>
-                    <a href="{{ route('create.qris') }}" class="btn btn-primary">Buat QRIS Baru <i class="bi bi-qr-code"
-                            style="font-size: 0.8rem; color: white; margin-left: 0.3rem;"></i></a>
+                    <a href="{{ route('create.qris') }}" class="btn btn-primary costum" id="createdNew">Buat QRIS Baru <i
+                            class="bi bi-qr-code" style="font-size: 0.8rem; color: white; margin-left: 0.3rem;"></i></a>
                 </div>
             </div>
         </div>
         <img src="{{ asset('img/kerja-sama-qris.png') }}" width="280px">
     </div>
 @endsection
+@push('script-end')
+@endpush
