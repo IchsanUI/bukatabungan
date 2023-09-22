@@ -145,7 +145,7 @@
                     <a href="{{ route('maintenance') }}" class="btn btn-primary" id="checkPengajuan">Check Pengajuan
                         QRIS</a>
                     <a href="{{ route('create.qris') }}" class="btn btn-primary">Buat QRIS Baru <i class="bi bi-qr-code"
-                            style="font-size: 1rem; color: white; margin-left: 0.3rem;"></i></a>
+                            style="font-size: 0.8rem; color: white; margin-left: 0.3rem;"></i></a>
                 </div>
             </div>
         </div>
