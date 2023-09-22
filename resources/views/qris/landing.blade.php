@@ -57,7 +57,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 10px;
+            /* padding: 10px; */
         }
 
         @media (max-width: 768px) {
