@@ -29,8 +29,8 @@
         }
 
         .wall_service .card {
-            width: 22rem;
-            height: 60vh;
+            width: 25rem;
+            height: 100%;
 
         }
 
@@ -132,10 +132,9 @@
                     <h3 style="margin: 0;margin-top:10px">Check QRIS Saya.</h3>
                     <p class="card-text" style="font-size: 9pt">Check QRIS yang Sudah Kamu Ajukan.</p>
                 </div>
-                <hr>
-                {{-- <div class="content-card">
+                <div class="content-card">
                     <img src="{{ asset('img/qrcode-example.png') }}" width="100%" style="padding:50px" alt="">
-                </div> --}}
+                </div>
                 <div class="button-card">
                     <div style="font-size: 10pt;margin-bottom:30px">
                         <label for="codeQRIS" class="form-label">Masukan Kode Pengajuan QRIS Anda.</label>
