@@ -60,7 +60,7 @@
             /* padding: 10px; */
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
             body {
                 background-position: left bottom;
             }
@@ -70,7 +70,7 @@
                 justify-content: center;
                 align-items: center;
                 color: white;
-                /* padding: 50px; */
+                text-align: center;
             }
 
             .wall_service {
@@ -85,7 +85,7 @@
 
             .wall_service .card {
                 width: 22rem;
-                height: 60vh;
+                height: 100%;
 
             }
 
@@ -112,15 +112,16 @@
             .card-body {
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between
+                justify-content: space-between;
             }
+
         }
     </style>
 @endpush
 @section('content')
     <div class="head">
         <h1>Penerbitan <img src="{{ asset('img/QRIS_logo.png') }}" alt="" style="width:190px"></h1>
-        <p>" Satu QR Code untuk Semua Payment "</p>
+        <p><i>" Satu QRIS untuk Semua Payment "</i> </p>
     </div>
     <div class="wall_service">
         <div class="card text-center">
@@ -130,12 +131,13 @@
                     <p class="card-text" style="font-size: 9pt">Check QRIS yang Sudah Kamu Ajukan.</p>
                 </div>
                 <div class="content-card">
-                    <img src="{{ asset('img/qrcode-example.png') }}" width="200px" alt="">
+                    <img src="{{ asset('img/qrcode-example.png') }}" width="100%" style="padding:50px" alt="">
                 </div>
                 <div class="button-card">
                     <div class="mb-3" style="font-size: 10pt;">
                         <label for="codeQRIS" class="form-label">Masukan Kode Pengajuan QRIS Anda.</label>
-                        <input type="text" class="form-control" id="norek_bg" placeholder="" maxlength="12" required>
+                        <input type="text" class="form-control" id="codepengajuan_qris" placeholder="" maxlength="12"
+                            required>
                         <div id="" class="form-text">
                             <small>Contoh : QRBGXXXXXX</small>
                         </div>
@@ -146,26 +148,7 @@
                             style="font-size: 1rem; color: white; margin-left: 0.3rem;"></i></a>
                 </div>
             </div>
-
-            {{-- <div class="card-body lh-1">
-                <h3 class="card-title">Check QRIS Saya.</h3>
-                <p class="card-text" style="font-size: 9pt">With supporting text below as a natural lead-in to
-                    additional content.</p>
-            </div>
-            <div class="content-qr">
-                <img src="{{ asset('img/qrcode-example.png') }}" alt="">
-            </div>
-            <div class="button-card">
-                <div class="mb-3" style="font-size: 10pt;">
-                    <label for="codeQRIS" class="form-label">Masukan Kode QRIS Anda.</label>
-                    <input type="text" class="form-control" id="norek_bg" placeholder="" maxlength="12" required>
-                    <div id="" class="form-text">
-                        <small>Contoh : 01.10.001234.01</small>
-                    </div>
-                </div>
-                <a href="{{ route('maintenance') }}" class="btn btn-primary" id="checkPengajuan">Check Pengajuan QRIS</a>
-                <a href="{{ route('maintenance') }}" class="btn btn-primary">Buat QRIS Baru</a>
-            </div> --}}
         </div>
+        <img src="{{ asset('img/kerja-sama-qris.png') }}" width="280px">
     </div>
 @endsection
