@@ -71,6 +71,7 @@
                 align-items: center;
                 color: white;
                 text-align: center;
+                padding: 30px 50px 10px 50px;
             }
 
             .wall_service {
