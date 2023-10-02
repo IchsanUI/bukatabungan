@@ -60,10 +60,48 @@
             /* padding: 10px; */
         }
 
+        #createdNew {
+            background: rgb(51, 255, 0);
+            background: linear-gradient(90deg,
+                    rgb(208, 12, 12) 0%,
+                    rgb(255, 14, 14) 100%,
+                    rgb(251, 0, 0) 100%);
+        }
+
+        #checkPengajuan {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px
+        }
+
+        .loader {
+            display: none;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            animation: spin 1s linear infinite;
+            /* Default: sembunyikan loader */
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
         @media (max-width: 1000px) {
             body {
                 background-position: left bottom;
             }
+
 
             .head {
                 display: flex;
@@ -133,7 +171,8 @@
                     <p class="card-text" style="font-size: 9pt">Check QRIS yang Sudah Kamu Ajukan.</p>
                 </div>
                 <div class="content-card">
-                    <img src="{{ asset('img/qrcode-example.png') }}" width="100%" style="padding:50px" alt="">
+                    <img src="{{ asset('img/qrcode-example.png') }}" width="100%" style="padding:40px" alt="">
+
                 </div>
                 <div class="button-card">
                     <div style="font-size: 10pt;margin-bottom:30px">
@@ -141,10 +180,12 @@
                         <input type="text" style="text-align:center;" class="form-control" id="codepengajuan_qris"
                             placeholder="QRBGXXXXXXX" required>
                     </div>
-                    <a href="{{ route('maintenance') }}" class="btn btn-primary" id="checkPengajuan">Check Pengajuan
-                        QRIS</a>
-                    <a href="{{ route('create.qris') }}" class="btn btn-primary costum" id="createdNew">Buat QRIS Baru <i
-                            class="bi bi-qr-code" style="font-size: 0.8rem; color: white; margin-left: 0.3rem;"></i></a>
+                    <a href="" class="btn btn-primary" id="checkPengajuan">Check Pengajuan
+                        QRIS <div id="loader" class="loader"></div> </a>
+
+                    <hr>
+                    <a href="{{ route('create.qris') }}" class="btn btn-danger" id="createdNew">Buat QRIS Baru <img
+                            src="{{ asset('img/QRIS_logo.png') }}" alt="" style="width:100px"></a>
                 </div>
             </div>
         </div>
@@ -152,4 +193,86 @@
     </div>
 @endsection
 @push('script-end')
+    <script>
+        $(document).ready(function() {
+            // Menangani klik pada tautan "Check Pengajuan QRIS" (dengan id "checkPengajuan")
+            $("#checkPengajuan").click(function(event) {
+                event.preventDefault(); // Mencegah tindakan default dari tautan
+
+                // Menampilkan loader dan menonaktifkan tautan
+                $("#loader").show();
+                $("#checkPengajuan").addClass(
+                    "disabled"); // Menambahkan kelas "disabled" untuk menonaktifkan tautan
+
+                var kodePengajuanQRIS = $("#codepengajuan_qris").val(); // Ambil nilai input kode pengajuan
+
+                // Hapus kelas 'is_invalid' dari input sebelum validasi
+                $("#codepengajuan_qris").removeClass("is-invalid");
+
+                // Validasi kode pengajuan
+                if (!kodePengajuanQRIS) {
+                    // Jika kode pengajuan kosong, tambahkan kelas 'is_invalid' pada input
+                    $("#codepengajuan_qris").addClass("is-invalid");
+
+                    // Sembunyikan loader dan aktifkan tautan kembali
+                    $("#loader").hide();
+                    $("#checkPengajuan").removeClass(
+                        "disabled"); // Menghapus kelas "disabled" untuk mengaktifkan tautan kembali
+
+                    return; // Hentikan proses jika kode pengajuan kosong
+                }
+
+                // Lakukan permintaan Ajax
+                $.ajax({
+                    url: "/check-pengajuan-qris", // Mengarahkan ke rute yang telah Anda buat
+                    type: "GET",
+                    dataType: "json",
+                    data: {
+                        kodepengajuan_qris: kodePengajuanQRIS
+                    }, // Kirim kode pengajuan sebagai data
+                    success: function(response) {
+                        // Tangani respons dari server di sini
+                        if (response.status === "success") {
+                            // Data pengajuan valid
+                            alert("Status Pengajuan QRIS: " + response.message);
+                        } else {
+                            // Data pengajuan tidak valid
+                            alert("Error: " + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Tangani kesalahan jika ada
+                        console.error("Terjadi kesalahan: " + error);
+                    },
+                    complete: function() {
+                        // Sembunyikan loader dan aktifkan tautan kembali setelah permintaan selesai
+                        $("#loader").hide();
+                        $("#checkPengajuan").removeClass(
+                            "disabled"
+                        ); // Menghapus kelas "disabled" untuk mengaktifkan tautan kembali
+                    }
+                });
+            });
+        });
+
+        function formatInput() {
+            let inputElement = document.getElementById('codepengajuan_qris');
+            let inputValue = inputElement.value;
+
+            // Hapus karakter selain angka
+            inputValue = inputValue.replace(/\D/g, '');
+
+            // Pastikan panjang angka tidak lebih dari 6 digit
+            inputValue = inputValue.slice(0, 6);
+
+            // Tambahkan "QRBG-" di awal
+            inputValue = "QRBG" + inputValue;
+
+            // Update nilai input
+            inputElement.value = inputValue;
+        }
+
+        // Tambahkan event listener untuk memanggil fungsi formatInput saat nilai input berubah
+        document.getElementById('codepengajuan_qris').addEventListener('input', formatInput);
+    </script>
 @endpush

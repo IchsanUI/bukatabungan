@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DataKreditController;
 use App\Http\Controllers\DataQRISController;
+use App\Http\Controllers\PengajuanQRISController;
 
 
 /*
@@ -49,6 +50,9 @@ Route::post('/prosesQRIS', [DataQRISController::class, 'saveData'])->name('post.
 
 Route::get('/reload-captcha', [DataKreditController::class, 'reloadCaptcha'])->name('get.reloadCaptcha');
 Route::get('/get-job-suggestions', [DataKreditController::class, 'getJobSuggestions'])->name('get.job.API');
+
+Route::get('/check-pengajuan-qris', [PengajuanQRISController::class, 'checkPengajuanQRIS']);
+
 
 // Route::controller(\App\Http\Controllers\UserController::class)-> group(function(){
 //     Route::get('/login','login')->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class]);
