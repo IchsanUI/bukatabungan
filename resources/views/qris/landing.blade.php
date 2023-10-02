@@ -179,6 +179,8 @@
                         <label for="codeQRIS" class="form-label">Masukan Kode Pengajuan QRIS Anda.</label>
                         <input type="text" style="text-align:center;" class="form-control" id="codepengajuan_qris"
                             placeholder="QRBGXXXXXXX" required>
+                        <div id="info" class="form-text text-danger">
+                        </div>
                     </div>
                     <a href="" class="btn btn-primary" id="checkPengajuan">Check Pengajuan
                         QRIS <div id="loader" class="loader"></div> </a>
@@ -219,6 +221,8 @@
                     $("#checkPengajuan").removeClass(
                         "disabled"); // Menghapus kelas "disabled" untuk mengaktifkan tautan kembali
 
+                    $("#info").text("Kode Pengajuan QRIS harus diisi.");
+
                     return; // Hentikan proses jika kode pengajuan kosong
                 }
 
@@ -237,7 +241,9 @@
                             alert("Status Pengajuan QRIS: " + response.message);
                         } else {
                             // Data pengajuan tidak valid
-                            alert("Error: " + response.message);
+                            // alert("Error: " + response.message);
+                            $("#info").text(response
+                                .message);
                         }
                     },
                     error: function(xhr, status, error) {
