@@ -139,7 +139,7 @@
     <div class="well_head">
         <div class="well_title">
             <h1>Selamat Datang</h1>
-            <p>Di Layanan Digital <span class="text-warning">Bank Gresik</span></p>
+            <p>Di Layanan Pengajuan Digital <span class="text-warning">Bank Gresik</span></p>
             <small class="text-light" style="margin-top: 30px">Pilih Salah Satu Layanan :</small>
         </div>
         <div class="well_service">
@@ -148,7 +148,7 @@
                 {{-- <i class="bi bi-wallet"></i> --}}
                 {{-- <i class="bi bi-piggy-bank icon-head" style="color: rgb(0, 0, 0); margin-right: 1rem;"></i> --}}
                 <div class="card-body lh-1">
-                    <h5 class="card-title">Pembukaan Rekening Tabungan</h5> 
+                    <h5 class="card-title">Pembukaan Rekening Tabungan</h5>
                     <p class="card-text" style="font-size: 9pt">With supporting text below as a natural lead-in to
                         additional content.</p>
                 </div>
