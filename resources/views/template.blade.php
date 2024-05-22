@@ -41,7 +41,7 @@
         <!-- Copyright -->
         <div class="text-center " style="background-color: rgba(0, 0, 0, 0.1);">
             <small style="font-size: 8pt;">©<a class="text-dark" style="text-decoration: none;"
-                    href="https://bankgresik.co.id/">PERUMDA BPR Bank Gresik. Halo</a> | All Rights Reserved.
+                    href="https://bankgresik.co.id/">PERUMDA BPR Bank Gresik.</a> | All Rights Reserved.
             </small>
         </div>
         <!-- Copyright -->
