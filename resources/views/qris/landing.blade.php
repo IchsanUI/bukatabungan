@@ -153,8 +153,6 @@
                 flex-direction: column;
                 justify-content: space-between;
             }
-
-
         }
     </style>
 @endpush
@@ -172,7 +170,6 @@
                 </div>
                 <div class="content-card">
                     <img src="{{ asset('img/qrcode-example.png') }}" width="100%" style="padding:40px" alt="">
-
                 </div>
                 <div class="button-card">
                     <div style="font-size: 10pt;margin-bottom:30px">

@@ -18,16 +18,15 @@ use App\Http\Controllers\PengajuanQRISController;
 |
 */
 
-Route::get('/test', function () {
+Route::get('/workspace', function () {
     return view('welcome');
 });
 Route::get('/', [LandingPageController::class, 'index']);
 
-
 Route::get('/info', [LandingPageController::class, 'info']);
 
 Route::get('/kredit', [LandingPageController::class, 'kredit']);
-Route::get('/kredit/detail-kredit-1', [LandingPageController::class, 'detail_kredit_1'])->name('detail-kredit-1');
+Route::get('/kredit/detail-kredit-umum', [LandingPageController::class, 'detail_kredit_1'])->name('detail-kredit-1');
 Route::get('/kredit/1', [LandingPageController::class, 'form_kredit_1'])->name('form-kredit-1');
 Route::get('/error/maintenance/', [LandingPageController::class, 'maintenance'])->name('maintenance');
 Route::get('/digital-saving', [LandingPageController::class, 'digital_saving']);

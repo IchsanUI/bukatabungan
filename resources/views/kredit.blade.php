@@ -59,7 +59,6 @@
         <div class="card-items mb-5">
             <h5 class="card-title "><strong>Pilih Jenis Kredit</strong></h5>
             <p class="card-text p-2">Pilih produk tabungan yang anda inginkan</p>
-
             <div class="card">
                 <div class="card-body">
                     <div class="card-img">
@@ -77,7 +76,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-body">
                     <div class="card-img">

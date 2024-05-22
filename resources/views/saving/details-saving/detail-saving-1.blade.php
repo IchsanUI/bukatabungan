@@ -35,15 +35,8 @@
         }
 
         .nav-item {
-            width: 500px
+            width: 500px;
         }
-
-        /* Tabs*/
-        /* section {
-                                                                                                                                                    padding: 60px 0;
-                                                                                                                                                } */
-
-
 
         #tabs {
             background: #ffffff;

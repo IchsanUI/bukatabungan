@@ -5,6 +5,7 @@
             background-image: url("{{ asset('img/Back3.jpg') }}");
             background-position: center;
             background-size: cover;
+
         }
 
         .cq-section {
@@ -101,13 +102,13 @@
                 border: 0px solid transparent;
             }
 
-            /* .cq-form {
-                    display: none;
-                }
+            .cq-form {
+                display: none;
+            }
 
-                .cq-form.active {
-                    display: block;
-                } */
+            .cq-form.active {
+                display: block;
+            }
         }
     </style>
 @endpush
@@ -125,7 +126,8 @@
                     <div class="form_file">
 
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">No. Rekening Bank Gresik</label>
+                            <label for="exampleFormControlInput1" class="form-label" style="font-size: 9pt;">No. Rekening
+                                Bank Gresik</label>
                             <input type="text" class="form-control" id="norek_bg" placeholder="" maxlength="12"
                                 required>
                             <div id="" class="form-text">

@@ -1,5 +1,8 @@
 @extends('template')
 @push('styles')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .card-items {
             display: flex;
@@ -32,7 +35,11 @@
         }
 
         .card-info p {
-            font-size: 10pt;
+            font-size: 9pt;
+        }
+
+        .landing {
+            /* font-family: 'Inter', sans-serif; */
         }
 
         @media (max-width: 768px) {
@@ -55,7 +62,7 @@
 @endpush
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-5 landing">
         <div class="card-items mb-5">
             <h5 class="card-title "><strong>Pilih Jenis Tabungan</strong></h5>
             <p class="card-text p-2">Pilih produk tabungan yang anda inginkan</p>
