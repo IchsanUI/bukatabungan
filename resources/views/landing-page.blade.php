@@ -148,7 +148,7 @@
                 {{-- <i class="bi bi-wallet"></i> --}}
                 {{-- <i class="bi bi-piggy-bank icon-head" style="color: rgb(0, 0, 0); margin-right: 1rem;"></i> --}}
                 <div class="card-body lh-1">
-                    <h5 class="card-title">Pembukaan Rekening Tabungan asdasdasd</h5> 
+                    <h5 class="card-title">Pembukaan Rekening Tabungan</h5> 
                     <p class="card-text" style="font-size: 9pt">With supporting text below as a natural lead-in to
                         additional content.</p>
                 </div>
